@@ -1,0 +1,21 @@
+.text {
+    margin: 10px auto;
+}
+
+.global {
+    width: 100%;
+    height: 100%;
+}
+
+p {
+    text-align: justify;
+    font-size: 20px;
+}
+
+.nav>li {
+    font-size: 26px;
+}
+
+.title>h1 {
+    font-size: 46px;
+}

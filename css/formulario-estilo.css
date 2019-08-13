@@ -1,0 +1,16 @@
+.form-global {
+    background: #6bdd84fb;
+    margin: auto;
+}
+
+legend {
+    margin-left: 3px;
+}
+
+.borda-baixo {
+    margin-bottom: 80px;
+}
+
+.tituloForm h1 {
+    color: black;
+}
