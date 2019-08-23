@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
 <html>
+
 <head>
 	<title>Formulário de árvore</title>
 	<meta charset="utf-8">
@@ -10,19 +11,23 @@
 	<link rel="stylesheet" href=" css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/formulario-estilo.css">
 </head>
+
 <body>
 
 	<div class="container borda-baixo">
 
 
 		<div class="box-body">
-			<form method="get" action="dados.php" >
-				<div> <h1 class="text-center">Forumuário para cadastro das árvores</h1> <hr></div>
+			<form method="get" action="dados.php">
+				<div>
+					<h1 class="text-center">Forumuário para cadastro das árvores</h1>
+					<hr>
+				</div>
 				<div class="fundo">
 					<div>
 						<a class="btn btn-success col-12" data-toggle="collapse" href="#Mapeamento-e-localização" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">I- Mapeamento e localização</a>
 
-						<div  class="collapse multi-collapse" id="Mapeamento-e-localização">
+						<div class="collapse multi-collapse" id="Mapeamento-e-localização">
 							<div class="form-row">
 
 
@@ -70,10 +75,10 @@
 					</div>
 
 
-					<div>	
+					<div>
 						<a class="btn btn-secondary  col-12" data-toggle="collapse" href="#Características-da-árvore" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">II- Características da árvore</a>
 
-						<div  class="collapse multi-collapse" id="Características-da-árvore">
+						<div class="collapse multi-collapse" id="Características-da-árvore">
 							<div class="form-row">
 
 								<legend> 1. Identificação</legend>
@@ -83,11 +88,11 @@
 								</div>
 								<div class="form-group col-md-3">
 									<label for="nomeCinetifico">Nome científico:</label>
-									<input type="text" class="form-control"  name="nomeCientifico" placeholder="Murraya paniculata" style="font-style:italic">
+									<input type="text" class="form-control" name="nomeCientifico" placeholder="Murraya paniculata" style="font-style:italic">
 								</div>
 								<div class="form-group col-md-3">
 									<label for="nomePopular">Nome popular:</label>
-									<input type="text" class="form-control"name="nomePopular" placeholder="Murta-de-cheiro" style="font-style:italic">
+									<input type="text" class="form-control" name="nomePopular" placeholder="Murta-de-cheiro" style="font-style:italic">
 								</div>
 							</div>
 							<div class="radios form-row ">
@@ -115,7 +120,7 @@
 								<legend>2. Porte da árvore</legend>
 								<div class="form-group col-md-3">
 									<label for="alturaArvor"> Altura da árvore(m):</label>
-									<input type="text" class="form-control" name="altArvore"placeholder="2.10">
+									<input type="text" class="form-control" name="altArvore" placeholder="2.10">
 
 								</div>
 								<div class="form-group col-md-3">
@@ -140,7 +145,8 @@
 								<legend>4. Condição do sitema radicular</legend>
 								<div class="form-group col-md-10">
 									<div>
-										<h5>Avaliação da possibilidade das raízes superficiais causarem danos:</b></p></h5>
+										<h5>Avaliação da possibilidade das raízes superficiais causarem danos:</b></p>
+										</h5>
 									</div>
 									<input type="radio" name="avalradicular" value="avalradicular1" checked> Raiz totalmente subterrânea.
 									<br>
@@ -161,7 +167,7 @@
 
 								<div class="form-radio col-md-6 col-sm-3 ">
 									<b>Local de Plantio:</b>
-									<div class="custom-control custom-radio" ><input type="radio" class="form-radio-inline" name="LocalPlantio" value="calcada" checked>Calçada</div>
+									<div class="custom-control custom-radio"><input type="radio" class="form-radio-inline" name="LocalPlantio" value="calcada" checked>Calçada</div>
 									<div class="custom-control custom-radio"><input type="radio" class="form-radio-inline" name="LocalPlantio" value="praca"> Praça</div>
 									<div class="custom-control custom-radio"> <input type="radio" class="form-radio-inline" name="LocalPlantio" value="ViaPublica"> Via Pública</div>
 									<div class="custom-control custom-radio"><input type="radio" class="form-radio-inline" name="LocalPlantio" value="Outro"> Outro</div>
@@ -197,17 +203,17 @@
 					<div>
 						<a class="btn btn-secondary col-12" data-toggle="collapse" href="#AcaoRecomendada" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">IV- Ação Recomendada</a>
 						<div class="collapse multi-collapse" id="AcaoRecomendada">
-							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="podaLeve1" checked > Poda leve</div>
-							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="podaPesada1" > Poda pesada</div>
-							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="reparoDanos" > Reparo de danos</div>
-							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="substituicao" > Substituição</div>
-							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="outro1" > Outro<br><br></div>
+							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="podaLeve1" checked> Poda leve</div>
+							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="podaPesada1"> Poda pesada</div>
+							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="reparoDanos"> Reparo de danos</div>
+							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="substituicao"> Substituição</div>
+							<div class="custom-control custom-radio"><input type="radio" name="acaoRecomendada" value="outro1"> Outro<br><br></div>
 						</div>
 
 					</div>
 				</div>
 			</form>
-			
+
 		</div>
 	</div>
 
@@ -218,4 +224,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
