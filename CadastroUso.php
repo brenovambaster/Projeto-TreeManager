@@ -21,7 +21,7 @@
         <div class="menu">
             <div class="top-total">
                 <div class="title">
-                    <h1> Cadastrar Usuário </h1>
+                    <h1> Gerenciar Usuário </h1>
                 </div>
                 <nav class="navbar navbar-expand-lg ">
                     <!-- Toggler/collapsibe Button -->
