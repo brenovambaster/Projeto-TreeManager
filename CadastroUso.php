@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/cadastroUsuario.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title> Administrador - Cadastrar Usuário </title>
+    <title> Administrador - Gerenciar Usuário </title>
     <!--  ICONS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
@@ -61,7 +61,7 @@
 
 
 
-        <h2>Alterar user</h2>
+        <h2>Alterar usuário</h2>
         <form method="POST" action="alterar_usuario.php?id=<?php echo $infoUsuario->IdUsu; ?>">
             <div>
                 <p>
