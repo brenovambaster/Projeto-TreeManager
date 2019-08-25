@@ -48,15 +48,15 @@
     <div class=" rounded border border-secondary mt-3 col-sm-4 cont-form text-center conteudo">
         <!-- ============================VERIFICAR A OPÇÃO PARA EDITAR O USUÁRIO   ==============================================================-->
         <?php
-        if ((isset($_GET['alterar']))) {
+            if ((isset($_GET['alterar']))) {
 
-            require_once('00 - BD/bd_conexao.php');
-            $id = $_GET['id'];
-            $sql = "SELECT * FROM  usuario WHERE IdUsu=$id";
-            $resultado = $con->query($sql);
-            $infoUsuario = mysqli_fetch_object($resultado);
+                require_once('00 - BD/bd_conexao.php');
+                $id = $_GET['id'];
+                $sql = "SELECT * FROM  usuario WHERE IdUsu=$id";
+                $resultado = $con->query($sql);
+                $infoUsuario = mysqli_fetch_object($resultado);
 
-            ?>
+        ?>
         <!-- colocar form de alterar -->
 
 
@@ -98,41 +98,41 @@
 
 
         <?php
-        }/*Fechar chave do IF  */ else {
-            ?>
-
-        <form method="POST" action="validaCadastroUsu.php">
-            <div>
-
-                <p>
-                    <label for="nome_cad"></label>
-                    <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Nome " />
-                </p>
-
-                <p>
-                    <label for="Telefone_cad"></label>
-                    <input id="Telefone_cad" name="telefone_cad" required="required" type="text" placeholder="Telefone" />
-                </p>
-
-                <p>
-                    <label for="senha_cad"></label>
-                    <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="Senha" />
-                </p>
-                <p>
-                    <label for="email"></label>
-                    <input id="email" name="email" required="required" type="email" placeholder="email" />
-                </p>
-
-            </div>
-
-            <div class="text-center">
-                <input class="btn btn-success" type="submit" value="Cadastrar" />
-            </div>
-        </form>
-
-        <?php //fechar chave do else
-        }
+             }/*Fechar chave do IF  */ else {
         ?>
+
+                <form method="POST" action="validaCadastroUsu.php">
+                    <div>
+
+                        <p>
+                            <label for="nome_cad"></label>
+                            <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Nome " />
+                        </p>
+
+                        <p>
+                            <label for="Telefone_cad"></label>
+                            <input id="Telefone_cad" name="telefone_cad" required="required" type="text" placeholder="Telefone" />
+                        </p>
+
+                        <p>
+                            <label for="senha_cad"></label>
+                            <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="Senha" />
+                        </p>
+                        <p>
+                            <label for="email"></label>
+                            <input id="email" name="email" required="required" type="email" placeholder="email" />
+                        </p>
+
+                    </div>
+
+                    <div class="text-center">
+                        <input class="btn btn-success" type="submit" value="Cadastrar" />
+                    </div>
+                </form>
+
+            <?php //fechar chave do else
+                }
+            ?>
 
 
 
@@ -146,22 +146,22 @@
 
     <?php
     if (isset($_GET['success'])) { ?>
-   <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Usuário foi cadastrado com sucesso!!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Usuário foi cadastrado com sucesso!!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
     </div>
-   
+
     <?php
     }
     if (isset($_GET['error'])) { ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Algo de errado ocorreu :( Por favor, tente novamente!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Algo de errado ocorreu :( Por favor, tente novamente!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     <?php
     }
     ?>
@@ -169,22 +169,22 @@
 
 
     <?php
-    if (isset($_GET['erroAlterar'])) {
-        ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Alteração não realizada!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        if (isset($_GET['erroAlterar'])) {
+            ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Alteração não realizada!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     <?php
     } elseif (isset($_GET['alterado'])) {
-        ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Alteração realizada com sucesso!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Alteração realizada com sucesso!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
     </div>
     <?php
     }
@@ -201,48 +201,33 @@
     <!-- ==========================================TABRLA================================   -->
 
     <?php
-    if (isset($_GET['result']) && $_GET['result'] == "erroExcluir") {
-        ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Operação não realizada!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        if (isset($_GET['result']) && $_GET['result'] == "erroExcluir") {
+    ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Operação não realizada!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
     <?php
-    } elseif (isset($_GET['result']) && $_GET['result'] == "excluido") {
-        ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Operação realizada com sucesso!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        } elseif (isset($_GET['result']) && $_GET['result'] == "excluido") {
+    ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Operação realizada com sucesso!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     <?php
     }
     ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class=" container  table-responsive">
         <?php
-        require_once('00 - BD/bd_conexao.php');
-        $sql = " SELECT * FROM usuario ORDER BY nome ASC"; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
-        $resultado = $con->query($sql);
+            require_once('00 - BD/bd_conexao.php');
+            $sql = " SELECT * FROM usuario ORDER BY nome ASC"; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
+            $resultado = $con->query($sql);
         ?>
         <!--  Criar tabela para mostrar todos os usuários -->
         <table class="table table-striped table-responsive-md ">
@@ -258,23 +243,25 @@
 
             <tbody>
                 <?php while ($infoUsuario = mysqli_fetch_object($resultado)) { ?>
-                <tr>
-                    <th scope="row"> <?php echo $infoUsuario->IdUsu ?> </th>
-                    <td><?php echo $infoUsuario->Nome; ?></td>
-                    <td><?php echo $infoUsuario->Email; ?></td>
-                    <td><?php echo $infoUsuario->Telefone; ?></td>
-                    <td>
-                        <a href="CadastroUso.php?alterar&id=<?php echo $infoUsuario->IdUsu; ?>">
-                            <i class="far fa-edit text-warning fa-lg"></i>
-                        </a>
-                        <a href="excluir_usuario.php?id=<?php echo $infoUsuario->IdUsu; ?>">
-                            <i class="fas fa-trash-alt text-danger fa-lg"></i>
-                        </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <th scope="row"> <?php echo $infoUsuario->IdUsu ?> </th>
+                        <td><?php echo $infoUsuario->Nome; ?></td>
+                        <td><?php echo $infoUsuario->Email; ?></td>
+                        <td><?php echo $infoUsuario->Telefone; ?></td>
+                        <td>
+                            <a href="CadastroUso.php?alterar&id=<?php echo $infoUsuario->IdUsu; ?>">
+                                <i class="far fa-edit text-warning fa-lg"></i>
+                            </a>
+                            <a href="excluir_usuario.php?id=<?php echo $infoUsuario->IdUsu; ?>">
+                                <i class="fas fa-trash-alt text-danger fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
             </tbody>
-            <?php  }
-            fecharConexao($con); ?>
+            <?php  
+                }
+                fecharConexao($con); 
+            ?>
 
         </table>
     </div>
