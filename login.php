@@ -10,23 +10,23 @@
 
 <body id="bodyteste">
 
-  <div class="container   ">
+  <div class="container" style="opacity:0.9;">
 
     <a class="links" id="paralogin"></a>
 
-    <div class="content mt-5 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+    <div class="content mt-5 col-sm-12 col-md-12 col-lg-8 col-xl-8 ">
       <!--FORMULÁRIO DE LOGIN-->
-      <div id="login">
+      <div id="login" >
         <form method="post" action="">
           <h1> <img src="img/arvoreLogin.png" alt="" height="18%" width="18%">Login</h1>
           <p>
             <label for="email_login"><b>Seu e-mail</b></label>
-            <input id="email_login" name="email_login" required="required" type="text" placeholder="infob.ifnmg@gmail.com" />
+            <input class="rounded border-primary" id="email_login" name="email_login" required="required" type="text" placeholder="infob.ifnmg@gmail.com" />
           </p>
 
           <p>
             <label for="senha_login"><b> Senha</b> </label>
-            <input id="senha_login" name="senha_login" required="required" type="password" placeholder="******" />
+            <input class="rounded border-primary" id="senha_login" name="senha_login" required="required" type="password" placeholder="******" />
           </p>
 
           <p>
