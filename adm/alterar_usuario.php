@@ -1,5 +1,7 @@
 <?php
- require_once("00 - BD/bd_conexao.php");
+include('seguranca.php');
+
+ require_once("../00 - BD/bd_conexao.php");
  $nome = $_POST['nome_cad'];
  $fone = $_POST['telefone_cad'];
  $senha = $_POST['senha_cad'];
@@ -16,12 +18,3 @@
  }
 
 fecharConexao($con);
-
-
-
-
-
-
-
-
-?>
