@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Ago-2019 às 13:01
+-- Tempo de geração: 20-Set-2019 às 17:59
 -- Versão do servidor: 10.3.16-MariaDB
 -- versão do PHP: 7.3.7
 
@@ -31,9 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `administrador` (
   `IdAdm` int(10) UNSIGNED NOT NULL,
   `Nome` varchar(50) NOT NULL,
-  `Senha` int(32) NOT NULL,
-  `Email` int(50) NOT NULL
+  `Senha` varchar(32) NOT NULL,
+  `Email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `administrador`
+--
+
+INSERT INTO `administrador` (`IdAdm`, `Nome`, `Senha`, `Email`) VALUES
+(1, 'Admin', 'admin', 'admin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -50,10 +57,10 @@ CREATE TABLE `arvore` (
   `AlturaPrimeiraBifurcacao` int(10) UNSIGNED NOT NULL,
   `CondicaoSistemaRadicular` varchar(17) NOT NULL,
   `LarguraCalcada` float UNSIGNED NOT NULL,
-  `NumImovelProx` int(11) NOT NULL,
+  `NumImovelProx` varchar(11) NOT NULL,
   `Poda` varchar(13) NOT NULL,
   `LocalPlantio` varchar(20) NOT NULL,
-  `CordGeo` int(11) NOT NULL,
+  `CordGeo` varchar(100) NOT NULL,
   `Altura` float UNSIGNED NOT NULL,
   `Toxidez` varchar(10) NOT NULL,
   `DistanciaOutraArvore` float UNSIGNED NOT NULL,
@@ -65,15 +72,30 @@ CREATE TABLE `arvore` (
   `Familia` varchar(30) NOT NULL,
   `DistanciaPostes` float NOT NULL,
   `NomePopular` char(40) NOT NULL,
-  `Origem` varchar(30) NOT NULL
+  `Origem` varchar(30) NOT NULL,
+  `observacao` varchar(300) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `arvore`
 --
 
-INSERT INTO `arvore` (`IdArvore`, `NomeCientifico`, `DistanciaLotes`, `DistanciaEsquinas`, `CondicaoFisicoSanitaria`, `AlturaPrimeiraBifurcacao`, `CondicaoSistemaRadicular`, `LarguraCalcada`, `NumImovelProx`, `Poda`, `LocalPlantio`, `CordGeo`, `Altura`, `Toxidez`, `DistanciaOutraArvore`, `AcaoRecomendada`, `PavimentacaoCalcada`, `DistanciaGaragens`, `Rua`, `Habito`, `Familia`, `DistanciaPostes`, `NomePopular`, `Origem`) VALUES
-(1, 'Samabaia', 23, 34, 'cond1', 2, 'cond3', 1.4, 14, '', '', 0, 0, '', 0, '', '', 0, '', '', '', 0, '', '');
+INSERT INTO `arvore` (`IdArvore`, `NomeCientifico`, `DistanciaLotes`, `DistanciaEsquinas`, `CondicaoFisicoSanitaria`, `AlturaPrimeiraBifurcacao`, `CondicaoSistemaRadicular`, `LarguraCalcada`, `NumImovelProx`, `Poda`, `LocalPlantio`, `CordGeo`, `Altura`, `Toxidez`, `DistanciaOutraArvore`, `AcaoRecomendada`, `PavimentacaoCalcada`, `DistanciaGaragens`, `Rua`, `Habito`, `Familia`, `DistanciaPostes`, `NomePopular`, `Origem`, `observacao`) VALUES
+(1, 'Samabaia', 23, 34, 'cond1', 2, 'cond3', 1.4, '14', '', '', '0', 0, '', 0, '', '', 0, '', '', '', 0, '', '', ''),
+(2, 'murraya ', 65, 25, 'aval1', 15, 'avalradicular1', 3, '560A', 'podaLeve', 'calcada', '122241mg-21', 210, 'Sim', 65, 'podaLeve1', 'comPavimento', 45, 'Rua Mônica', 'arvore', 'rutaceae', 25, 'murta de cheiro', 'nativa', ''),
+(8, '', 0, 0, '', 0, '', 0, '', '', '', '', 0, '', 0, '', '', 0, '', '', '', 0, '', '', ''),
+(9, '', 0, 0, 'aval1', 0, 'avalradicular1', 0, '', 'podaLeve', 'calcada', '', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, '', 'arvore', '', 0, '', 'nativa', ''),
+(10, '', 0, 0, 'aval1', 0, 'avalradicular1', 0, '', 'podaLeve', 'calcada', '', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, '', 'arvore', '', 0, '', 'nativa', ''),
+(11, 'murraya ', 0, 0, 'aval1', 0, 'avalradicular1', 5, '560A', 'podaLeve', 'calcada', 'Latitude: -19.8157, Longitude: -43.9542 19° 48′ 57″ Sul, 43° 57′ 15″ Oeste', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Rua Mônica', 'arvore', 'rutaceae', 0, 'murta de cheiro', 'nativa', ''),
+(12, 'murraya ', 0, 0, 'aval1', 0, 'avalradicular1', 3, '860A', 'podaLeve', 'calcada', '122241mg-21°', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Rua Mônica', 'arvore', 'rutaceae', 0, 'murta de cheiro', 'nativa', ''),
+(13, 'murraya ', 0, 0, 'aval1', 0, 'avalradicular1', 0, '320A', 'podaLeve', 'calcada', 'Latitude: -19.8157, Longitude: -43.9542 19° 48′ 57″ Sul, 43° 57′ 15″ Oeste', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Rua Vitoria', 'arvore', 'rutaceae', 0, 'murta de cheiro', 'nativa', ''),
+(14, 'murraya ', 0, 0, 'aval1', 0, 'avalradicular1', 0, '260', 'podaLeve', 'calcada', 'Latitude: -19.8157, Longitude: -43.9542 19° 48′ 57″ Sul, 43° 57′ 15″ Oeste', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Rua Vitoria', 'arvore', 'rutaceae', 0, 'murta de cheiro', 'nativa', ''),
+(15, 'murraya ', 0, 0, 'aval1', 0, 'avalradicular1', 0, '560A', 'podaLeve', 'calcada', 'arthur', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Rua Mônica', 'arvore', 'rutaceae', 0, 'murta de cheiro', 'nativa', ''),
+(16, 'Murraya', 0, 0, 'aval1', 0, 'avalradicular1', 0, '', 'podaLeve', 'calcada', '123w 980 o', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Santa Isabel', 'arvore', 'Rutacea', 0, 'M  cheiro', 'nativa', ''),
+(17, '', 0, 0, 'aval1', 0, 'avalradicular1', 0, '', 'podaLeve', 'calcada', 'o 12° 10\" w 13° 1\"', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, '', 'arvore', '', 0, '', 'nativa', ''),
+(18, '', 0, 0, 'aval1', 0, 'avalradicular1', 0, 'asdq', 'podaLeve', 'calcada', 'o 12° 10\" w 13° 11\"', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'teste', 'arvore', '', 0, '', 'nativa', ''),
+(19, '', 0, 0, 'aval1', 0, 'avalradicular1', 0, '', 'podaLeve', 'calcada', 'Latitude: -19.8157, Longitude: -43.9542 19° 48′ 57″ Sul, 43° 57′ 15″ Oeste', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Rua Vitoria', 'arvore', '', 0, '', 'nativa', 'Observação para teste'),
+(20, 'Pingo de ouro', 0, 0, 'aval1', 0, 'avalradicular1', 0, '560A', 'podaLeve', 'calcada', 'Qualquer uma para teste', 0, 'Sim', 0, 'podaLeve1', 'comPavimento', 0, 'Santa Isabel', 'arvore', 'rutaceae', 0, 'murta de cheiro', 'nativa', '');
 
 -- --------------------------------------------------------
 
@@ -83,10 +105,23 @@ INSERT INTO `arvore` (`IdArvore`, `NomeCientifico`, `DistanciaLotes`, `Distancia
 
 CREATE TABLE `solicita` (
   `IdSol` int(11) NOT NULL,
+  `Nome` varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `DataSol` date NOT NULL,
-  `LocalArv` varchar(100) NOT NULL,
-  `EmailSol` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `texto` varchar(350) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `EmailSol` varchar(50) NOT NULL,
+  `statusSol` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `solicita`
+--
+
+INSERT INTO `solicita` (`IdSol`, `Nome`, `DataSol`, `texto`, `EmailSol`, `statusSol`) VALUES
+(1, 'Breno Vambáster Cardoso', '2019-09-20', 'teste ', 'brenovambaster5@gmail.com', 'nao lido'),
+(2, 'Breno Vambáster Cardoso', '2019-09-20', 'teste ', 'brenovambaster5@gmail.com', 'nao lido'),
+(3, 'Breno Vambáster Cardoso', '2019-09-20', 'Quero cadastrar uma árvore aqui perto de Casa: \r\nRua: JK número 21\r\n', 'brenovambaster5@gmail.com', 'nao lido'),
+(4, 'Alfredo Murta', '2019-09-20', 'Com faço para cadastrar uma árvore ?', 'alfredo@gamil.com', 'nao lido'),
+(5, 'Luiza', '2019-09-20', 'Teste 001, entre em contato\r\n', 'luiza32@gmail.com', 'nao lido');
 
 -- --------------------------------------------------------
 
@@ -107,10 +142,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`IdUsu`, `Nome`, `Senha`, `Telefone`, `Email`) VALUES
-(76, 'Alfredo', 'àrio', '966512131', 'alfredo@gamil.com'),
-(77, 'Leonardo Humberto', 'leo', '8746541', 'leo@gmail.com'),
-(78, 'Breno', 'breno', '7987654', 'brenovambaster5@gmail.com'),
-(79, 'Luisa', 'luisa', '54879654', 'luiza32@gmail.com');
+(107, 'Leonardo Humberto', 'leo', '4564798764', 'leo@gmail.com'),
+(108, 'luana Palmeira', 'luana', '7898654321', 'luana@yahoo.com'),
+(111, 'Alan Lucas de Souza', 'alan', '3379879465', 'alan@gmail.com'),
+(112, 'Breno Vambáster ', 'breno', '(33)99930-4442', 'brenovambaster5@gmail.com');
 
 --
 -- Índices para tabelas despejadas
@@ -149,25 +184,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `IdAdm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `IdAdm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `arvore`
 --
 ALTER TABLE `arvore`
-  MODIFY `IdArvore` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdArvore` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `solicita`
 --
 ALTER TABLE `solicita`
-  MODIFY `IdSol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdSol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `IdUsu` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `IdUsu` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

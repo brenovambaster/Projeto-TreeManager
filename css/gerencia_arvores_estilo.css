@@ -75,3 +75,7 @@ a {
 .modalColor {
     background: #e47541 !important;
 }
+
+.bloco-form input[type="text"]:hover {
+    background-color: #5ba1c9b6!important;
+}

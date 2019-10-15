@@ -1,0 +1,74 @@
+html,
+body {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #3b3e42;
+    padding-bottom: 10px;
+}
+
+.ap {
+    background-color: #0a94f0;
+    color: #ffa51f;
+    font-weight: bold;
+}
+
+h1 {
+    color: #fff;
+}
+
+.sair {
+    float: letf;
+    background-color: #3b3e42;
+}
+
+.input {
+    background-color: #e8e8e8;
+    border: 5px;
+    border-color: #5dadfc;
+}
+
+.btn {
+    background-color: #bcd3f7;
+}
+
+.rodape {
+    background-color: #3b3e42;
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.spc {
+    margin-left: 4px;
+    width: 200px;
+    height: 35px;
+    margin-top: 2px;
+}
+
+.spc1 {
+    width: 200px;
+    height: 35px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.conf {
+    margin-top: 4px;
+}
+
+.conteudo {
+    background-color: #ebeced;
+}
