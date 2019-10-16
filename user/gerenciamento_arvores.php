@@ -12,7 +12,9 @@ include('seguranca.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../css/gerencia_arvores_estilo2.css">
     <!-- Icone da pagina -->
-    <link rel="icon" type="imagem/png" href="../img/icon.png" /> <!-- Ícone criado por  freepik  de  www.flaticon.com -->
+    <?php
+    include('iconeSite.php'); // ícone do site
+    ?>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -171,6 +173,17 @@ include('seguranca.php');
             ?>
             <!--========= Fim da exibição com pesquisa ===========-->
             </div>
+
+
+            <?php // mostrar modal "alert" 
+            if (isset($_GET['success'])) { ?>
+                <script>
+                    alert("Árvore exluída com sucesso");
+                </script>
+            <?php
+            }
+            ?>
+
 
             <!-- ==========================================Modal============================================= -->
 

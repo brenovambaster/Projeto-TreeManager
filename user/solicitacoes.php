@@ -1,5 +1,6 @@
 <?php
 include('seguranca.php');
+
 ?>
 
 <!doctype html>
@@ -10,6 +11,9 @@ include('seguranca.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../css/perfil1.css">
+    <?php
+    include('iconeSite.php'); // ícone do site
+    ?>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title> Perfil de Usuário </title>
@@ -61,11 +65,11 @@ include('seguranca.php');
             </form>
         </div>
 
-            <?php
-            require_once('../00 - BD/bd_conexao.php');
-            $sql = " SELECT * FROM solicita  ORDER BY statusSol desc, DataSol "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
-            $resultado = $con->query($sql);
-            ?>
+        <?php
+        require_once('../00 - BD/bd_conexao.php');
+        $sql = " SELECT * FROM solicita  ORDER BY statusSol desc, DataSol "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
+        $resultado = $con->query($sql);
+        ?>
 
 
 
@@ -92,37 +96,37 @@ include('seguranca.php');
                 </thead>
                 <tbody>
 
-                     <?php while ($infoSol = mysqli_fetch_object($resultado)) { ?>
-                    <tr>
-                        <th> <?php echo $infoSol->IdSol; ?>      </th>
-                        <th> <?php  echo $infoSol->EmailSol;?>   </th>
-                        <th> 
-                            <?php 
-                                $date = DateTime::createFromFormat('Y-m-d', $infoSol->DataSol);
-                                echo $date->format('d/m/Y');
-                            ?>    
-                        </th>
+                    <?php while ($infoSol = mysqli_fetch_object($resultado)) { ?>
+                        <tr>
+                            <th> <?php echo $infoSol->IdSol; ?> </th>
+                            <th> <?php echo $infoSol->EmailSol; ?> </th>
+                            <th>
+                                <?php
+                                    $date = DateTime::createFromFormat('Y-m-d', $infoSol->DataSol);
+                                    echo $date->format('d/m/Y');
+                                    ?>
+                            </th>
 
-                        <th><a href="verSolicitacao.php?id=<?php echo $infoSol->IdSol; ?>  "> <img src="../img/ver.png" alt="ver" width="30px" height="30px" >  </a></th>
-                        <th>
-                            <div class="custom-control custom-checkbox ">
-                                
-                             <?php if($infoSol->statusSol == "nao lido" ){   ?>
-                                <input type="checkbox" name="status" class="custom-control-input" disabled  id="situacao">
-                                <label class="custom-control-label " for="situacao">Lida</label>
-                            <?php }else{ ?>
+                            <th><a href="verSolicitacao.php?id=<?php echo $infoSol->IdSol; ?>  "> <img src="../img/ver.png" alt="ver" width="30px" height="30px"> </a></th>
+                            <th>
+                                <div class="custom-control custom-checkbox ">
 
-                                <input type="checkbox" name="status" class="custom-control-input" disabled checked id="situacao">
-                                <label class="custom-control-label " for="situacao">Lida</label>
+                                    <?php if ($infoSol->statusSol == "nao lido") {   ?>
+                                        <input type="checkbox" name="status" class="custom-control-input" disabled id="situacao">
+                                        <label class="custom-control-label " for="situacao">Lida</label>
+                                    <?php } else { ?>
+
+                                        <input type="checkbox" name="status" class="custom-control-input" disabled checked id="situacao">
+                                        <label class="custom-control-label " for="situacao">Lida</label>
 
 
-                            <?php } ?> 
-                            </div>
-                        </th>
-                    </tr>
-                <?php } // fechar while 
-                ?>
-                    
+                                    <?php } ?>
+                                </div>
+                            </th>
+                        </tr>
+                    <?php } // fechar while 
+                    ?>
+
                 </tbody>
                 <?php fecharConexao($con);  ?>
             </table>

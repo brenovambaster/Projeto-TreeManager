@@ -16,6 +16,9 @@ include('seguranca.php');
     <link rel="stylesheet" href=" ../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/formulario-estilo.css">
     <link rel="stylesheet" type="text/css" href="../css/cadestilo.css">
+    <?php
+    include('iconeSite.php'); // ícone do site
+    ?>
     <title>Cadastro de Árvores</title>
 
 </head>
