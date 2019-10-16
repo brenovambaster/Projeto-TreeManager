@@ -13,6 +13,10 @@ include('seguranca.php');
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href=" ../css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../css/formulario-estilo.css">
+	<?php
+	include('iconeSite.php'); // ícone do site
+	?>
+
 </head>
 
 <body>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 
 <head>
     <!-- Required meta tags -->
@@ -7,9 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title> Perfil de Usuário </title>
-
+    <?php
+    include('iconeSite.php'); // ícone do site
+    ?>
 </head>
-<html>
 
 <body>
     <div class=" jumbotron bg-success">
@@ -94,7 +96,7 @@
                 <input type="submit" name="botao" value="salvar" class="btn btn-primary">
                 <a href="solicitacoes.php" class="btn ml-4 btn-warning">Voltar à página anterior</a>
             </form>
-           
+
 
         </div>
 
