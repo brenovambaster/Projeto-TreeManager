@@ -6,4 +6,4 @@ if (isset($_COOKIE[session_name()])) {
 }
 session_destroy();
 
-header('Location:perfil.php');
+header('Location:CadastroUso.php');

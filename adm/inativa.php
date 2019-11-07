@@ -11,7 +11,7 @@ include('seguranca.php');
 	<link rel="stylesheet" type="text/css" href="../css/inativaUser.css">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<title> Administrador - Inativar  </title>
+	<title> Administrador - Inativar </title>
 
 </head>
 
@@ -45,7 +45,7 @@ include('seguranca.php');
 							</li>
 						</ul>
 					</div>
-				</div>
+			</div>
 			</nav>
 		</div>
 	</div>
@@ -81,7 +81,7 @@ include('seguranca.php');
 					<button type="button" class="btn btn-success btn-block spc" name="inativar">Inativar Usuário</button>
 				</div>
 			</div>
-		</div>
+	</div>
 	</form>
 	<div class=" tst text-center">
 		<h2> Rodapé da pagina </h2>
