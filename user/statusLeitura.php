@@ -10,11 +10,9 @@ if ($resultado === true) {
     echo "deu certo";
     $flag = "sucesso";
 } else {
-    mysqli_error($con);
+    echo mysqli_error($con);
     echo "deu errado";
     $flag = "erro";
 }
 header("Location:verSolicitacao.php?id=$id");
-exit;
 fecharConexao($con);
-echo  $leitura;
