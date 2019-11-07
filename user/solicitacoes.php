@@ -73,16 +73,6 @@ include('seguranca.php');
 
 
 
-
-
-
-
-
-
-
-
-
-
         <div class=" col-md-9 mt-3 table table-responsive">
             <table class="table table-striped  ">
                 <thead>

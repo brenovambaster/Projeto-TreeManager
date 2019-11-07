@@ -116,13 +116,16 @@ include('seguranca.php');
                 $rua = $_POST['rua'];
                 $especie = $_POST['Especie'];
                 if ((!empty($especie) && empty($rua))) { // CASO APENAS A ESPECIE SEJA INFORMADA
-                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore where  NomeCientifico = '$especie'";
+                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore  where   NomeCientifico like '%$especie%'";
                 } else if (!empty($rua) && empty($especie)) { // CASO APENAS A RUA SEJA INFORMADA
-                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore where  Rua = '$rua'";
+                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore  where   Rua like '%$rua%'";
                 }
-                if (!empty($especie) && !empty($rua) || empty($especie) && empty($rua)) { // CASO NENHUM DOS CAMPOS TENHA SIDO INFORMADOS OU OS DOIS CAMPOS FORAM INFORMADOS
-                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore where  Rua = '$rua' AND NomeCientifico= '$especie'";
+                if (!empty($especie) && !empty($rua)) { // CASO NENHUM DOS CAMPOS TENHA SIDO INFORMADOS 
+                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore where  Rua like '%$rua%' AND NomeCientifico like '%$especie%'";
                 }
+                if (empty($especie) && empty($rua)) {
+                    $sql = "SELECT * FROM arvore";
+                 }
                 $resultado = $con->query($sql) or die("Erro ao se conectar com o Banco.");
                 ?>
                 <div class="col-md-8 mt-3 table table-responsive">

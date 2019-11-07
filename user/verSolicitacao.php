@@ -26,7 +26,7 @@
             $sql = "SELECT * FROM solicita where IdSol = $id";
             $result = $con->query($sql) or die("Erro ao se conectar com o Banco.");
             $infoSolicitacao = mysqli_fetch_object($result);
-            fecharConexao($con);
+
 
             ?>
 
@@ -52,11 +52,18 @@
         <div class="form-group col-md-7 mt-4">
             <div class="custom-control custom-checkbox">
                 <?php
-                if ($infoSolicitacao->statusSol == "lido") { ?>
+
+                $flag_msg_lida = "";
+                $flag_msg_nao_lida = "";
+                if ($infoSolicitacao->statusSol == "lido") {
+                    $flag_msg_lida = "checked";
+                    ?>
                     <input type="checkbox" name="checLeitura" class="custom-control-input" id="customCheck1" checked disabled>
 
                 <?php
-                } else { ?>
+                } else {
+                    $flag_msg_nao_lida = "checked";
+                    ?>
                     <input type="checkbox" name="checLeitura" class="custom-control-input" id="customCheck1" disabled>
 
                 <?php
@@ -77,13 +84,13 @@
                 <b>Marcar esta mensagem como:</b>
                 <div class="custom-control custom-radio custom-control-inline">
 
-                    <input type="radio" name="leitura" id="op1" value="lido" class="custom-control-input">
+                    <input type="radio" name="leitura" id="op1" value="lido" class="custom-control-input" <?php echo $flag_msg_lida; ?>>
                     <label for="op1" class="custom-control-label">Lida</label>
 
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
 
-                    <input type="radio" name="leitura" id="op2" value="nao lido" class="custom-control-input">
+                    <input type="radio" name="leitura" id="op2" value="nao lido" class="custom-control-input" <?php echo $flag_msg_nao_lida; ?>>
                     <label for="op2" class="custom-control-label">Não lida</label>
 
                 </div>
@@ -97,7 +104,7 @@
                 <a href="solicitacoes.php" class="btn ml-4 btn-warning">Voltar à página anterior</a>
             </form>
 
-
+            <?php fecharConexao($con); ?>
         </div>
 
     </div>
