@@ -2,7 +2,7 @@
 session_start(); // Iniciando a Sessão
 
 if (!isset($_POST['butaoLogin'])) {
-	header("Location: loginUsuario.php?urlNot");
+	header("Location: index.php?urlNot");
 }
 
 // Conectando com o banco (veja o arquivo bd_conexao.php)
@@ -31,7 +31,7 @@ $resultado = $con->query($sql) or die("Erro ao conectar com o Banco");
 $infoUsuario = mysqli_fetch_object($resultado);
 
 if (empty($infoUsuario)) {
-	header("Location: loginUsuario.php?error_login");
+	header("Location: index.php?error_login");
 } else {
 	// Adicionando uma informação à sessão
 
