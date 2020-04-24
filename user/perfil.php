@@ -45,8 +45,8 @@ include('seguranca.php');
 		</div>
 		<div class="conteudo   col-md-7 col-sm-10 ml-3 mt-1 ">
 			<?php require_once('../00 - BD/bd_conexao.php');
-			$id = $_SESSION['IdUsu'];
-			$sql = "SELECT * FROM usuario WHERE IdUsu =$id";
+			$id = $_SESSION['idUsu'];
+			$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
 			$result = $con->query($sql);
 			$info = mysqli_fetch_object($result);
 
@@ -59,26 +59,26 @@ include('seguranca.php');
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">Name:</span>
 						</div>
-						<input type="text" class="form-control form-group " id="#" name="nome" placeholder="<?php echo $info->Nome; ?>" required="required"></input>
+						<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo $info->nome; ?>" required="required"></input>
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">E-mail:</span>
 						</div>
-						<input type="text" class="form-control form-group" id="#" name="email" placeholder="<?php echo $info->Email; ?>" required="required"></input>
+						<input type="text" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
 					</div>
 					<div class="input-group mb-3">
 						<div class=" input-group-prepend">
 							<span class="input-group-text" id="basic-addon1"> Phone:</span>
 						</div>
-						<input type="text" class="form-control  form-group" id="#" name="telefone" placeholder="<?php echo $info->Telefone; ?>" required="required"></input>
+						<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
 					</div>
 					<div class="input-group mb-3">
 
 						<div class=" input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">Password:</span>
 						</div>
-						<input type=" password" class="form-control  form-group" id="#" name="senha" placeholder="<?php echo $info->Senha; ?>" required="required"></input>
+						<input type="password" class="form-control  form-group" id="#" name="senha" value="<?php echo $info->senha; ?>" required="required"></input>
 					</div>
 
 					<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->

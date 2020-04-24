@@ -3,7 +3,7 @@
 		Sair
 	</button>
 	<span class="btn badge-warning" style="font-size: 15px;">
-		<b>Usuário:</b> <?php echo  $_SESSION['validarSessao'];  ?> <b>ID</b>: <?php echo $_SESSION['IdUsu']; ?>
+		<b>Usuário:</b> <?php echo  $_SESSION['validarSessao'];  ?> <b>ID</b>: <?php echo $_SESSION['idUsu']; ?>
 	</span>
 
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal" aria-hidden="true">

@@ -38,7 +38,7 @@ include('seguranca.php');
 
     <!-- ====================== PESQUISAR ARVORE POR FORMULARIO ==================================================================  -->
     <div class="container row mx-auto">
-        <div class="pesquisa-form form-group bloco-form col-md-4 mt-2  border-right ">
+        <div class="pesquisa-form form-group bloco-form col-md-3 mt-2  border-right ">
             <form action="gerenciamento_arvores.php" method="POST">
                 <div class="form-group  col-md-11 col-sm-9  ">
                     <label for="ID"><b> ID:</b></label>
@@ -67,11 +67,11 @@ include('seguranca.php');
         <?php // Exibir sem pesquisar 
         if (!isset($_POST['pesquisa'])) {
             require_once('../00 - BD/bd_conexao.php');
-            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore ";
+            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo, Situacao FROM arvore ";
             $resultado = $con->query($sql) or die("Erro ao se conectar com o Banco.");
-            ?>
+        ?>
 
-            <div class="col-md-8 mt-3 table table-responsive">
+            <div class="col-md-9 mt-3 table table-responsive">
                 <table class="table table-striped  ">
                     <thead>
                         <tr class="bg-success">
@@ -79,34 +79,37 @@ include('seguranca.php');
                             <th scope="col">Nome científico</th>
                             <th scope="col">Rua</th>
                             <th scope="col">Coordenada</th>
+                            <th scope="col">Situação </th>
                             <th scope="col">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <?php
-                            while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
+                        while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
                             <tr>
                                 <th scope="row"><?php echo $informacaoArvore->IdArvore; ?></th>
                                 <td> <?php echo $informacaoArvore->NomeCientifico; ?></td>
                                 <td><?php echo $informacaoArvore->Rua; ?></td>
                                 <td><?php echo $informacaoArvore->CordGeo; ?></td>
+                                <td><?php echo $informacaoArvore->Situacao; ?></td>
                                 <td>
                                     <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
                                     <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Excluir </a>
                                     <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
+                                    <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
                                 </td>
                             </tr>
 
                         <?php
-                            } //while
-                            ?>
+                        } //while
+                        ?>
 
                     </tbody>
 
                 </table>
             <?php
-            } //fecha if 
+        } //fecha if 
             ?>
             <!-- ===========Fim da exibição sem pesquisa========== -->
             <?php
@@ -125,9 +128,9 @@ include('seguranca.php');
                 }
                 if (empty($especie) && empty($rua)) {
                     $sql = "SELECT * FROM arvore";
-                 }
+                }
                 $resultado = $con->query($sql) or die("Erro ao se conectar com o Banco.");
-                ?>
+            ?>
                 <div class="col-md-8 mt-3 table table-responsive">
                     <table class="table table-striped  ">
                         <thead>
@@ -142,7 +145,7 @@ include('seguranca.php');
                         <tbody>
 
                             <?php
-                                while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
+                            while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
                                 <tr>
                                     <th scope="row"><?php echo $informacaoArvore->IdArvore; ?></th>
                                     <td> <?php echo $informacaoArvore->NomeCientifico; ?></td>
@@ -152,26 +155,27 @@ include('seguranca.php');
                                         <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
                                         <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Excluir </a>
                                         <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
+                                        <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
                                     </td>
                                 </tr>
 
                             <?php
-                                } //while
-                                ?>
+                            } //while
+                            ?>
 
                         </tbody>
 
                     </table>
                     <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
-                        if (mysqli_num_rows($resultado) == 0) {
-                            echo "<h5>Sua pesquisa não gerou nenhum resultado. A árvore não foi encontrada.</h5>";
-                        }
-                        ?>
+                    if (mysqli_num_rows($resultado) == 0) {
+                        echo "<h5>Sua pesquisa não gerou nenhum resultado. A árvore não foi encontrada.</h5>";
+                    }
+                    ?>
                 </div>
 
                 <?php
-                    fecharConexao($con); //else   
-                    ?>
+                fecharConexao($con); //else   
+                ?>
             <?php } //if pesquisa 
             ?>
             <!--========= Fim da exibição com pesquisa ===========-->

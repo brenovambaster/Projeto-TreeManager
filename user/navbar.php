@@ -22,7 +22,7 @@
                 <a class="nav-link opc1 " href="cadastro_arvores.php"> <img src="../img/cadastro.png" alt="cadastro" height="30px" width="30px"> Cadastro de árvores</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link opc1 " href="solicitacoes.php"> <img src="../img/mensagem1.png" alt="solicitacoes" height="33px" width="33px"> Solicitações</a>
+                <a class="nav-link opc1 " href="solicitacoes.php"> <img src="../img/mensagem1.png" alt="solicitacoes" height="33px" width="33px"> Solicitações de Serviços</a>
             </li>
 
         </ul>

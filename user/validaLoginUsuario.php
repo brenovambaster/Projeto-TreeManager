@@ -18,7 +18,7 @@ $senha  = $_POST['senha_login'];
 $sql = "
 SELECT *
 FROM usuario
-WHERE Email = '$email' AND Senha = '$senha'
+WHERE email = '$email' AND senha = '$senha'
 ";
 
 // Mando a SQL para o banco através do método query da 
@@ -32,13 +32,14 @@ $infoUsuario = mysqli_fetch_object($resultado);
 
 if (empty($infoUsuario)) {
 	header("Location: index.php?error_login");
+	
 } else {
 	// Adicionando uma informação à sessão
 
-	$_SESSION['validarSessao'] = $infoUsuario->Nome;
-	$_SESSION['IdUsu'] = $infoUsuario->IdUsu;
+	$_SESSION['validarSessao'] = $infoUsuario->nome;
+	$_SESSION['idUsu'] = $infoUsuario->idUsuario;
 
-	header("Location: perfil.php");
+	header("Location:perfil.php");
 }
 
 // Fechando a conexção

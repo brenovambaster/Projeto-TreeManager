@@ -16,7 +16,7 @@ include('seguranca.php');
     ?>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title> Perfil de Usuário </title>
+    <title> Solicitações de Serviços </title>
 
 </head>
 
@@ -30,7 +30,7 @@ include('seguranca.php');
             -->
 
         <div class="menu">
-            <h1> Solicitações </h1>
+            <h1> Solicitações de Serviços </h1>
         </div>
 
         <?php include('navbar.php'); ?>
@@ -67,7 +67,8 @@ include('seguranca.php');
 
         <?php
         require_once('../00 - BD/bd_conexao.php');
-        $sql = " SELECT * FROM solicita  ORDER BY statusSol desc, DataSol "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
+        $idUsu = $_SESSION['idUsu'];
+        $sql = " SELECT * from servico    inner join tipoServico  on(tipoServico = IdTipoServico) where usuSolicitante = '$idUsu' ORDER BY statusSer asc "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
         $resultado = $con->query($sql);
         ?>
 
@@ -78,41 +79,34 @@ include('seguranca.php');
                 <thead>
                     <tr class="bg-success ">
                         <th scope="col">ID</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">CodAvore</th>
                         <th scope="col">Data</th>
-                        <th scope="col">Ação</th>
-                        <th>Situação</th>
+                        <th scope="col">Tipo Servico</th>
+                        <th scope="col">Status</th>
+                        <th>Descrição</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php while ($infoSol = mysqli_fetch_object($resultado)) { ?>
                         <tr>
-                            <th> <?php echo $infoSol->IdSol; ?> </th>
-                            <th> <?php echo $infoSol->EmailSol; ?> </th>
-                            <th>
+                            <th> <?php echo $infoSol->codServico; ?> </th>
+                            <th> <?php echo $infoSol->codArvore; ?> </th>
+                            <td>
                                 <?php
-                                    $date = DateTime::createFromFormat('Y-m-d', $infoSol->DataSol);
-                                    echo $date->format('d/m/Y');
-                                    ?>
-                            </th>
+                                $date = DateTime::createFromFormat('Y-m-d', $infoSol->dataServico);
+                                echo $date->format('d/m/Y');
+                                ?>
+                            </td>
 
-                            <th><a href="verSolicitacao.php?id=<?php echo $infoSol->IdSol; ?>  "> <img src="../img/ver.png" alt="ver" width="30px" height="30px"> </a></th>
+                            <td><?php echo $infoSol->NomeServico; ?></td>
                             <th>
-                                <div class="custom-control custom-checkbox ">
-
-                                    <?php if ($infoSol->statusSol == "nao lido") {   ?>
-                                        <input type="checkbox" name="status" class="custom-control-input" disabled id="situacao">
-                                        <label class="custom-control-label " for="situacao">Lida</label>
-                                    <?php } else { ?>
-
-                                        <input type="checkbox" name="status" class="custom-control-input" disabled checked id="situacao">
-                                        <label class="custom-control-label " for="situacao">Lida</label>
 
 
-                                    <?php } ?>
-                                </div>
+                                <?php echo $infoSol->statusSer  ?>
+
                             </th>
+                            <td> <?php echo $infoSol->descricao  ?> </td>
                         </tr>
                     <?php } // fechar while 
                     ?>
