@@ -29,7 +29,7 @@ $resultado = $con->query($sql) or die("Erro ao se conectar com o Banco.");
 $infoAdm = mysqli_fetch_object($resultado);
 
 if (empty($infoAdm)) {
-	header("Location: loginAdm.php?error_login");
+	header("Location: index.php?error_login");
 } else {
 	// Adicionando uma informação à sessão. Criando variáveis de sessao
 	$_SESSION['validarSessaoAdm'] = $infoAdm->Nome;

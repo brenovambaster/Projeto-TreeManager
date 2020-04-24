@@ -252,10 +252,10 @@ include('seguranca.php');
                         <td><?php echo $infoUsuario->Telefone; ?></td>
                         <td>
                             <a href="CadastroUso.php?alterar&id=<?php echo $infoUsuario->IdUsu; ?>">
-                                <i class="far fa-edit text-warning fa-lg"></i>
+                                <i class="far fa-edit text-warning fa-lg" alt="Excluir"></i>
                             </a>
                             <a href="excluir_usuario.php?id=<?php echo $infoUsuario->IdUsu; ?>">
-                                <i class="fas fa-trash-alt text-danger fa-lg"></i>
+                                <i class="fas fa-trash-alt text-danger fa-lg" alt="Editar"></i>
                             </a>
                         </td>
                     </tr>
