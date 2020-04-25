@@ -32,7 +32,6 @@ $infoUsuario = mysqli_fetch_object($resultado);
 
 if (empty($infoUsuario)) {
 	header("Location: index.php?error_login");
-	
 } else {
 	// Adicionando uma informação à sessão
 

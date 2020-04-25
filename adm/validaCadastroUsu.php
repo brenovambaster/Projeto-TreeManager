@@ -1,9 +1,9 @@
 <?php
 include('seguranca.php');
- 
+
 if (!isset($_POST['butaoCadastro'])) {
 	header("Location: CadastroUso.php");
-}else{
+} else {
 
 
 	$nome = $_POST["nome_cad"];

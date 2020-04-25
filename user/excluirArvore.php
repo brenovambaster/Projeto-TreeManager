@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
       header("Location:gerenciamento_arvores.php?success");
     } else {
       $flag  =  0;
+      echo mysqli_error($con);
       echo "Deu erro";
     }
   }

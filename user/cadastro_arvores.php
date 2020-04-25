@@ -89,7 +89,7 @@ include('seguranca.php');
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="text">Rua:</label>
-                                    <input class="form-control" type="phone" name="rua" placeholder="Ex: Rua Santa Isabel">
+                                    <input class="form-control" type="phone" name="rua" placeholder="Ex: Rua Santa Isabel" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="numImovel"> Nº do imóvel mais próximo </label>

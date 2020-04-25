@@ -47,32 +47,29 @@ include('seguranca.php');
 
     <div class="container row mx-auto ">
         <div class="pesquisa-form form-group bloco-form col-md-3 mt-2  border-right ">
-            <form action="Solicitacoes.php" method="GET">
+            <form action="solicitacoes.php" method="GET">
                 <div class="form-group col-md-11 col-sm-9">
-                    <label for="Especie"><b>Data:</b></label>
-                    <input class="form-control" type="Date" name="data">
+                    <label for="data"><b>Data:</b></label>
+                    <input class="form-control" type="Date" name="data" id="data">
                 </div>
                 <div class="form-group col-md-11 col-sm-9 ">
-                    <label for="email"><b>E-mail:</b></label>
-                    <input type="email" class="form-control" name="email ">
+                    <label for="codArvore"><b>CodArvore:</b></label>
+                    <input type="number" class="form-control" name="codArvore" id="codArvore">
 
                 </div>
                 <div class="ml-3">
-                    <input type="submit" name="pesquisa" class="btn btn-info" value="Pesquisar">
+                    <input type="submit" name="pesquisa" class="btn btn-info" value="pesquisa">
                     <input type="reset" class="btn btn-dark" value="Limpar">
 
                 </div>
             </form>
         </div>
-
         <?php
-        require_once('../00 - BD/bd_conexao.php');
-        $idUsu = $_SESSION['idUsu'];
-        $sql = " SELECT * from servico    inner join tipoServico  on(tipoServico = IdTipoServico) where usuSolicitante = '$idUsu' ORDER BY statusSer asc "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
-        $resultado = $con->query($sql);
+
+        include("pesquisa_solicitacao_servico.php");
+
+
         ?>
-
-
 
         <div class=" col-md-9 mt-3 table table-responsive">
             <table class="table table-striped  ">
@@ -103,19 +100,45 @@ include('seguranca.php');
                             <th>
 
 
-                                <?php echo $infoSol->statusSer  ?>
+                                <?php echo $infoSol->statusSer;  ?>
 
                             </th>
-                            <td> <?php echo $infoSol->descricao  ?> </td>
-                        </tr>
-                    <?php } // fechar while 
-                    ?>
-
-                </tbody>
-                <?php fecharConexao($con);  ?>
-            </table>
-
+                            <td>
+                                <a class="btn-link" href="detalhes_solicitacao.php?id=<?php echo $infoSol->codServico; ?>">
+                                    <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                                        <?php echo $infoSol->descricao; ?>
+                                    </span>
+                                </a>
+                            </td>
         </div>
+
+
+        </td>
+        </tr>
+    <?php } // fechar while 
+    ?>
+    </tbody>
+
+    </table>
+    <?php
+
+    echo '<div class="badge badge-primary text-wrap">' . $sql['filtro'] . '</div>';
+
+
+
+
+
+
+
+    ?>
+    <?php
+    if (mysqli_num_rows($resultado) == 0) {
+        echo "<h5>Sua pesquisa não gerou nenhum resultado. Ou você ainda não possui nenhum registro de 
+                solicitação de serviço.</h5>";
+    }
+    ?>
+
+    </div>
 
 
     </div>

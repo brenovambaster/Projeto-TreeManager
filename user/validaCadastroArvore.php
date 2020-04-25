@@ -8,7 +8,7 @@ require_once("../00 - BD/bd_conexao.php");
 // RECEBER OS DADOS VIA POST
 // I- mapeamento e localização 
 $situacao = "pendente";
-$cordenadaGeografica =   addslashes($_GET['cordGeo']);
+$cordenadaGeografica =   addslashes($_GET['cordGeo']); //funcao para transformar simbolos ('' | \ ') etc.
 $rua = $_GET['rua'];
 $numImovel = $_GET['numImovel'];
 $distanciaPost = $_GET['distanciaPoste'];

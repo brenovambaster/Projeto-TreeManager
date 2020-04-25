@@ -13,8 +13,8 @@ $senha  = $_POST['senha_login'];
 // Criando a minha string com o código SQL de consulta
 $sql = "
 SELECT *
-FROM administrador
-WHERE Email = '$email' AND Senha = '$senha'
+FROM adm
+WHERE email = '$email' AND senha = '$senha'
 ";
 
 // Mando a SQL para o banco através do método query da 
@@ -32,8 +32,8 @@ if (empty($infoAdm)) {
 	header("Location: index.php?error_login");
 } else {
 	// Adicionando uma informação à sessão. Criando variáveis de sessao
-	$_SESSION['validarSessaoAdm'] = $infoAdm->Nome;
-	$_SESSION['IdAdm'] = $infoAdm->IdAdm;
+	$_SESSION['validarSessaoAdm'] = $infoAdm->nome;
+	$_SESSION['IdAdm'] = $infoAdm->idAdm;
 	header("Location: CadastroUso.php");
 }
 fecharConexao($con);

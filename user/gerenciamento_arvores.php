@@ -64,195 +64,97 @@ include('seguranca.php');
         <!--====================================== Fim de pesquisa =========================================================================================-->
         <!--Mostrar resultado da pesquisa na tabela -->
 
-        <?php // Exibir sem pesquisar 
-        if (!isset($_POST['pesquisa'])) {
-            require_once('../00 - BD/bd_conexao.php');
-            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo, Situacao FROM arvore ";
-            $resultado = $con->query($sql) or die("Erro ao se conectar com o Banco.");
+
+        <?php
+
+        include("pesquisa_arvore.php");
         ?>
+        <div class="col-md-9 mt-3 table table-responsive">
+            <table class="table table-striped  ">
+                <thead>
+                    <tr class="bg-success">
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome científico</th>
+                        <th scope="col">Rua</th>
+                        <th scope="col">Coordenada</th>
+                        <th scope="col">Situação </th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            <div class="col-md-9 mt-3 table table-responsive">
-                <table class="table table-striped  ">
-                    <thead>
-                        <tr class="bg-success">
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome científico</th>
-                            <th scope="col">Rua</th>
-                            <th scope="col">Coordenada</th>
-                            <th scope="col">Situação </th>
-                            <th scope="col">Ação</th>
+                    <?php
+                    while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
+                        <tr>
+                            <th scope="row"><?php echo $informacaoArvore->IdArvore; ?></th>
+                            <td> <?php echo $informacaoArvore->NomeCientifico; ?></td>
+                            <td><?php echo $informacaoArvore->Rua; ?></td>
+                            <td><?php echo $informacaoArvore->CordGeo; ?></td>
+                            <td><?php echo $informacaoArvore->Situacao; ?></td>
+                            <td>
+                                <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
+                                <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Excluir </a>
+                                <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
+                                <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
 
-                        <?php
-                        while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
-                            <tr>
-                                <th scope="row"><?php echo $informacaoArvore->IdArvore; ?></th>
-                                <td> <?php echo $informacaoArvore->NomeCientifico; ?></td>
-                                <td><?php echo $informacaoArvore->Rua; ?></td>
-                                <td><?php echo $informacaoArvore->CordGeo; ?></td>
-                                <td><?php echo $informacaoArvore->Situacao; ?></td>
-                                <td>
-                                    <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
-                                    <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Excluir </a>
-                                    <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
-                                    <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
-                                </td>
-                            </tr>
-
-                        <?php
-                        } //while
-                        ?>
-
-                    </tbody>
-
-                </table>
-            <?php
-        } //fecha if 
-            ?>
-            <!-- ===========Fim da exibição sem pesquisa========== -->
-            <?php
-            if (isset($_POST['pesquisa'])) { //exibição com pesquisa
-                require_once('../00 - BD/bd_conexao.php');
-                //$id = $_POST['ID'];
-                $rua = $_POST['rua'];
-                $especie = $_POST['Especie'];
-                if ((!empty($especie) && empty($rua))) { // CASO APENAS A ESPECIE SEJA INFORMADA
-                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore  where   NomeCientifico like '%$especie%'";
-                } else if (!empty($rua) && empty($especie)) { // CASO APENAS A RUA SEJA INFORMADA
-                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore  where   Rua like '%$rua%'";
-                }
-                if (!empty($especie) && !empty($rua)) { // CASO NENHUM DOS CAMPOS TENHA SIDO INFORMADOS 
-                    $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore where  Rua like '%$rua%' AND NomeCientifico like '%$especie%'";
-                }
-                if (empty($especie) && empty($rua)) {
-                    $sql = "SELECT * FROM arvore";
-                }
-                $resultado = $con->query($sql) or die("Erro ao se conectar com o Banco.");
-            ?>
-                <div class="col-md-8 mt-3 table table-responsive">
-                    <table class="table table-striped  ">
-                        <thead>
-                            <tr class="bg-success">
-                                <th scope="col">ID</th>
-                                <th scope="col">Nome científico</th>
-                                <th scope="col">Rua</th>
-                                <th scope="col">Coordenada</th>
-                                <th scope="col">Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <?php
-                            while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
-                                <tr>
-                                    <th scope="row"><?php echo $informacaoArvore->IdArvore; ?></th>
-                                    <td> <?php echo $informacaoArvore->NomeCientifico; ?></td>
-                                    <td><?php echo $informacaoArvore->Rua; ?></td>
-                                    <td><?php echo $informacaoArvore->CordGeo; ?></td>
-                                    <td>
-                                        <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
-                                        <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Excluir </a>
-                                        <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
-                                        <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
-                                    </td>
-                                </tr>
-
-                            <?php
-                            } //while
-                            ?>
-
-                        </tbody>
-
-                    </table>
-                    <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
-                    if (mysqli_num_rows($resultado) == 0) {
-                        echo "<h5>Sua pesquisa não gerou nenhum resultado. A árvore não foi encontrada.</h5>";
-                    }
+                    <?php
+                    } //while
                     ?>
-                </div>
 
-                <?php
-                fecharConexao($con); //else   
-                ?>
-            <?php } //if pesquisa 
-            ?>
-            <!--========= Fim da exibição com pesquisa ===========-->
-            </div>
+                </tbody>
 
-
-            <?php // mostrar modal "alert" 
-            if (isset($_GET['success'])) { ?>
-                <script>
-                    alert("Árvore exluída com sucesso");
-                </script>
-            <?php
+            </table>
+            <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
+            if (mysqli_num_rows($resultado) == 0) {
+                echo "<h5>Sua pesquisa não gerou nenhum resultado. A árvore não foi encontrada.</h5>";
             }
             ?>
 
-
-            <!-- ==========================================Modal============================================= -->
-
-            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class=" container">
-                            <table class="table table-striped ">
-                                <thead>
-                                    <tr class="bg-success">
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Espécie</th>
-                                        <th scope="col">Ponto de referência</th>
-                                        <th scope="col">Coordenada</th>
-                                        <th scope="col">Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Policlínica Salinense</td>
-                                        <td>@mdo</td>
-                                        <td> <a href="formulario.php"> Editar </a> <a href="#"> Excluir </a> <a href="formulario.php"> Ver </a> </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Fofocas</td>
-                                        <td>@fat</td>
-                                        <td> <a href="formulario.php"> Editar </a> <a href="#"> Excluir </a> <a href="formulario.php"> Ver </a> </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>Paladar</td>
-                                        <td>@twitter</td>
-                                        <td> <a href="formulario.php"> Editar </a> <a href="#"> Excluir </a> <a href="formulario.php"> Ver </a> </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        </div>
+        </div>
 
 
 
-                    </div>
-                </div>
-            </div>
 
-            <!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <?php // mostrar modal "alert" 
+        if (isset($_GET['success'])) { ?>
+            <script>
+                alert("Árvore exluída com sucesso");
+            </script>
+        <?php
+        }
+        ?>
+    </div>
+
+    </div>
+
+    <!--
     <div class="rodape text-center">
         <h2> Rodapé da Página </h2>
     </div>
                 -->
 
-            <!-- Optional JavaScript -->
-            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
