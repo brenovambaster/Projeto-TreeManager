@@ -15,12 +15,12 @@ function verurl()
         $rua = $_POST['rua'];
         $especie = $_POST['Especie'];
         if ((!empty($especie) && empty($rua))) { // CASO APENAS A ESPECIE SEJA INFORMADA
-            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore  where   NomeCientifico like '%$especie%'";
+            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo, Situacao FROM arvore  where   NomeCientifico like '%$especie%'";
         } else if (!empty($rua) && empty($especie)) { // CASO APENAS A RUA SEJA INFORMADA
-            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore  where   Rua like '%$rua%'";
+            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo, Situacao FROM arvore  where   Rua like '%$rua%'";
         }
         if (!empty($especie) && !empty($rua)) { // CASO OS  DOIS CAMPOS TENHAM SIDO INFORMADOS 
-            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo FROM arvore where  Rua like '%$rua%' AND NomeCientifico like '%$especie%'";
+            $sql = " SELECT IdArvore, NomeCientifico, Rua, CordGeo, Situacao FROM arvore where  Rua like '%$rua%' AND NomeCientifico like '%$especie%'";
         }
         if (empty($especie) && empty($rua)) {
             $sql = "SELECT * FROM arvore";  // SEM INFORMAR NENHUM CAMPO
