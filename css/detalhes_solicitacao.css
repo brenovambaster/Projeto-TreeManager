@@ -1,0 +1,19 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #3b3e42;
+    padding-bottom: 10px;
+    color: white;
+}
+
+.menu h1 {
+    text-align: center;
+}
+
+.topo {
+    margin-top: 0px;
+    color: white;
+    background-color: #3b3e42!important;
+}
