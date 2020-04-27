@@ -66,7 +66,7 @@
 
                         <div class="form-group">
                             <label for="descricao"> Descreva o serviço</label>
-                            <textarea class="form-control" name="descricaoServico" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" required name="descricaoServico" id="exampleFormControlTextarea1" rows="4"></textarea>
                         </div>
 
 
