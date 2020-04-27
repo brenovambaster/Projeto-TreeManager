@@ -1,6 +1,5 @@
 <?php
 include('seguranca.php');
-
 ?>
 
 <!doctype html>
@@ -43,9 +42,11 @@ include('seguranca.php');
             Quando o usuário clicar em "ver" será redirecionado para a pagina 'verSolicitacao.php'.Nessa página, o usuário vai ver 
             os dados da solicitação e poderá marcar a notificação como 'lida' ou nao. Se maracar a solicitção como lida, irá mostrar 
             na tabela de solicitações a opção marcada. Por enquanto, visualmete será desse modo.No entanto não está implemtentado de forma 
-            correta, pois há inconsistência.   -->
+            correta, pois há inconsistência.   
+        
+    -->
 
-    <div class="container row mx-auto ">
+    <div class="container row mx-auto mb-4">
         <div class="pesquisa-form form-group bloco-form col-md-3 mt-2  border-right ">
             <form action="solicitacoes.php" method="GET">
                 <div class="form-group col-md-11 col-sm-9">
@@ -123,12 +124,6 @@ include('seguranca.php');
     <?php
 
     echo '<div class="badge badge-primary text-wrap">' . $sql['filtro'] . '</div>';
-
-
-
-
-
-
 
     ?>
     <?php
