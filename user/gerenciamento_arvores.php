@@ -108,7 +108,7 @@ include('seguranca.php');
             </table>
             <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
             if (mysqli_num_rows($resultado) == 0) {
-                echo "<h5>Sua pesquisa não gerou nenhum resultado. A árvore não foi encontrada.</h5>";
+                echo "<span class='badge badge-warning'>Sua pesquisa não gerou nenhum resultado. Nenhuma árvore não foi encontrada.</span>";
             }
             ?>
 
