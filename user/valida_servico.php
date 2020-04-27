@@ -4,6 +4,7 @@ $idUsu = $_SESSION["idUsu"];
 $idArvore = $_POST["idAvoreInp"];
 $tipoServico = $_POST["servico"];
 $descricaoServico = $_POST["descricaoServico"];
+date_default_timezone_set("Brazil/East");
 $dataServico = date('yy,m,d');
 $status = "pendente";
 
