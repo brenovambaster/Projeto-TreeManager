@@ -34,11 +34,10 @@
             <div class="row">
                 <div class="ml-1 col-md-4">
                     <?php
-                    require_once("../00 - BD/bd_conexao.php");
                     require_once("pesquisa_detalhes_solicitacao.php");
-                    $sql = dadosSolicitacao();
-                    $result = $con->query($sql);
-                    $infoSolicitacao = mysqli_fetch_object($result);
+
+                    $result = search_attendance_service();
+                    $infoSolicitacao = mysqli_fetch_object($result['servico']);
                     ?>
                     <div class="form-group col-md-4 col-sm-8">
                         <span class="badge badge-primary">Status: <?php echo $infoSolicitacao->statusSer; ?> </span>
@@ -72,12 +71,9 @@
 
                     <div class=" table table-responsive">
                         <?php
-                        $sql1 = search_attendance();
-                        $resultado = $con->query($sql1);
-                        tabela($resultado);
-
+                        tabela($result['atendimento']);
+                      
                         ?>
-
                     </div>
                 </div>
             </div>
