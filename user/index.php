@@ -47,7 +47,7 @@
 					</p>
 
 					<p> <span class=""> <a href="cadastroUser.php">Cadastre-se</a> </span>
-
+						<span class="float-right"><a href="../index.php">Página inicial</a></span>
 					</p>
 
 					<p>

@@ -1,21 +1,16 @@
 <?php
-
 function search_attendance()
 {
     // pesquisa pelo id passado da solicitação de servicos;
-    require_once('../00 - BD/bd_conexao.php');
+
     $codSolicitacao = $_GET['id'];
     $sql = "SELECT * FROM atendimento inner join adm on(usuAtendente=idAdm ) where codServico ='$codSolicitacao'";
-    $result = $con->query($sql);
-    fecharConexao($con);
-
-
-    return $result;
+    return $sql;
 }
 
-function tabela()
+function tabela($result)
 {
-    $result = search_attendance();
+    // vai receber o parametro do resultado da pesquisa $result = $con->query($sql1);
     if (mysqli_num_rows($result) == 0) {
         echo "<p class=' text-dark badge badge-warning '> Infelizmente ainda nao temos nenhum antendimento para o seu serviço.</p>";
     } else { ?>
@@ -49,4 +44,10 @@ function tabela()
 
 <?php
     }
+}
+function dadosSolicitacao()
+{
+    $idSolicitacao = $_GET['id'];
+    $sql = "SELECT * FROM servico inner join tiposervico on(tipoServico =IdTipoServico) WHERE codServico='$idSolicitacao'";
+    return $sql;
 }

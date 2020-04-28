@@ -33,27 +33,33 @@
         <div class="mt-4">
             <div class="row">
                 <div class="ml-1 col-md-4">
-
+                    <?php
+                    require_once("../00 - BD/bd_conexao.php");
+                    require_once("pesquisa_detalhes_solicitacao.php");
+                    $sql = dadosSolicitacao();
+                    $result = $con->query($sql);
+                    $infoSolicitacao = mysqli_fetch_object($result);
+                    ?>
                     <div class="form-group col-md-4 col-sm-8">
-                        <span class="badge badge-primary">Status:</span>
+                        <span class="badge badge-primary">Status: <?php echo $infoSolicitacao->statusSer; ?> </span>
                         <label for="idservico"><b>ID serviço:</b></label>
-                        <input class="form-control" type="text" name="idservico" id="idservico">
+                        <input class="form-control" type="text" name="idservico" id="idservico" value="<?php echo $infoSolicitacao->codServico; ?>" disabled>
                         <label for="CodArvore"><b>CodArvore:</b></label>
-                        <input class="form-control" type="text" name="CodArvore" id="CodArvore">
+                        <input class="form-control" type="text" name="CodArvore" id="CodArvore" value="<?php echo $infoSolicitacao->codArvore; ?>" disabled>
                     </div>
 
-                    <div class="form-group col-md-4 col-sm-8">
+                    <div class="form-group col-md-6 col-sm-8">
                         <label for="data"><b>Data:</b></label>
-                        <input class="form-control" type="text" name="data" id="data">
+                        <input class="form-control" type="text" name="data" id="data" value="<?php echo $infoSolicitacao->dataServico; ?>" disabled>
                     </div>
-                    <div class="form-group col-md-4 col-sm-8">
+                    <div class="form-group col-md-6 col-sm-8">
                         <label for="tipo"> <b>Tipo de serviço </b></label>
-                        <input class="form-control" type="text" name="serviço" id="tipo">
+                        <input class="form-control" type="text" name="serviço" id="tipo" value="<?php echo $infoSolicitacao->NomeServico; ?>" disabled>
 
                     </div>
                     <div class="form-group col-md-7 col-sm-8">
                         <label for="des"><b> Descriçao do serviço:</b></label>
-                        <textarea class="form-control" name="descricao" id="desc"></textarea>
+                        <textarea class="form-control" name="descricao" id="desc" disabled> <?php echo $infoSolicitacao->descricao; ?> </textarea>
 
                     </div>
 
@@ -65,9 +71,10 @@
                     <h2 class="">Atendimentos vinculados a esse serviço</h2>
 
                     <div class=" table table-responsive">
-                        <?php require_once("pesquisa_detalhes_solicitacao.php");
-                        tabela();
-                        // $result = tabela();
+                        <?php
+                        $sql1 = search_attendance();
+                        $resultado = $con->query($sql1);
+                        tabela($resultado);
 
                         ?>
 
