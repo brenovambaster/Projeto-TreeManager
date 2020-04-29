@@ -1,0 +1,2 @@
+*DELIMITAR O TEMPO DA SESSÃO ABERTA;
+*MELHORAR PESQUISA EM "solicitaçoes.php", possibilitando a pesquisa por status;
