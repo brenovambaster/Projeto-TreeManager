@@ -19,12 +19,12 @@ function search_attendance_service()
     );
 }
 
-function tabela($result)
+function tabela_atendimento($result)
 { // tabela de antendimento 
 
 
     if (mysqli_num_rows($result) == 0) {
-        echo "<p class=' text-dark badge badge-warning '> Infelizmente ainda nao temos nenhum antendimento para o seu serviço.</p>";
+        echo "<p class=' text-dark badge badge-warning '> Infelizmente ainda nao temos nenhum antendimento para a sua solicitação.</p>";
     } else { ?>
 
         <table class=" table table-striped  ">
@@ -34,7 +34,7 @@ function tabela($result)
                     <th scope="col">CodServico</th>
                     <th scope="col">Atendente</th>
                     <th scope="col">Data</th>
-                    <th scope="col">Descrição</th>
+                    <th scope="col">Descrição de atendimento</th>
 
                 </tr>
             </thead>
@@ -54,6 +54,36 @@ function tabela($result)
 
 
 
-<?php
+    <?php
     }
+}
+
+function detalhes_solic_servico($infoSolicitacao)
+{
+    ?>
+
+    <div class="form-group col-md-4 col-sm-8">
+        <span class="badge badge-primary">Status: <?php echo $infoSolicitacao->statusSer; ?> </span>
+        <label for="idservico"><b>ID serviço:</b></label>
+        <input class="form-control" type="text" name="idservico" id="idservico" value="<?php echo $infoSolicitacao->codServico; ?>" disabled>
+        <label for="CodArvore"><b>CodArvore:</b></label>
+        <input class="form-control" type="text" name="CodArvore" id="CodArvore" value="<?php echo $infoSolicitacao->codArvore; ?>" disabled>
+    </div>
+
+    <div class="form-group col-md-7 col-sm-8">
+        <label for="data"><b>Data:</b></label>
+        <input class="form-control" type="text" name="data" id="data" value="<?php echo $infoSolicitacao->dataServico; ?>" disabled>
+    </div>
+    <div class="form-group col-md-7 col-sm-8">
+        <label for="tipo"> <b>Tipo de serviço </b></label>
+        <input class="form-control" type="text" name="serviço" id="tipo" value="<?php echo $infoSolicitacao->NomeServico; ?>" disabled>
+
+    </div>
+    <div class="form-group col-md-9 col-sm-8">
+        <label for="des"><b> Descriçao do serviço:</b></label>
+        <textarea class="form-control" name="descricao" id="desc" disabled> <?php echo $infoSolicitacao->descricao; ?> </textarea>
+
+    </div>
+
+<?php
 }

@@ -35,44 +35,28 @@
                 <div class="ml-1 col-md-4">
                     <?php
                     require_once("pesquisa_detalhes_solicitacao.php");
-
                     $result = search_attendance_service();
-                    $infoSolicitacao = mysqli_fetch_object($result['servico']);
+                    if (mysqli_num_rows($result['servico']) == 0) {
+                        echo " <div class='text-center text-danger'> <h2>Essa solicitação  não existe. </h2> </div>";
+                    } else {
+                        $infoSolicitacao = mysqli_fetch_object($result['servico']);
+                        detalhes_solic_servico($infoSolicitacao); // exibe os dados da solicitação de serciço;
+                    }
+
                     ?>
-                    <div class="form-group col-md-4 col-sm-8">
-                        <span class="badge badge-primary">Status: <?php echo $infoSolicitacao->statusSer; ?> </span>
-                        <label for="idservico"><b>ID serviço:</b></label>
-                        <input class="form-control" type="text" name="idservico" id="idservico" value="<?php echo $infoSolicitacao->codServico; ?>" disabled>
-                        <label for="CodArvore"><b>CodArvore:</b></label>
-                        <input class="form-control" type="text" name="CodArvore" id="CodArvore" value="<?php echo $infoSolicitacao->codArvore; ?>" disabled>
-                    </div>
 
-                    <div class="form-group col-md-6 col-sm-8">
-                        <label for="data"><b>Data:</b></label>
-                        <input class="form-control" type="text" name="data" id="data" value="<?php echo $infoSolicitacao->dataServico; ?>" disabled>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-8">
-                        <label for="tipo"> <b>Tipo de serviço </b></label>
-                        <input class="form-control" type="text" name="serviço" id="tipo" value="<?php echo $infoSolicitacao->NomeServico; ?>" disabled>
-
-                    </div>
-                    <div class="form-group col-md-7 col-sm-8">
-                        <label for="des"><b> Descriçao do serviço:</b></label>
-                        <textarea class="form-control" name="descricao" id="desc" disabled> <?php echo $infoSolicitacao->descricao; ?> </textarea>
-
-                    </div>
 
                 </div>
 
 
 
                 <div class=" col-md-7 col-sm-12 ml-1 mr-1">
-                    <h2 class="">Atendimentos vinculados a esse serviço</h2>
+                    <h2 class="">Atendimentos vinculados a essa solicitação</h2>
 
                     <div class=" table table-responsive">
                         <?php
-                        tabela($result['atendimento']);
-                      
+                        tabela_atendimento($result['atendimento']);
+
                         ?>
                     </div>
                 </div>
