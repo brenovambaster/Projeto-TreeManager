@@ -62,12 +62,16 @@ function detalhes_solic_servico($infoSolicitacao)
 {
     ?>
 
-    <div class="form-group col-md-4 col-sm-8">
-        <span class="badge badge-primary">Status: <?php echo $infoSolicitacao->statusSer; ?> </span>
-        <label for="idservico"><b>ID serviço:</b></label>
-        <input class="form-control" type="text" name="idservico" id="idservico" value="<?php echo $infoSolicitacao->codServico; ?>" disabled>
-        <label for="CodArvore"><b>CodArvore:</b></label>
-        <input class="form-control" type="text" name="CodArvore" id="CodArvore" value="<?php echo $infoSolicitacao->codArvore; ?>" disabled>
+    <div class="form-row col-md-12 col-sm-8">
+        <div class="form-group col-md-3">
+
+            <label for="idservico"><b>ID Serviço:</b></label>
+            <input class="form-control" type="text" name="idservico" id="idservico" value="<?php echo $infoSolicitacao->codServico; ?>" disabled>
+        </div>
+        <div class="form-grup col-md-4">
+            <label for="CodArvore"><b>CodArvore:</b></label>
+            <input class="form-control" type="text" name="CodArvore" id="CodArvore" value="<?php echo $infoSolicitacao->codArvore; ?>" disabled>
+        </div>
     </div>
 
     <div class="form-group col-md-7 col-sm-8">
