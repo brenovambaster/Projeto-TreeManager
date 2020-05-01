@@ -42,16 +42,16 @@ include('seguranca.php');
 
 
 									<div class="form-group col-md-4 ">
-										<label for="text">Cordendas Geográficas:</label>
-										<input class="form-control" type="text" name="fone">
+										<label for="cordGeo">Cordendas Geográficas:</label>
+										<input class="form-control" id="cordGeo" type="text" name="fone">
 									</div>
 									<div class="form-group col-md-4">
-										<label for="text">Rua:</label>
-										<input class="form-control" type="phone" name="rua" placeholder="Ex: Rua Santa Isabel">
+										<label for="rua">Rua:</label>
+										<input class="form-control" id="rua" type="phone" name="rua" placeholder="Ex: Rua Santa Isabel">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="numImovel"> Nº do imóvel mais próximo </label>
-										<input class=" form-control" type="text" name="numImovel" placeholder="Ex: A 230">
+										<input class=" form-control" type="text" id="numImovel" name="numImovel" placeholder="Ex: A 230">
 									</div>
 								</div>
 								<div class="form-row">
@@ -60,25 +60,25 @@ include('seguranca.php');
 										<h5 class="text-center">Distância da árvore em relação aos equipaentos hurbanos.</h5>
 									</legend>
 									<div class="form-group col-md-2">
-										<label for="Postes">Postes(m):</label>
-										<input type="text" name="postes" class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId">
+										<label for="postes">Postes(m):</label>
+										<input type="text" name="postes" id="postes" class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId">
 
 									</div>
 									<div class="form-group col-md-2">
-										<label for="Esquinas:">Esquinas(m):</label>
-										<input type="text" class="form-control" name="esquinas" placeholder="Ex: 4.9">
+										<label for="esquinas:">Esquinas(m):</label>
+										<input type="text" class="form-control" id="esquinas" name="esquinas" placeholder="Ex: 4.9">
 									</div>
 									<div class=" form-group col-md-3 ">
-										<label for="entreOutrasArv "> Entre outra árvore(m):</label>
-										<input type="text " class="form-control " name="distEntreArvore" placeholder="Ex: 5.6 ">
+										<label for="entreOutrasArv"> Entre outra árvore(m):</label>
+										<input type="text" id="entreOutrasArv" class="form-control" name="distEntreArvore" placeholder="Ex: 5.6 ">
 									</div>
 									<div class=" form-group col-md-3 ">
-										<label for="garagens "> Entrada de garagens(m):</label>
-										<input type="text " class="form-control" name="entraGaragem" placeholder="Ex: 5.6 ">
+										<label for="garagens"> Entrada de garagens(m):</label>
+										<input type="text " id="garagens" class="form-control" name="entraGaragem" placeholder="Ex: 5.6 ">
 									</div>
 									<div class=" form-group col-md-2 ">
 										<label for="loteVago"> Lotes vagos(m):</label>
-										<input type="text " class="form-control" name="loteVago" placeholder="Ex: 5.6 ">
+										<input type="text" id="loteVago" class="form-control" name="loteVago" placeholder="Ex: 5.6 ">
 									</div>
 								</div>
 							</div>
@@ -94,35 +94,41 @@ include('seguranca.php');
 									<legend> 1. Identificação</legend>
 									<div class="form-group col-md-3">
 										<label for="familia">Família:</label>
-										<input type="text" class="form-control" name="familia" placeholder="Rutaceae" style="font-style:italic">
+										<input type="text" class="form-control" id="familia" name="familia" placeholder="Rutaceae" style="font-style:italic">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nomeCinetifico">Nome científico:</label>
-										<input type="text" class="form-control" name="nomeCientifico" placeholder="Murraya paniculata" style="font-style:italic">
+										<input type="text" class="form-control" id="nomeCinetifico" name="nomeCientifico" placeholder="Murraya paniculata" style="font-style:italic">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nomePopular">Nome popular:</label>
-										<input type="text" class="form-control" name="nomePopular" placeholder="Murta-de-cheiro" style="font-style:italic">
+										<input type="text" class="form-control" id="nomePopular" name="nomePopular" placeholder="Murta-de-cheiro" style="font-style:italic">
 									</div>
 								</div>
 								<div class="radios form-row ">
 									<div class=" form-radio col-md-3">
-										<label for="Origem">Origem:</label>
-										<label for="nativa">Nativa:</label> <input class="form-radio-inline" type="radio" name="Origem" value="Nativa" checked>
-										<label for="exotica">Exótica:</label> <input class="form-radio-inline" type="radio" name="Origem" value="Exótica">
+										<label class="font-weight-bold">Origem:</label>
+										<label for="nativa">Nativa:</label>
+										<input class="form-radio-inline" id="nativa" type="radio" name="Origem" value="Nativa" checked>
+										<label for="exotica">Exótica:</label>
+										<input class="form-radio-inline" id="exotica" type="radio" name="Origem" value="Exótica">
 
 									</div><br>
 
 									<div class=" form-radio col-md-3">
-										<label for="habito">Hábito:</label>
-										<label for="habitArvore">Árvore:</label> <input class="form-radio-inline" type="radio" name="habito" value="Árvore" checked>
-										<label for="exotica">Arbusto:</label> <input class="form-radio-inline" type="radio" name="habito" value="Arbusto">
+										<label class="font-weight-bold">Hábito:</label>
+										<label for="habitArvore">Árvore:</label>
+										<input class="form-radio-inline" id="habitArvore" type="radio" name="habito" value="Árvore" checked>
+										<label for="arbusto">Arbusto:</label>
+										<input class="form-radio-inline" id="arbusto" type="radio" name="habito" value="Arbusto">
 
 									</div>
 									<div class=" form-radio col-md-3">
-										<label for="toxidez">Toxidez:</label>
-										<label for="toxiSim">Sim:</label> <input class="form-radio-inline" type="radio" name="toxidez" value="Sim" checked>
-										<label for="toxiNao">Não:</label> <input class="form-radio-inline" type="radio" name="toxidez" value="Não">
+										<label class="font-weight-bold">Toxidez:</label>
+										<label for="toxiSim">Sim:</label>
+										<input class="form-radio-inline" id="toxiSim" type="radio" name="toxidez" value="Sim" checked>
+										<label for="toxiNao">Não:</label>
+										<input class="form-radio-inline" id="toxiNao" type="radio" name="toxidez" value="Não">
 
 									</div>
 								</div>
@@ -130,12 +136,12 @@ include('seguranca.php');
 									<legend>2. Porte da árvore</legend>
 									<div class="form-group col-md-3">
 										<label for="alturaArvor"> Altura da árvore(m):</label>
-										<input type="text" class="form-control" name="altArvore" placeholder="2.10">
+										<input type="text" id="alturaArvor" class="form-control" name="altArvore" placeholder="2.10">
 
 									</div>
 									<div class="form-group col-md-3">
 										<label for="bifurcacao">Altura da 1º bifurcação(m):</label>
-										<input type="text" class="form-control" name="bifurcacao" placeholder="1.15">
+										<input type="text" id="bifurcacao" class="form-control" name="bifurcacao" placeholder="1.15">
 									</div>
 
 								</div>
@@ -143,13 +149,19 @@ include('seguranca.php');
 									<legend>3. Condição físico-sanitária</legend>
 									<div class="form-group col-md-10">
 										<h5>Avaliação da saúde da árvore:</h5>
-										<input type="radio" name="avalCond" value="aval1" checked>Árvore vigorosa, sem sinais de pragas, doenças ou danos<br>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="avalCond" value="aval1" id="aval1">
+											<label class="form-check-label" for="aval1"> Árvore vigorosa, sem sinais de pragas, doenças ou danos</label><br>
 
-										<input type="radio" name="avalCond" value="aval2">Árvore com vigor médio, podendo apresentar pequenos danos físicos, problemas de pragas ou doenças<br>
+											<input class="form-check-input" type="radio" name="avalCond" value="aval2" id="aval2">
+											<label class="form-check-label" for="aval2"> Árvore com vigor médio, podendo apresentar pequenos danos físicos, problemas de pragas ou doenças</label><br>
 
-										<input type="radio" name="avalCond" value="aval3">Árvore em estágio de declínio e com severos danos de pragas, doenças ou físicos<br>
+											<input class="form-check-input" type="radio" name="avalCond" value="aval3" id="aval3">
+											<label class="form-check-label" for="aval3"> Árvore em estágio de declínio e com severos danos de pragas, doenças ou físicos</label><br>
 
-										<input type="radio" name="avalCond" value="aval4">Árvore morta ou com morte iminente
+											<input class="form-check-input" type="radio" name="avalCond" value="aval4" id="aval4">
+											<label class="form-check-label" for="aval4"> Árvore morta ou com morte iminente </label>
+										</div>
 									</div>
 
 									<legend>4. Condição do sitema radicular</legend>

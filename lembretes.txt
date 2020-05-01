@@ -1,2 +1,6 @@
 *DELIMITAR O TEMPO DA SESSÃO ABERTA;
 *MELHORAR PESQUISA EM "solicitaçoes.php", possibilitando a pesquisa por status;
+*Validar a edição da árvore(falata apenas o update sql);
+*ver dados arvore;
+*mostrar o id dps que a árvore é cadastrada;
+*addLanches em user/perfil.php para editar os campos;

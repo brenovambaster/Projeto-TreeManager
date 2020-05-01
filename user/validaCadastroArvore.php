@@ -8,52 +8,89 @@ require_once("../00 - BD/bd_conexao.php");
 // RECEBER OS DADOS VIA POST
 // I- mapeamento e localização 
 $situacao = "pendente";
-$cordenadaGeografica =   addslashes($_GET['cordGeo']); //funcao para transformar simbolos ('' | \ ') etc.
-$rua = $_GET['rua'];
-$numImovel = $_GET['numImovel'];
-$distanciaPost = $_GET['distanciaPoste'];
-$distanciaEsquina = $_GET['esquina'];
-$distanciaEntreArvore = $_GET['distanciaEntreArvore'];
-$distaEntradaGaragem = $_GET['distaEntradaGaragem'];
-$distanciaLotesVagos = $_GET['distanciaLotesVagos'];
+$cordenadaGeografica =   addslashes($_GET['cordGeo']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
+$rua = addslashes($_GET['rua']);
+$numImovel = addslashes($_GET['numImovel']);
+$n1 = $distanciaPost = $_GET['distanciaPoste'];
+$n2 = $distanciaEsquina = $_GET['esquina'];
+$n3 = $distanciaEntreArvore = $_GET['distanciaEntreArvore'];
+$n4 = $distaEntradaGaragem = $_GET['distaEntradaGaragem'];
+$n5 = $distanciaLotesVagos = $_GET['distanciaLotesVagos'];
 // II- características da árvore
-$familia = $_GET['familia'];
-$nomeCientifico = $_GET['nomeCientifico'];
-$nomePopular = $_GET['nomePopular'];
+$familia = addslashes($_GET['familia']);
+$nomeCientifico = addslashes($_GET['nomeCientifico']);
+$nomePopular = addslashes($_GET['nomePopular']);
 $origem = $_GET['Origem'];
 $habito = $_GET['habito'];
 $toxidez = $_GET['toxidez'];
-$alturaArvore = $_GET['alturaArvore'];
-$alturaPrimeiraBifurc = $_GET['alturaPrimeiraBifurc'];
+$n6 = $alturaArvore =  $_GET['alturaArvore'];
+$n7 =   $alturaPrimeiraBifurc = $_GET['alturaPrimeiraBifurc'];
 $avaliacaoArvore = $_GET['avalCond'];
 $avalradicular = $_GET['avalradicular'];
 // III- entorno e interferencias
 $localPlantio = $_GET['LocalPlantio'];
 $conflitos = $_GET['Conflitos'];
 $poda = $_GET['Poda'];
-$larguraCalcada = $_GET['larguraCalcada'];
+$n8 = $larguraCalcada = $_GET['larguraCalcada'];
 $pavimentacaoCalcada = $_GET['Pavimentacao'];
-$acaoRecomendada = $_GET['acaoRecomendada'];
-$observacao = $_GET['observacao'];
+// pegar os campos que obrigatoriamente precisam sem números. 
+$campo = array(
+    // checa se sao números e armazena o  resultado como true or false;
+    'Distancia_Postes' => is_numeric($n1),
+    'Distancia_Esquina' => is_numeric($n2),
+    'Distancia_EntreArvore' => is_numeric($n3),
+    'Distancia_Entrada_Garagem' => is_numeric($n4),
+    'Distancia_Lotes_Vagos' => is_numeric($n5),
+    'Altura_da_Arvore' => is_numeric($n6),
+    'altura_Primeira_Bifurcacao' => is_numeric($n7),
+    'largura_Calcada' => is_numeric($n8)
+);
+if (in_array(false, $campo)) {
+    echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUIAS:<br> ");
+    /*
+    while (list($NomeCampo, $Valor) = each($campo)) {
+        if ($Valor === FALSE) {
+            echo "$NomeCampo<br>";
+        };
+    } // NÃO USEI ESTA FUNCAO PQ SEGUNDO A DOCUMENTAÇÃO ESTÁ DESATUALIZADA :( ;
+  */
 
-//   ============== conectar ao banco para passar os dados...
+    foreach ($campo as $k => $v) {
+        // $k é a key ou "nome da posicao" e $v o valor daquela posicao  naquele instate;
+        if ($v === false) {
+
+            $teste = $k;
+            // print_r($teste);
+            echo "$k<br>";
+        }
+    }
+    unset($campo);
+
+    echo "POR FAVOR,VOLTE NA PÁGINA ANTERIOR E REVISE CUIDADOSAMENTE OS CAMPOS SUPRACITADOS.";
+} else {
 
 
-$sql = " INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
-CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, CordGeo, Altura, Toxidez, DistanciaOutraArvore, AcaoRecomendada, 
-PavimentacaoCalcada, DistanciaGaragens, Rua, Habito, Familia, DistanciaPostes, NomePopular, Origem, observacao) 
+
+
+    //   ============== conectar ao banco para passar os dados...
+
+
+    $sql = " INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
+CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, CordGeo, Altura, Toxidez, DistanciaOutraArvore, 
+PavimentacaoCalcada, DistanciaGaragens, Rua, Habito, Familia, DistanciaPostes, NomePopular, Origem) 
     
     VALUES('$situacao','$nomeCientifico','$distanciaLotesVagos', '$distanciaEsquina', '$avaliacaoArvore', '$alturaPrimeiraBifurc', '$avalradicular',
-     '$larguraCalcada', '$numImovel','$poda', '$localPlantio','$cordenadaGeografica', '$alturaArvore', '$toxidez', '$distanciaEntreArvore', '$acaoRecomendada',
-       '$pavimentacaoCalcada', '$distaEntradaGaragem', '$rua', '$habito', '$familia', '$distanciaPost', '$nomePopular' ,'$origem', '$observacao' )";
+     '$larguraCalcada', '$numImovel','$poda', '$localPlantio','$conflitos','$cordenadaGeografica', '$alturaArvore', '$toxidez', '$distanciaEntreArvore',
+       '$pavimentacaoCalcada', '$distaEntradaGaragem', '$rua', '$habito', '$familia', '$distanciaPost', '$nomePopular' ,'$origem' )";
 
-if ($con->query($sql) === TRUE) {
-    fecharConexao($con);
+    if ($con->query($sql) === TRUE) {
+        fecharConexao($con);
 
-    header("Location: cadastro_arvores.php?success");
-} else {
-    echo mysqli_error($con);
-    fecharConexao($con);
+        header("Location: cadastro_arvores.php?success");
+    } else {
+        echo mysqli_error($con);
+        fecharConexao($con);
 
-    //header("Location: cadastro_arvores.php?error");
+        //header("Location: cadastro_arvores.php?error");
+    }
 }

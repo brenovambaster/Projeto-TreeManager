@@ -265,77 +265,148 @@ include('seguranca.php');
 									<div class="form-radio col-md-6 col-sm-3 ">
 
 										<b>Local de Plantio:</b>
+										<?php
+										$calcada = '';
+										$praca = '';
+										$viaPublica = '';
+										$outro = '';
+										if ($info->LocalPlantio == 'calcada') {
+											$calcada = "checked";
+										}
+										if ($info->LocalPlantio == 'praca') {
+											$praca = "checked";
+										}
+										if ($info->LocalPlantio == 'ViaPublica') {
+											$viaPublica = "checked";
+										}
+										if ($info->LocalPlantio == 'outro') {
+											$outro = "checked";
+										}
+										?>
+
 										<div class="custom-control custom-radio">
-											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="calcada" value="calcada">
+											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="calcada" value="calcada" <?php echo $calcada; ?>>
 											<label class="form-check-label" for="calcada"> Calçada</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="praca" value="praca">
+											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="praca" value="praca" <?php echo $praca; ?>>
 											<label class="form-check-label" for="praca"> Praça</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="ViaPublica" value="ViaPublica">
+											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="ViaPublica" value="ViaPublica" <?php echo $viaPublica; ?>>
 											<label class="form-check-label" for="ViaPublica"> Via Pública</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="Outro" value="Outro">
+											<input type="radio" class="form-radio-inline" name="LocalPlantio" id="Outro" value="Outro" <?php echo $outro; ?>>
 											<label class="form-check-label" for="Outro"> Outro</label>
 										</div>
 
 									</div>
 									<div class="form-group col-md-6">
 										<label for="largura"> Largura da calçada:</label>
-										<input type="text" id="largura" class="form-control">
+										<input type="text" id="largura" class="form-control" value="<?php echo $info->LarguraCalcada; ?> ">
 									</div>
 
 								</div>
 
 								<div class="form-group form-row">
+									<?php
+									$rede = '';
+									$contrucao = '';
+									$outraArvore = '';
+									$sinalizacao = '';
+									$outro = '';
+									if ($info->conflitos == "redeDeEnergia") {
+										$rede = "checked";
+									}
+									if ($info->conflitos == "construcoes") {
+										$contrucao = "checked";
+									}
+									if ($info->conflitos == "outraArvore") {
+										$outraArvore = "checked";
+									}
+									if ($info->conflitos == "sinalizacao") {
+										$sinalizacao = "checked";
+									}
+									if ($info->conflitos == "outro") {
+										$outro = "checked";
+									}
+
+									?>
 									<div class="form-group  col-md-4 col-sm-3  borda-direita"> Conflitos: <br>
 										<div class="custom-control custom-radio">
-											<input class="form-check-input" type="radio" name="Conflitos" id="redeDeEnergia" value="redeDeEnergia">
+											<input class="form-check-input" type="radio" name="Conflitos" id="redeDeEnergia" value="redeDeEnergia" <?php echo $rede; ?>>
 											<label for="redeDeEnergia"> Rede de energia</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input class="form-check-input" type="radio" name="Conflitos" id="Construçoes" value="Construçoes">
+											<input class="form-check-input" type="radio" name="Conflitos" id="Construçoes" value="construcoes" <?php echo $contrucao; ?>>
 											<label for="Construçoes"> Construções</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input class="form-check-input" type="radio" name="Conflitos" id="outraArvore" value="outraArvore">
+											<input class="form-check-input" type="radio" name="Conflitos" id="outraArvore" value="outraArvore" <?php echo $outraArvore; ?>>
 											<label for="outraArvore"> Outra árvore</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input class="form-check-input" type="radio" name="Conflitos" id="Sinalizacao" value="Sinalizacao">
+											<input class="form-check-input" type="radio" name="Conflitos" id="Sinalizacao" value="sinalizacao" <?php echo $sinalizacao; ?>>
 											<label for="Sinalizacao"> Sinalização </label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input class="form-check-input" type="radio" name="Conflitos" id="Outro" value="Outro">
+											<input class="form-check-input" type="radio" name="Conflitos" id="Outro" value="outro" <?php echo $outro; ?>>
 											<label for="Outro"> Outro </label><br><br>
 										</div>
 									</div>
 
 									<div class=" form-group col-md-4 col-sm-3 borda-direita "> Poda: <br>
+										<?php
+										$podaLeve = '';
+										$podaPesada = '';
+										$semPoda = '';
+										if ($info->Poda == "podaLeve") {
+											$podaLeve = "checked";
+										}
+										if ($info->Poda == "podaPesada") {
+											$podaPesada = "checked";
+										}
+										if ($info->Poda == "semPoda") {
+											$semPoda = "checked";
+										}
+
+
+
+										?>
 										<div class="custom-control custom-radio">
-											<input type="radio" name="Poda" id="podaLeve" value="podaLeve">
+											<input type="radio" name="Poda" id="podaLeve" value="podaLeve" <?php echo $podaLeve; ?>>
 											<label for="podaLeve"> Poda leve</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input type="radio" name="Poda" id="podaPesada" value="podaPesada">
+											<input type="radio" name="Poda" id="podaPesada" value="podaPesada" <?php echo $podaPesada; ?>>
 											<label for="podaPesada"> Poda pesada</label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input type="radio" name="Poda" id="semPoda" value="semPoda">
+											<input type="radio" name="Poda" id="semPoda" value="semPoda" <?php echo $semPoda; ?>>
 											<label for="semPoda"> Sem poda</label>
 										</div>
 
 									</div>
 									<div class=" form-group col-md-4 col-sm-3 borda-direita "> Pavimentação da calçada <br>
+										<?php
+										$comPav = '';
+										$semPav = '';
+										if ($info->PavimentacaoCalcada == "comPavimento") {
+											$comPav = "checked";
+										}
+										if ($info->PavimentacaoCalcada == "semPavimento") {
+											$semPav = "checked";
+										}
+
+										?>
+
 										<div class="custom-control custom-radio">
-											<input type="radio" name="Pavimentação" id="comPavimento" value="comPavimento">
+											<input type="radio" name="Pavimentação" id="comPavimento" value="comPavimento" <?php echo $comPav; ?>>
 											<label for="comPavimento"> Com pavimento </label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input type="radio" name="Pavimentação" id="semPavimento" value="semPavimento">
+											<input type="radio" name="Pavimentação" id="semPavimento" value="semPavimento" <?php echo $semPav; ?>>
 											<label for="semPavimento"> Sem pavimento</label>
 										</div>
 
