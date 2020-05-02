@@ -93,7 +93,7 @@ include('seguranca.php');
                             <td><?php echo $informacaoArvore->Situacao; ?></td>
                             <td>
                                 <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
-                                <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>" data-confirm='Tem certeza de que deseja excluir o item selecionado?'> Excluir </a>
+                                <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>" data-confirm='Tem certeza de que deseja excluir a árvore selecionada?'> Excluir </a>
                                 <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
                                 <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
                             </td>
@@ -108,8 +108,9 @@ include('seguranca.php');
             </table>
             <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
             if (mysqli_num_rows($resultado) == 0) {
-                echo "<span class='badge badge-warning'>Sua pesquisa não gerou nenhum resultado. Nenhuma árvore não foi encontrada.</span>";
+                echo "<span class='badge badge-warning'>Sua pesquisa não gerou nenhum resultado. Nenhuma árvore não foi encontrada.</span> <br>";
             }
+            echo '<div class="badge badge-primary text-wrap">' . $sql['filtro'] . '</div>';
             ?>
 
         </div>
@@ -133,11 +134,11 @@ include('seguranca.php');
 
 
         <?php // mostrar modal "alert" 
-        if (isset($_GET['success'])) { ?>
-            <script>
-                alert("Árvore exluída com sucesso");
-            </script>
-        <?php
+        if (isset($_GET['success'])) {
+            echo '<script>alert("Árvore exluída com sucesso");</script>';
+        }
+        if (isset($_GET['editArvoreOk'])) {
+            echo '<script>alert("A árvore foi editada");</script>';
         }
         ?>
     </div>

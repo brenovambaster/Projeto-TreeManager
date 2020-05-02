@@ -33,7 +33,9 @@ include('seguranca.php');
 			<h1> Perfil de Usuário </h1>
 		</div>
 
-		<?php include('navbar.php'); ?>
+		<?php include('navbar.php');
+		lerUrl();
+		?>
 
 	</div>
 
@@ -47,7 +49,8 @@ include('seguranca.php');
 			<?php require_once('../00 - BD/bd_conexao.php');
 			$id = $_SESSION['idUsu'];
 			$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
-			$result = $con->query($sql);
+
+			$result = $con->query($sql) or die("Erro ao se conectar ao banco");
 			$info = mysqli_fetch_object($result);
 
 
@@ -59,13 +62,13 @@ include('seguranca.php');
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">Name:</span>
 						</div>
-						<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo $info->nome; ?>" required="required"></input>
+						<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">E-mail:</span>
 						</div>
-						<input type="text" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
+						<input type="email" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
 					</div>
 					<div class="input-group mb-3">
 						<div class=" input-group-prepend">
@@ -106,3 +109,18 @@ include('seguranca.php');
 </body>
 
 </html>
+<?php
+function lerUrl()
+{
+
+
+	if (isset($_GET['userEdit'])) {
+		echo '<script>alert("Usuário editado com sucesso.");</script>';
+	}
+	if (isset($_GET['userError'])) {
+		echo '<script>alert("Erro ao editar Usuário.Tente novamente");</script>';
+	} else {
+	}
+}
+
+?>

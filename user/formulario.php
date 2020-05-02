@@ -34,7 +34,7 @@ include('seguranca.php');
 		if ($retorno == 1) { ?>
 
 			<div class="box-body">
-				<form method="get" action="dados.php">
+				<form method="get" action="editar_arvore.php">
 					<div>
 						<h1 class="text-center">Forumuário para editar árvores</h1>
 						<hr>
@@ -48,11 +48,11 @@ include('seguranca.php');
 
 									<div class="form-group col-md-4 ">
 										<label for="text">Cordendas Geográficas:</label>
-										<input class="form-control" type="text" name="fone" value="<?php echo $info->CordGeo; ?>">
+										<input class="form-control" type="text" name="cordGeo" value="<?php echo $info->CordGeo; ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="text">Rua:</label>
-										<input class="form-control" type="phone" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo $info->Rua; ?>">
+										<input class="form-control" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo $info->Rua; ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="numImovel"> Nº do imóvel mais próximo </label>
@@ -66,24 +66,24 @@ include('seguranca.php');
 									</legend>
 									<div class="form-group col-md-2">
 										<label for="Postes">Postes(m):</label>
-										<input type="text" name="postes" class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId" value="<?php echo $info->DistanciaPostes; ?>">
+										<input type="text" name="distanciaPoste" class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId" value="<?php echo $info->DistanciaPostes; ?>">
 
 									</div>
 									<div class="form-group col-md-2">
 										<label for="Esquinas:">Esquinas(m):</label>
-										<input type="text" class="form-control" name="esquinas" placeholder="Ex: 4.9" value="<?php echo $info->DistanciaEsquinas; ?>">
+										<input type="text" class="form-control" name="esquina" placeholder="Ex: 4.9" value="<?php echo $info->DistanciaEsquinas; ?>">
 									</div>
 									<div class=" form-group col-md-3 ">
 										<label for="entreOutrasArv "> Entre outra árvore(m):</label>
-										<input type="text " class="form-control " name="distEntreArvore" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaOutraArvore; ?>">
+										<input type="text " class="form-control " name="distanciaEntreArvore" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaOutraArvore; ?>">
 									</div>
 									<div class=" form-group col-md-3 ">
 										<label for="garagens "> Entrada de garagens(m):</label>
-										<input type="text " class="form-control" name="entraGaragem" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaGaragens; ?>">
+										<input type="text " class="form-control" name="distaEntradaGaragem" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaGaragens; ?>">
 									</div>
 									<div class=" form-group col-md-2 ">
 										<label for="loteVago"> Lotes vagos(m):</label>
-										<input type="text " class="form-control" name="loteVago" placeholder="Ex: 5.6 " value="<?php echo $info->DistanciaLotes; ?>">
+										<input type="text " class="form-control" name="distanciaLotesVagos" placeholder="Ex: 5.6 " value="<?php echo $info->DistanciaLotes; ?>">
 									</div>
 								</div>
 							</div>
@@ -170,12 +170,12 @@ include('seguranca.php');
 									<legend>2. Porte da árvore</legend>
 									<div class="form-group col-md-3">
 										<label for="alturaArvor"> Altura da árvore(m):</label>
-										<input type="text" id="alturaArvor" class="form-control" name="altArvore" placeholder="2.10" value="<?php echo $info->Altura; ?>">
+										<input type="text" id="alturaArvor" class="form-control" name="alturaArvore" placeholder="2.10" value="<?php echo $info->Altura; ?>">
 
 									</div>
 									<div class="form-group col-md-3">
 										<label for="bifurcacao">Altura da 1º bifurcação(m):</label>
-										<input type="text" class="form-control" name="bifurcacao" placeholder="1.15" value="<?php echo $info->AlturaPrimeiraBifurcacao; ?>">
+										<input type="text" class="form-control" name="alturaPrimeiraBifurc" placeholder="1.15" value="<?php echo $info->AlturaPrimeiraBifurcacao; ?>">
 									</div>
 
 								</div>
@@ -304,7 +304,7 @@ include('seguranca.php');
 									</div>
 									<div class="form-group col-md-6">
 										<label for="largura"> Largura da calçada:</label>
-										<input type="text" id="largura" class="form-control" value="<?php echo $info->LarguraCalcada; ?> ">
+										<input type="text" name="larguraCalcada" id="largura" class="form-control" value="<?php echo $info->LarguraCalcada; ?>">
 									</div>
 
 								</div>
@@ -402,11 +402,11 @@ include('seguranca.php');
 										?>
 
 										<div class="custom-control custom-radio">
-											<input type="radio" name="Pavimentação" id="comPavimento" value="comPavimento" <?php echo $comPav; ?>>
+											<input type="radio" name="Pavimentacao" id="comPavimento" value="comPavimento" <?php echo $comPav; ?>>
 											<label for="comPavimento"> Com pavimento </label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input type="radio" name="Pavimentação" id="semPavimento" value="semPavimento" <?php echo $semPav; ?>>
+											<input type="radio" name="Pavimentacao" id="semPavimento" value="semPavimento" <?php echo $semPav; ?>>
 											<label for="semPavimento"> Sem pavimento</label>
 										</div>
 
@@ -416,6 +416,10 @@ include('seguranca.php');
 						</div>
 
 					</div>
+					<div>
+						<input type="hidden" name="id_arvore" class="btn btn-light disabled" value="<?php echo $id; ?>">
+						<input class="btn btn-primary col-2 col-xs-3" type="submit" name="butao" value="Enviar">
+						<input class="btn btn-danger col-2 col-xs-3" type="reset" value="Limpar"></div>
 				</form>
 
 			</div>
@@ -446,7 +450,8 @@ function situacaoEditar($resultado, $id, $info)
 {
 
 	if (mysqli_num_rows($resultado) == 0) {
-		echo "nao existe essa árvore no banco de dados";
+		echo "<h2>Não existe essa árvore no banco de dados </h2>";
+		echo  '<a class="btn btn-primary" href="gerenciamento_arvores.php">Voltar</a>';
 		$flag = 3;
 	} else {
 
@@ -456,8 +461,6 @@ function situacaoEditar($resultado, $id, $info)
 			echo  '<a class="btn btn-primary" href="gerenciamento_arvores.php">Voltar</a>';
 			echo "<a class='btn btn-success ml-3' href='solicitar_servico.php?id=$id'>  Solicitar agora </a>";
 
-
-
 			$flag = 0;
 		} else { // quando ela for pendente
 
@@ -466,5 +469,4 @@ function situacaoEditar($resultado, $id, $info)
 	}
 	return $flag;
 }
-
 ?>

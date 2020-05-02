@@ -208,5 +208,3 @@ include('seguranca.php');
 </body>
 
 </html>
-
-

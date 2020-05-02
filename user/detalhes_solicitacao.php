@@ -21,9 +21,7 @@
     <div class="topo">
         <?php include('statusSession.php');   ?>
         <div class="menu">
-
             <h1 class="text-center">Detalhes da solicitação de serviço </h1>
-
         </div>
         <?php include("navbar.php") ?>
     </div>

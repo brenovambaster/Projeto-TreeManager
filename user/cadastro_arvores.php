@@ -89,7 +89,7 @@ include('seguranca.php');
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="rua">Rua:</label>
-                                    <input class="form-control" id="rua" type="phone" name="rua" placeholder="Ex: Rua Santa Isabel" required>
+                                    <input class="form-control" id="rua" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="numImovel"> Nº do imóvel mais próximo </label>
@@ -111,15 +111,15 @@ include('seguranca.php');
                                     <input type="text" id="esquinas" name="esquina" class="form-control" onkeypress="return somenteNumeros(event)" placeholder="Ex: 4.9"">
                                 </div>
                                 <div class=" form-group col-md-3 ">
-                                    <label for=" entreOutrasArv"> Entre outra árvore(m):</label>
+                                    <label for="entreOutrasArv"> Entre outra árvore(m):</label>
                                     <input type="text" id="entreOutrasArv" name="distanciaEntreArvore" class="form-control" onkeypress="return somenteNumeros(event)" placeholder="Ex: 5.6 " ">
                                 </div>
                                 <div class=" form-group col-md-3 ">
-                                    <label for=" garagens"> Entrada de garagens(m):</label>
+                                    <label for="garagens"> Entrada de garagens(m):</label>
                                     <input type="text" id="garagens" name="distaEntradaGaragem" class="form-control " placeholder="Ex: 5.6 " onkeypress="return somenteNumeros(event)"">
                                 </div>
                                 <div class=" form-group col-md-2 ">
-                                    <label for=" loteVago"> Lotes vagos(m):</label>
+                                    <label for="loteVago"> Lotes vagos(m):</label>
                                     <input type="text" id="loteVago" name="distanciaLotesVagos" class="form-control " placeholder="Ex: 5.6 " onkeypress="return somenteNumeros(event)"">
                                 </div>
                             </div>
