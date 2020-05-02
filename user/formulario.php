@@ -48,11 +48,11 @@ include('seguranca.php');
 
 									<div class="form-group col-md-4 ">
 										<label for="text">Cordendas Geográficas:</label>
-										<input class="form-control" type="text" name="cordGeo" value="<?php echo $info->CordGeo; ?>">
+										<input class="form-control" type="text" name="cordGeo" value="<?php echo htmlspecialchars($info->CordGeo); ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="text">Rua:</label>
-										<input class="form-control" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo $info->Rua; ?>">
+										<input class="form-control" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo htmlspecialchars($info->Rua); ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="numImovel"> Nº do imóvel mais próximo </label>
