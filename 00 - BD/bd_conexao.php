@@ -4,10 +4,14 @@ require_once('bd_config.php');    // Fornece as informações de conexão
 // Função de conexão com o banco
 function conectarBanco($local, $usuario, $senha, $banco)
 {
-  $conexao = new mysqli();  // Objeto da classe de conexão mysqli
-  $conexao->connect($local, $usuario, $senha, $banco);  // Conexão com o BD
-  $conexao->set_charset("utf8");  // Permitir a codificação UTF8
-  return $conexao;
+  try {
+    $conexao = new mysqli();  // Objeto da classe de conexão mysqli
+    $conexao->connect($local, $usuario, $senha, $banco);  // Conexão com o BD
+    $conexao->set_charset("utf8");  // Permitir a codificação UTF8
+    return $conexao;
+  } catch (Exception $e) {
+    echo "Nao foi possível se conectar ao banco" . $e->getMessage();
+  }
 }
 
 // Funções de Encerrar a conexão

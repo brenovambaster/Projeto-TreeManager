@@ -27,15 +27,7 @@
 				<form method="post" action="validaLoginUsuario.php">
 					<!--  Mensagem de erro caso o usuário não é encontrado -->
 					<?php
-					if (isset($_GET['error_login'])) { ?>
-						<div class="alert alert-danger alert-dismissible fade show" role="alert">
-							Usuário inválido! Por favor, verifique o email e a senha.
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-					<?php
-					}
+					verGet(); // funvção para ler a url
 					?>
 					<h1> <img src="../img/arvoreLogin.png" alt="" height="18%" width="18%">Login</h1>
 					<p>
@@ -51,6 +43,11 @@
 					<p>
 						<input type="checkbox" name="manterlogado" id="manterlogado" value="" />
 						<label for="manterlogado"><b>Manter-me logado</b></label>
+
+					</p>
+
+					<p> <span class=""> <a href="cadastroUser.php">Cadastre-se</a> </span>
+						<span class="float-right"><a href="../index.php">Página inicial</a></span>
 					</p>
 
 					<p>
@@ -67,3 +64,34 @@
 </body>
 
 </html>
+
+
+
+
+<?php
+function verGet()
+{
+
+	if (isset($_GET['error_login'])) { ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			Usuário inválido! Por favor, verifique o email e a senha.
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	<?php
+	}
+	if (isset($_GET['new_user_success'])) { ?>
+
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			Usuário cadastrado! Agora você já pode fazer login.
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+
+<?php
+	}
+}
+?>

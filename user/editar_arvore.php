@@ -2,11 +2,12 @@
 include('seguranca.php');
 
 if (!isset($_GET['butao'])) {
-    header('location: cadastro_arvores.php');
+    header('location: gerenciamento_arvores.php');
 }
 require_once("../00 - BD/bd_conexao.php");
-// RECEBER OS DADOS VIA POST
+// RECEBER OS DADOS VIA get
 // I- mapeamento e localização 
+$id_arvore = $_GET['id_arvore'];
 $situacao = "pendente";
 $cordenadaGeografica =   addslashes($_GET['cordGeo']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
 $rua = addslashes($_GET['rua']);
@@ -45,7 +46,8 @@ $campo = array(
     'altura_Primeira_Bifurcacao' => is_numeric($n7),
     'largura_Calcada' => is_numeric($n8)
 );
-if (in_array(false, $campo)) {
+if (in_array(false, $campo)) // procurar o valor falso no array campo 
+{
     echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUIAS:<br> ");
     /*
     while (list($NomeCampo, $Valor) = each($campo)) {
@@ -75,18 +77,18 @@ if (in_array(false, $campo)) {
     //   ============== conectar ao banco para passar os dados...
 
 
-    $sql = " INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
-CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, CordGeo, Altura, Toxidez, DistanciaOutraArvore, 
-PavimentacaoCalcada, DistanciaGaragens, Rua, Habito, Familia, DistanciaPostes, NomePopular, Origem) 
-    
-    VALUES('$situacao','$nomeCientifico','$distanciaLotesVagos', '$distanciaEsquina', '$avaliacaoArvore', '$alturaPrimeiraBifurc', '$avalradicular',
-     '$larguraCalcada', '$numImovel','$poda', '$localPlantio','$conflitos','$cordenadaGeografica', '$alturaArvore', '$toxidez', '$distanciaEntreArvore',
-       '$pavimentacaoCalcada', '$distaEntradaGaragem', '$rua', '$habito', '$familia', '$distanciaPost', '$nomePopular' ,'$origem' )";
-
+    $sql = "UPDATE arvore SET 
+    Situacao ='$situacao', NomeCientifico ='$nomeCientifico', DistanciaLotes ='$distanciaLotesVagos', 
+    DistanciaEsquinas='$distanciaEsquina',  CondicaoFisicoSanitaria='$avaliacaoArvore', 
+    AlturaPrimeiraBifurcacao='$alturaPrimeiraBifurc', CondicaoSistemaRadicular='$avalradicular',
+    LarguraCalcada='$larguraCalcada', NumImovelProx='$numImovel', Poda='$poda', LocalPlantio='$localPlantio',
+    conflitos='$conflitos', CordGeo='$cordenadaGeografica', Altura='$alturaArvore', Toxidez='$toxidez',
+    DistanciaOutraArvore='$distanciaEntreArvore', PavimentacaoCalcada='$pavimentacaoCalcada',
+    DistanciaGaragens='$distaEntradaGaragem', Rua='$rua', Habito='$habito', Familia='$familia', 
+    DistanciaPostes='$distanciaPost', NomePopular='$nomePopular', Origem='$origem' WHERE IdArvore ='$id_arvore' ";
     if ($con->query($sql) === TRUE) {
         fecharConexao($con);
-
-        header("Location: cadastro_arvores.php?success");
+        header("Location: gerenciamento_arvores.php?editArvoreOk");
     } else {
         echo mysqli_error($con);
         fecharConexao($con);

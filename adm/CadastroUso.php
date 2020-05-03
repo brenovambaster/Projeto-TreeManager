@@ -54,7 +54,7 @@ include('seguranca.php');
 
             require_once('../00 - BD/bd_conexao.php');
             $id = $_GET['id'];
-            $sql = "SELECT * FROM  usuario WHERE IdUsu=$id";
+            $sql = "SELECT * FROM  usuario WHERE idUsuario=$id";
             $resultado = $con->query($sql);
             $infoUsuario = mysqli_fetch_object($resultado);
 
@@ -64,29 +64,29 @@ include('seguranca.php');
 
 
             <h2>Alterar usuário</h2>
-            <form method="POST" action="alterar_usuario.php?id=<?php echo $infoUsuario->IdUsu; ?>">
+            <form method="POST" action="alterar_usuario.php?id=<?php echo $infoUsuario->idUsuario; ?>">
                 <div>
                     <p>
                         <label for="IdUsu"></label>
-                        <input id="IdUsu" name="IdUsu" required="required" type="text" placeholder="IdUsu" value="<?php echo $infoUsuario->IdUsu; ?>" />
+                        <input id="IdUsu" name="IdUsu" required="required" type="text" placeholder="IdUsu" value="<?php echo $infoUsuario->idUsuario; ?>" />
                     </p>
                     <p>
                         <label for="nome_cad"></label>
-                        <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Nome " value="<?php echo $infoUsuario->Nome; ?>" />
+                        <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Nome " value="<?php echo $infoUsuario->nome; ?>" />
                     </p>
 
                     <p>
                         <label for="Telefone_cad"></label>
-                        <input id="Telefone_cad" name="telefone_cad" required="required" type="text" placeholder="Telefone" value="<?php echo $infoUsuario->Telefone; ?>" />
+                        <input id="Telefone_cad" name="telefone_cad" required="required" type="text" placeholder="Telefone" value="<?php echo $infoUsuario->fone; ?>" />
                     </p>
 
                     <p>
                         <label for="senha_cad"></label>
-                        <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="Senha" value="<?php echo $infoUsuario->Senha; ?>" />
+                        <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="Senha" value="<?php echo $infoUsuario->senha; ?>" />
                     </p>
                     <p>
                         <label for="email"></label>
-                        <input id="email" name="email" required="required" type="email" placeholder="email" value="<?php echo $infoUsuario->Email; ?>" />
+                        <input id="email" name="email" required="required" type="email" placeholder="email" value="<?php echo $infoUsuario->email; ?>" />
                     </p>
 
                 </div>
@@ -246,15 +246,15 @@ include('seguranca.php');
             <tbody>
                 <?php while ($infoUsuario = mysqli_fetch_object($resultado)) { ?>
                     <tr>
-                        <th scope="row"> <?php echo $infoUsuario->IdUsu ?> </th>
-                        <td><?php echo $infoUsuario->Nome; ?></td>
-                        <td><?php echo $infoUsuario->Email; ?></td>
-                        <td><?php echo $infoUsuario->Telefone; ?></td>
+                        <th scope="row"> <?php echo $infoUsuario->idUsuario ?> </th>
+                        <td><?php echo $infoUsuario->nome; ?></td>
+                        <td><?php echo $infoUsuario->email; ?></td>
+                        <td><?php echo $infoUsuario->fone; ?></td>
                         <td>
-                            <a href="CadastroUso.php?alterar&id=<?php echo $infoUsuario->IdUsu; ?>">
+                            <a href="CadastroUso.php?alterar&id=<?php echo $infoUsuario->idUsuario; ?>">
                                 <i class="far fa-edit text-warning fa-lg" alt="Excluir"></i>
                             </a>
-                            <a href="excluir_usuario.php?id=<?php echo $infoUsuario->IdUsu; ?>">
+                            <a href="excluir_usuario.php?id=<?php echo $infoUsuario->idUsuario; ?>">
                                 <i class="fas fa-trash-alt text-danger fa-lg" alt="Editar"></i>
                             </a>
                         </td>

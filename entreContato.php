@@ -11,6 +11,7 @@ $sql = "INSERT INTO solicita ( Nome, DataSol, texto, EmailSol, statusSol, Fone) 
 if ($con->query($sql) === TRUE) {
 
     echo "Sucesso";
+    header("Location:index.php?enviado");
 } else {
 
     echo $con->error;

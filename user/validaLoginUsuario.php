@@ -15,11 +15,7 @@ $senha  = $_POST['senha_login'];
 //**TENHO QUE RECEBER O OPAÇAO DE MARTER-ME LOGADO 
 
 // Criando a minha string com o código SQL de consulta
-$sql = "
-SELECT *
-FROM usuario
-WHERE Email = '$email' AND Senha = '$senha'
-";
+$sql = " SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'";
 
 // Mando a SQL para o banco através do método query da 
 //    classe de conexão mysqli() expressa pelo obj $con
@@ -34,11 +30,15 @@ if (empty($infoUsuario)) {
 	header("Location: index.php?error_login");
 } else {
 	// Adicionando uma informação à sessão
+	if ($infoUsuario->status == 'ativo') {
+		$_SESSION['validarSessao'] = $infoUsuario->nome;
+		$_SESSION['idUsu'] = $infoUsuario->idUsuario;
+		header("Location:perfil.php");
+	} else {
+		echo "Infelizmente você foi desativado. Se isso foi um erro, contate ao adm pelo formulário na página inicial\n";
 
-	$_SESSION['validarSessao'] = $infoUsuario->Nome;
-	$_SESSION['IdUsu'] = $infoUsuario->IdUsu;
-
-	header("Location: perfil.php");
+		echo '<a href="../index.php?#contato">Clique aqui</a>';
+	}
 }
 
 // Fechando a conexção
