@@ -21,7 +21,9 @@ include('seguranca.php');
 
 <body>
 
-    <?php include('statusSession.php');   ?>
+    <?php include('statusSession.php');
+    seeUrl();
+    ?>
 
 
     <div class="top-total">
@@ -80,3 +82,21 @@ include('seguranca.php');
 </body>
 
 </html>
+<?php
+function seeUrl()
+{
+    if (isset($_GET['ok'])) { ?>
+        <script>
+            alert("Sua solicitação de serviço foi enviada. Confira o andamento dela nesta página")
+        </script>
+    <?php
+    }
+    if (isset($_GET['not'])) { ?>
+        <script>
+            alert("Erro ao solicitar serviço;")
+        </script>
+<?php
+    }
+}
+
+?>

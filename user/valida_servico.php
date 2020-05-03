@@ -26,9 +26,11 @@ if (mysqli_num_rows($result) == 0) {
     echo mysqli_error($con);
 
     if ($resultado == TRUE) {
-        echo "aee";
+        header("Location:solicitacoes.php?ok");
+        echo "aee deu certo";
     } else {
-        echo "nao deu certo ";
+        header("Location:solicitacoes.php?not");
+        echo "nao deu certo";
     }
 }
 fecharConexao($con);
