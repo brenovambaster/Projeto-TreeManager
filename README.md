@@ -1,7 +1,4 @@
-<<<<<<< versao3.1
-# Projeto-TreeManager
-Projeto Tree Manager
-=======
+
 #  Projeto-TreeManager
 
 ##   1. O Sistema  
