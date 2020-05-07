@@ -5,7 +5,7 @@ if (!isset($_GET['butao'])) {
     header('location: cadastro_arvores.php');
 }
 require_once("../00 - BD/bd_conexao.php");
-// RECEBER OS DADOS VIA POST
+// RECEBER OS DADOS VIA POSTs
 // I- mapeamento e localização 
 $situacao = "pendente";
 $cordenadaGeografica =   addslashes($_GET['cordGeo']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
@@ -72,12 +72,9 @@ if (in_array(false, $campo)) {
 
 
 
-    //   ============== conectar ao banco para passar os dados...
-
-
     $sql = " INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
-CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, CordGeo, Altura, Toxidez, DistanciaOutraArvore, 
-PavimentacaoCalcada, DistanciaGaragens, Rua, Habito, Familia, DistanciaPostes, NomePopular, Origem) 
+    CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, CordGeo, Altura, Toxidez, DistanciaOutraArvore, 
+    PavimentacaoCalcada, DistanciaGaragens, Rua, Habito, Familia, DistanciaPostes, NomePopular, Origem) 
     
     VALUES('$situacao','$nomeCientifico','$distanciaLotesVagos', '$distanciaEsquina', '$avaliacaoArvore', '$alturaPrimeiraBifurc', '$avalradicular',
      '$larguraCalcada', '$numImovel','$poda', '$localPlantio','$conflitos','$cordenadaGeografica', '$alturaArvore', '$toxidez', '$distanciaEntreArvore',
