@@ -68,6 +68,31 @@ include('seguranca.php');
         <?php
 
         include("pesquisa_arvore.php");
+
+        $linhas_por_pagina = 4;
+        $num_linhas = mysqli_num_rows($resultado);
+        $total_paginas = ceil($num_linhas / $linhas_por_pagina);
+
+        if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
+            $pagina = (int) $_GET['pagina'];
+        } else {
+            $pagina = 1;
+        }
+        if ($pagina > $total_paginas) {
+            $pagina = $total_paginas;
+        }
+        if ($pagina < 1) {
+            $pagina = 1;
+        }
+
+        $offset = ($pagina - 1) * $linhas_por_pagina;
+
+        //echo 'Num linhas' . $num_linhas . '<br>' . 'totPag: ' . $total_paginas;
+        //echo "<br>Pagina atual: " . $pagina;
+
+        $arvore = escolha_de_pesquisa($sql, $offset, $linhas_por_pagina);
+        $result = $con->query($arvore['sql']);
+
         ?>
         <div class="col-md-9 mt-3 table table-responsive">
             <table class="table table-striped  ">
@@ -84,7 +109,7 @@ include('seguranca.php');
                 <tbody>
 
                     <?php
-                    while ($informacaoArvore = mysqli_fetch_object($resultado)) { ?>
+                    while ($informacaoArvore = mysqli_fetch_object($result)) { ?>
                         <tr>
                             <th scope="row"><?php echo $informacaoArvore->IdArvore; ?></th>
                             <td> <?php echo $informacaoArvore->NomeCientifico; ?></td>
@@ -107,31 +132,61 @@ include('seguranca.php');
 
             </table>
             <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
-            if (mysqli_num_rows($resultado) == 0) {
+            if (mysqli_num_rows($result) == 0) {
                 echo "<span class='badge badge-warning'>Sua pesquisa não gerou nenhum resultado. Nenhuma árvore não foi encontrada.</span> <br>";
             }
-            echo '<div class="badge badge-primary text-wrap">' . $sql['filtro'] . '</div>';
+            echo '<div class="badge badge-primary text-wrap">' . $arvore['filtro'] . '</div>';
+
+
+
+
+
+            // ============ link máximo antecessor 
+            $max_link = 2;
+            echo "<ul class='pagination'> 
+            <li class='page-item'>
+                <a class='page-link' href='gerenciamento_arvores.php?pagina=1' tabindex='-1'>Primeira</a>
+            </li>";
+            // adciona no máximo dois links antecessores referente a pg atual;
+            for ($pg_anterior = $pagina - $max_link; $pg_anterior <= $pagina; $pg_anterior++) {
+                if ($pg_anterior >= 1) {
+
+                    $estilo = '';
+                    if ($pg_anterior == $pagina) {
+                        $estilo = "active";
+                    }
+
+                    echo "
+                    <li class='page-item " .  $estilo  . "'>
+                        <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_anterior'>$pg_anterior</a>
+                    </li>";
+                }
+            }
+
+            // =========== link máximo sucessor
+            // adciona no máximo 2 links sucessores referente a pg atual.
+            for ($pg_sucessor = $pagina + 1; $pg_sucessor <= $pagina + $max_link; $pg_sucessor++) {
+                if ($pg_sucessor <= $total_paginas) {
+
+                    $estilo = '';
+                    if ($pg_sucessor == $pagina) {
+                        $estilo = "active";
+                    }
+
+                    echo "
+                    <li class='page-item " .  $estilo . "'>
+                        <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_sucessor'>$pg_sucessor</a>
+                    </li>";
+                }
+            }
+            echo "
+                <li class='page-item'>
+                <a class='page-link' href='gerenciamento_arvores.php?pagina=$total_paginas' tabindex='-1'>Última</a>
+                </li>
+           </ul>"
             ?>
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <?php // mostrar modal "alert" 
         if (isset($_GET['success'])) {
@@ -140,6 +195,9 @@ include('seguranca.php');
         if (isset($_GET['editArvoreOk'])) {
             echo '<script>alert("A árvore foi editada");</script>';
         }
+
+
+
         ?>
     </div>
 
