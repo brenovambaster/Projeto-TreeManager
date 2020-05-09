@@ -5,16 +5,16 @@ function verurl()
 {
     $rua = '';
     $especie = '';
-    if (!isset($_POST['pesquisa'])) {
+    if (!isset($_GET['pesquisa'])) {
         // Exibir os dados  sem pesquisar
 
         $sql = "SELECT IdArvore, NomeCientifico, Rua, CordGeo, Situacao FROM arvore ";
         $escolha_de_pesquisa = 1;
     }
-    if (isset($_POST['pesquisa'])) { //exibição com pesquisa
-        //$id = $_POST['ID'];
-        $rua = $_POST['rua'];
-        $especie = $_POST['Especie'];
+    if (isset($_GET['pesquisa'])) { //exibição com pesquisa
+        //$id = $_GET['ID'];
+        $rua = $_GET['rua'];
+        $especie = $_GET['Especie'];
 
         if ((!empty($especie) && empty($rua))) {
             // CASO APENAS A ESPECIE SEJA INFORMADA

@@ -39,7 +39,7 @@ include('seguranca.php');
     <!-- ====================== PESQUISAR ARVORE POR FORMULARIO ==================================================================  -->
     <div class="container row mx-auto">
         <div class="pesquisa-form form-group bloco-form col-md-3 mt-2  border-right ">
-            <form action="gerenciamento_arvores.php" method="POST">
+            <form action="gerenciamento_arvores.php" method="GET">
                 <div class="form-group  col-md-11 col-sm-9  ">
                     <label for="ID"><b> ID:</b></label>
                     <input class="form-control" type="number" name="ID" disabled>
@@ -141,14 +141,26 @@ include('seguranca.php');
 
 
 
-            // ============ link máximo antecessor 
+            // ============ link máximo antecessor ===============PAGINACAO=================
             $max_link = 2;
+
+            // adciona no máximo dois links antecessores referente a pg atual;
+
+            $Especie = '';
+            $rua = '';
+            $pesquisa = 'Pesquisar';
+            if (!empty($_GET['Especie'])) {
+                $Especie = $_GET['Especie'];
+            }
+            if (!empty($_GET['rua'])) {
+                $rua = $_GET['rua'];
+            }
             echo "<ul class='pagination'> 
             <li class='page-item'>
-                <a class='page-link' href='gerenciamento_arvores.php?pagina=1' tabindex='-1'>Primeira</a>
+                <a class='page-link' href='gerenciamento_arvores.php?pagina=1&Especie=$Especie&rua=$rua&pesquisa=$pesquisa' tabindex='-1'>Primeira</a>
             </li>";
-            // adciona no máximo dois links antecessores referente a pg atual;
-            for ($pg_anterior = $pagina - $max_link; $pg_anterior <= $pagina; $pg_anterior++) {
+            //pagina anterior
+            for ($pg_anterior = $pagina - $max_link; $pg_anterior < $pagina; $pg_anterior++) {
                 if ($pg_anterior >= 1) {
 
                     $estilo = '';
@@ -158,10 +170,14 @@ include('seguranca.php');
 
                     echo "
                     <li class='page-item " .  $estilo  . "'>
-                        <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_anterior'>$pg_anterior</a>
+                        <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_anterior&Especie=$Especie&rua=$rua&pesquisa=$pesquisa'>$pg_anterior</a>
                     </li>";
                 }
             }
+            echo "
+            <li class='page-item active'>
+                <a class='page-link'>$pg_anterior</a>
+            </li>";
 
             // =========== link máximo sucessor
             // adciona no máximo 2 links sucessores referente a pg atual.
@@ -175,17 +191,17 @@ include('seguranca.php');
 
                     echo "
                     <li class='page-item " .  $estilo . "'>
-                        <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_sucessor'>$pg_sucessor</a>
+                        <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_sucessor&Especie=$Especie&rua=$rua&pesquisa=$pesquisa'>$pg_sucessor</a>
                     </li>";
                 }
             }
             echo "
                 <li class='page-item'>
-                <a class='page-link' href='gerenciamento_arvores.php?pagina=$total_paginas' tabindex='-1'>Última</a>
+                <a class='page-link' href='gerenciamento_arvores.php?pagina=$total_paginas&Especie=$Especie&rua=$rua&pesquisa=$pesquisa' tabindex='-1'>Última</a>
                 </li>
-           </ul>"
+           </ul>";
+            #=============================== FIM  PAGINACAO ======================================== 
             ?>
-
         </div>
 
         <?php // mostrar modal "alert" 
