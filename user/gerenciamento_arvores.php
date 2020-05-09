@@ -134,73 +134,74 @@ include('seguranca.php');
             <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
             if (mysqli_num_rows($result) == 0) {
                 echo "<span class='badge badge-warning'>Sua pesquisa não gerou nenhum resultado. Nenhuma árvore não foi encontrada.</span> <br>";
-            }
-            echo '<div class="badge badge-primary text-wrap">' . $arvore['filtro'] . '</div>';
+            } else {
 
 
 
+                // ============ link máximo antecessor ===============PAGINACAO=================
+                $max_link = 2;
 
+                // adciona no máximo dois links antecessores referente a pg atual;
 
-            // ============ link máximo antecessor ===============PAGINACAO=================
-            $max_link = 2;
-
-            // adciona no máximo dois links antecessores referente a pg atual;
-
-            $Especie = '';
-            $rua = '';
-            $pesquisa = 'Pesquisar';
-            if (!empty($_GET['Especie'])) {
-                $Especie = $_GET['Especie'];
-            }
-            if (!empty($_GET['rua'])) {
-                $rua = $_GET['rua'];
-            }
-            echo "<ul class='pagination'> 
+                $Especie = '';
+                $rua = '';
+                $pesquisa = 'Pesquisar';
+                if (!empty($_GET['Especie'])) {
+                    $Especie = $_GET['Especie'];
+                }
+                if (!empty($_GET['rua'])) {
+                    $rua = $_GET['rua'];
+                }
+                echo "<ul class='pagination'> 
             <li class='page-item'>
                 <a class='page-link' href='gerenciamento_arvores.php?pagina=1&Especie=$Especie&rua=$rua&pesquisa=$pesquisa' tabindex='-1'>Primeira</a>
             </li>";
-            //pagina anterior
-            for ($pg_anterior = $pagina - $max_link; $pg_anterior < $pagina; $pg_anterior++) {
-                if ($pg_anterior >= 1) {
+                //pagina anterior
+                for ($pg_anterior = $pagina - $max_link; $pg_anterior < $pagina; $pg_anterior++) {
+                    if ($pg_anterior >= 1) {
 
-                    $estilo = '';
-                    if ($pg_anterior == $pagina) {
-                        $estilo = "active";
-                    }
+                        $estilo = '';
+                        if ($pg_anterior == $pagina) {
+                            $estilo = "active";
+                        }
 
-                    echo "
+                        echo "
                     <li class='page-item " .  $estilo  . "'>
                         <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_anterior&Especie=$Especie&rua=$rua&pesquisa=$pesquisa'>$pg_anterior</a>
                     </li>";
+                    }
                 }
-            }
-            echo "
+                echo "
             <li class='page-item active'>
                 <a class='page-link'>$pg_anterior</a>
             </li>";
 
-            // =========== link máximo sucessor
-            // adciona no máximo 2 links sucessores referente a pg atual.
-            for ($pg_sucessor = $pagina + 1; $pg_sucessor <= $pagina + $max_link; $pg_sucessor++) {
-                if ($pg_sucessor <= $total_paginas) {
+                // =========== link máximo sucessor
+                // adciona no máximo 2 links sucessores referente a pg atual.
+                for ($pg_sucessor = $pagina + 1; $pg_sucessor <= $pagina + $max_link; $pg_sucessor++) {
+                    if ($pg_sucessor <= $total_paginas) {
 
-                    $estilo = '';
-                    if ($pg_sucessor == $pagina) {
-                        $estilo = "active";
-                    }
+                        $estilo = '';
+                        if ($pg_sucessor == $pagina) {
+                            $estilo = "active";
+                        }
 
-                    echo "
+                        echo "
                     <li class='page-item " .  $estilo . "'>
                         <a class='page-link' href='gerenciamento_arvores.php?pagina=$pg_sucessor&Especie=$Especie&rua=$rua&pesquisa=$pesquisa'>$pg_sucessor</a>
                     </li>";
+                    }
                 }
-            }
-            echo "
+                echo "
                 <li class='page-item'>
                 <a class='page-link' href='gerenciamento_arvores.php?pagina=$total_paginas&Especie=$Especie&rua=$rua&pesquisa=$pesquisa' tabindex='-1'>Última</a>
                 </li>
            </ul>";
-            #=============================== FIM  PAGINACAO ======================================== 
+                #=============================== FIM  PAGINACAO ======================================== 
+
+            }
+            echo '<div class="badge badge-primary text-wrap">' . $arvore['filtro'] . '</div>';
+
             ?>
         </div>
 
