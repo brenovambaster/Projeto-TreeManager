@@ -3,12 +3,17 @@
 
 ## 0. Instalação
   ### 0.0 XAMPP 
-       Para conseguir rodar o projeto em sua máquina local é preciso instalar o [XAMPP](https://www.apachefriends.org/pt_br/index.html). Nesse link você verá como deve ser instalado e como funciona.
+     <p>  Para conseguir rodar o projeto em sua máquina local é preciso instalar o [XAMPP](https://www.apachefriends.org/pt_br/index.html). Nesse link você verá como deve ser instalado e como funciona.
+     </p>
   ### 0.1 Diretório
+  <p>
       Após ter baixado e instalado o XAMPP, clique na pasta xampp (localizada na raiz do disco: `C:\xampp`) e entre na pasta htdocs(`C:\xampp\htdocs`).<br>
       Todos os arquivos devem estarem contidos na pasta do servidor local (C:\xampp\htdocs).
+  </p>
   ### 0.2 DB
+  <p>
      Após ter configurado e estar ciente do diretório do servidor, é necessário ciar o banco de dados para o sistema.
+  </p>   
       1. Abra o app do xampp-control.exe (pesquise no iniciar do seu computador).
       1.1 Ou abra o seu teminal  e coloque `C:\xampp\xampp-control.exe`
       2. Aperte o botão de "start" no Apache e no Mysqli
@@ -21,9 +26,6 @@
       9. Pronto. Com a importação dos dados para o seu banco de dados já pode acessar os sistema. 
       10. Abra o seu Browser e digite no endereço de url: *localhost/Projeto-TreeManager-master'*
       11. Pronto. Já pode utilizar. 
-
-
-
 
 
 
