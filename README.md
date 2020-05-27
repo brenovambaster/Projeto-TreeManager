@@ -8,17 +8,18 @@
    Após ter baixado e instalado o XAMPP, clique na pasta xampp (localizada na raiz do disco: `C:\xampp`) e entre na pasta htdocs(`C:\xampp\htdocs`).Todos os arquivos devem estarem contidos na pasta do servidor local (C:\xampp\htdocs).
   ### 0.2 DB
   <p> Após ter configurado e estar ciente do diretório do servidor, é necessário ciar o banco de dados para o sistema.</p>   
+  
   1. Abra o app do xampp-control.exe (pesquise no iniciar do seu computador).
-  1.1 Ou abra o seu teminal  e coloque `C:\xampp\xampp-control.exe`
+      1. Ou abra o seu teminal  e coloque `C:\xampp\xampp-control.exe`
   2. Aperte o botão de "start" no Apache e no Mysqli
   3. Abra o seu Browser e digite no endereço de url: *localhost/phpmyadmin*
   4. Pronto. Já está dentro do banco de dandos. Agora é preciso cirar o banco.
   5. clique em Novo.
   6. No campo *Nome da base de dados* coloque *new_version_tree_manager*
   7. Criado no banco de dados, clique agora em importar. 
-  8. Clique em *esclolher arquivo*. Em seguida escolhe o arquivo [new_version_tree_manager.sql](https://github.com/brenovambaster/Projeto-TreeManager/tree/master/00%20-%20BD)
+  8. Clique em *esclolher arquivo*. Em seguida, escolha o arquivo [new_version_tree_manager.sql](https://github.com/brenovambaster/Projeto-TreeManager/tree/master/00%20-%20BD)
   9. Pronto. Com a importação dos dados para o seu banco de dados já pode acessar os sistema. 
-  10. Abra o seu Browser e digite no endereço de url: *localhost/Projeto-TreeManager-master'*
+  10. Abra o seu Browser e digite no endereço de url: *localhost/Projeto-TreeManager-master*
   11. Pronto. Já pode utilizar. 
 
 
