@@ -36,7 +36,6 @@ include('seguranca.php');
 		<?php include('navbar.php');
 		lerUrl();
 		?>
-
 	</div>
 	<?php require_once('../00 - BD/bd_conexao.php');
 	$id = $_SESSION['idUsu'];
@@ -53,10 +52,52 @@ include('seguranca.php');
 	<div class="container mt-5">
 		<div class="row">
 			<div class="col-md-3 mb-3">
-				<div class=" ">
+				<div class="">
 
-					<img src="../img/perfil.png" alt="..." max-height="10%" max-width="10%" class="img-thumbnail rounded">
+					<img src="foto_perfil/<?php echo $info->foto; ?>" max-width="300px" max-height="300px" alt="perfil" class="img-thumbnail rounded">
 					<!-- <img src="../img/foto-perfil.png" height="120px" width="120px"> -->
+
+					<!-- Button trigger modal -->
+					<div class="ml-1">
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+							Atualizar foto
+						</button>
+						<a class="btn btn-secondary btn-sm" href="remov_foto.php?remov">Remover/Anônima</a>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header bg-success">
+									<h5 class="modal-title" id="exampleModalLabel">Atualizar foto</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form action="editar_foto.php" method="post" enctype="multipart/form-data">
+										<div class="form-group col">
+
+											<div class="input-group ">
+												<input class="btn rouded" name="arquivo" type="file" name="foto" id="">
+												<input class="btn btn-info" type="submit" value="enviar">
+											</div>
+
+										</div>
+
+									</form>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
 
 				</div>
 			</div>
@@ -72,15 +113,7 @@ include('seguranca.php');
 							<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
 						</div>
 
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroupFileAddon01">Foto</span>
-							</div>
-							<div class="custom-file">
-								<input name="foto" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-							</div>
-						</div>
+
 
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
@@ -110,9 +143,6 @@ include('seguranca.php');
 				</form>
 				<?php fecharConexao($con); ?>
 
-
-
-
 			</div>
 
 		</div>
@@ -121,15 +151,6 @@ include('seguranca.php');
 
 
 
-
-
-
-	<!--
-	<div class="rodape fixed-bottom text-center">
-
-		<h2> Rodapé da pagina </h2>
-	</div>
-	-->
 
 
 	<!-- Optional JavaScript -->
