@@ -351,8 +351,8 @@ include('seguranca.php');
 											<label for="Sinalizacao"> Sinalização </label>
 										</div>
 										<div class="custom-control custom-radio">
-											<input class="form-check-input" type="radio" name="Conflitos" id="Outro" value="outro" <?php echo $outro; ?>>
-											<label for="Outro"> Outro </label><br><br>
+											<input class="form-check-input" type="radio" name="Conflitos" id="OutroVal" value="outro" <?php echo $outro; ?>>
+											<label for="OutroVal"> Outro </label><br><br>
 										</div>
 									</div>
 
@@ -418,7 +418,7 @@ include('seguranca.php');
 					</div>
 					<div>
 						<input type="hidden" name="id_arvore" class="btn btn-light disabled" value="<?php echo $id; ?>">
-						<input class="btn btn-primary col-2 col-xs-3" type="submit" name="butao" value="Enviar">
+						<input class="btn btn-primary col-2 col-xs-3" type="submit" name="butao" value="Salvar">
 						<input class="btn btn-danger col-2 col-xs-3" type="reset" value="Limpar"></div>
 				</form>
 

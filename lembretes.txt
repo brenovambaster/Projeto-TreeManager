@@ -4,3 +4,4 @@
 *ver dados arvore;
 *mostrar o id dps que a árvore é cadastrada;
 *addLanches em user/perfil.php para editar os campos;
+* Dividir o campo de Coordenadas em 2. Longitude e Latidude. (Não precisa inserir letras. Apenas números)
