@@ -38,61 +38,92 @@ include('seguranca.php');
 		?>
 
 	</div>
+	<?php require_once('../00 - BD/bd_conexao.php');
+	$id = $_SESSION['idUsu'];
+	$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
+
+	$result = $con->query($sql) or die("Erro ao se conectar ao banco");
+	$info = mysqli_fetch_object($result);
 
 
-	<div class="conteudo container-fluid d-flex  col-md-10 border-secondary mx-auto mt-3 row">
-
-		<div class="foto col-md-2 mr-3   ">
-			<img src="../img/foto-perfil.png" height="120px" width="120px">
-		</div>
-		<div class="conteudo   col-md-7 col-sm-10 ml-3 mt-1 ">
-			<?php require_once('../00 - BD/bd_conexao.php');
-			$id = $_SESSION['idUsu'];
-			$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
-
-			$result = $con->query($sql) or die("Erro ao se conectar ao banco");
-			$info = mysqli_fetch_object($result);
+	?>
 
 
-			?>
-			<form action="EditarPerfil.php" method="post">
-				<div class="form-group col-md-10  ">
 
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">Name:</span>
-						</div>
-						<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
-					</div>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">E-mail:</span>
-						</div>
-						<input type="email" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
-					</div>
-					<div class="input-group mb-3">
-						<div class=" input-group-prepend">
-							<span class="input-group-text" id="basic-addon1"> Phone:</span>
-						</div>
-						<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
-					</div>
-					<div class="input-group mb-3">
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-3 mb-3">
+				<div class=" ">
 
-						<div class=" input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">Password:</span>
-						</div>
-						<input type="password" class="form-control  form-group" id="#" name="senha" value="<?php echo $info->senha; ?>" required="required"></input>
-					</div>
+					<img src="../img/perfil.png" alt="..." max-height="10%" max-width="10%" class="img-thumbnail rounded">
+					<!-- <img src="../img/foto-perfil.png" height="120px" width="120px"> -->
 
-					<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
-					<button type="submit" class="btn btn-info conf" name="confirm">Editar</button>
-					<button type="reset" class="btn btn-danger conf" name="limpar">Limpar</button>
-					<!-------------------------------------------------------------------------------------------------------------->
 				</div>
-			</form>
-			<?php fecharConexao($con); ?>
+			</div>
+
+			<div class="col-md-7">
+				<form action="EditarPerfil.php" method="post">
+					<div class="form-group col-md-10  ">
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">Name:</span>
+							</div>
+							<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroupFileAddon01">Foto</span>
+							</div>
+							<div class="custom-file">
+								<input name="foto" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">E-mail:</span>
+							</div>
+							<input type="email" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
+						</div>
+						<div class="input-group mb-3">
+							<div class=" input-group-prepend">
+								<span class="input-group-text" id="basic-addon1"> Phone:</span>
+							</div>
+							<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
+						</div>
+						<div class="input-group mb-3">
+
+							<div class=" input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">Password:</span>
+							</div>
+							<input type="password" class="form-control  form-group" id="#" name="senha" value="<?php echo $info->senha; ?>" required="required"></input>
+						</div>
+
+						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
+						<button type="submit" class="btn btn-info conf" name="confirm">Editar</button>
+						<button type="reset" class="btn btn-danger conf" name="limpar">Limpar</button>
+						<!-------------------------------------------------------------------------------------------------------------->
+					</div>
+				</form>
+				<?php fecharConexao($con); ?>
+
+
+
+
+			</div>
+
 		</div>
+
 	</div>
+
+
+
+
+
+
 	<!--
 	<div class="rodape fixed-bottom text-center">
 
