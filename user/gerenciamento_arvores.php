@@ -206,17 +206,6 @@ include('seguranca.php');
             ?>
         </div>
 
-        <?php // mostrar modal "alert" 
-        if (isset($_GET['success'])) {
-            echo '<script>alert("Árvore exluída com sucesso");</script>';
-        }
-        if (isset($_GET['editArvoreOk'])) {
-            echo '<script>alert("A árvore foi editada");</script>';
-        }
-
-
-
-        ?>
     </div>
 
     </div>
