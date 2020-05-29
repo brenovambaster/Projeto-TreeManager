@@ -9,7 +9,6 @@ $telefone = $_POST['telefone'];
 $senha = addslashes($_POST['senha']);
 $id = $_SESSION['idUsu'];
 
-
 $sql = "UPDATE usuario SET nome ='$nome', senha='$senha' ,fone='$telefone', email='$email' Where idUsuario='$id'";
 
 if (empty($nome) && empty($email) && empty($telefone) && empty($senha)) { // não deixar entrar pela url com nenhuma valor setado
@@ -18,10 +17,20 @@ if (empty($nome) && empty($email) && empty($telefone) && empty($senha)) { // nã
    $resultado = $con->query($sql);
    if ($con->query($sql) === TRUE) {
       echo "success editar";
-      header("location:perfil.php?userEdit");
+      echo "
+      <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
+      <script type=\"text/javascript\">
+          alert(\"O seu perfil foi editado com sucesso.\");
+          console.log(\"perfil editado\");
+      </script>";
    } else {
       echo "erro editar";
-      header("location:perfil.php?userError");
+      echo "
+      <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
+      <script type=\"text/javascript\">
+          alert(\"Falha ao editar o seu perfil\");
+          console.log(\"falha ao editar perfil\");
+      </script>";
    }
 }
 
