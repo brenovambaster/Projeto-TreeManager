@@ -11,10 +11,10 @@
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
   </a>
-  <a href="">
+  <a href="https://github.com/brenovambaster/Projeto-TreeManager/commits/versao3.2">
    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/brenovambaster/Projeto-TreeManager">
   </a>
-  <a href="">
+  <a href="https://github.com/brenovambaster/Projeto-TreeManager/issues">
    <img alt="GitHub issues" src="https://img.shields.io/github/issues/brenovambaster/Projeto-TreeManager?color=red">
   </a>
 </p>
