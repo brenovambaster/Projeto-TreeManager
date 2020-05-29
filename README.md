@@ -1,5 +1,24 @@
+<h1 align="center">
+<br>
+  <img src="salinas/museu_salinas_01.jpg" alt="YOUR_PROJECT_NAME" height="100%" width="100%">
+<br>
+<br>
+  Projeto-TreeManager
+</h1>
 
-#  Projeto-TreeManager
+<p align="center">Um pequeno sistema para gerenciamento  de árvores </p>
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
+  </a>
+  <a href="">
+   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/brenovambaster/Projeto-TreeManager">
+  </a>
+  <a href="">
+   <img alt="GitHub issues" src="https://img.shields.io/github/issues/brenovambaster/Projeto-TreeManager?color=red">
+  </a>
+</p>
+
 
 ## 0. Instalação
   ### 0.0 XAMPP 
