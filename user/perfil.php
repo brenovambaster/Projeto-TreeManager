@@ -35,7 +35,6 @@ include('seguranca.php');
 		</div>
 
 		<?php include('navbar.php');
-		lerUrl();
 		?>
 	</div>
 	<?php require_once('../00 - BD/bd_conexao.php');
@@ -162,18 +161,3 @@ include('seguranca.php');
 </body>
 
 </html>
-<?php
-function lerUrl()
-{
-
-
-	if (isset($_GET['userEdit'])) {
-		echo '<script>alert("Usuário editado com sucesso.");</script>';
-	}
-	if (isset($_GET['userError'])) {
-		echo '<script>alert("Erro ao editar Usuário.Tente novamente");</script>';
-	} else {
-	}
-}
-
-?>
