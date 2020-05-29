@@ -137,8 +137,8 @@ include('seguranca.php');
 						</div>
 
 						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
-						<button type="submit" class="btn btn-info conf" name="confirm">Editar</button>
-						<button type="reset" class="btn btn-danger conf" name="limpar">Limpar</button>
+						<button type="submit" class="btn btn-info conf" name="confirm">Salvar</button>
+						<button type="reset" class="btn btn-danger conf" name="limpar">Desfazer</button>
 						<!-------------------------------------------------------------------------------------------------------------->
 					</div>
 				</form>
