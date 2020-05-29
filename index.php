@@ -5,6 +5,7 @@
 	<title> Arborização Urbana em Salinas</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#312b2be1">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/css_index.css">
 	<!--	============================================================================================ -->

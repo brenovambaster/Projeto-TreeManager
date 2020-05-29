@@ -9,6 +9,7 @@ include('seguranca.php');
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=dsevice-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#343a40">
 	<link rel="stylesheet" type="text/css" href="../css/perfil1.css">
 	<?php
 	include('iconeSite.php'); // ícone do site
@@ -34,71 +35,122 @@ include('seguranca.php');
 		</div>
 
 		<?php include('navbar.php');
-		lerUrl();
 		?>
-
 	</div>
+	<?php require_once('../00 - BD/bd_conexao.php');
+	$id = $_SESSION['idUsu'];
+	$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
+
+	$result = $con->query($sql) or die("Erro ao se conectar ao banco");
+	$info = mysqli_fetch_object($result);
 
 
-	<div class="conteudo container-fluid d-flex  col-md-10 border-secondary mx-auto mt-3 row">
-
-		<div class="foto col-md-2 mr-3   ">
-			<img src="../img/foto-perfil.png" height="120px" width="120px">
-		</div>
-		<div class="conteudo   col-md-7 col-sm-10 ml-3 mt-1 ">
-			<?php require_once('../00 - BD/bd_conexao.php');
-			$id = $_SESSION['idUsu'];
-			$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
-
-			$result = $con->query($sql) or die("Erro ao se conectar ao banco");
-			$info = mysqli_fetch_object($result);
+	?>
 
 
-			?>
-			<form action="EditarPerfil.php" method="post">
-				<div class="form-group col-md-10  ">
 
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">Name:</span>
-						</div>
-						<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-3 mb-3">
+				<div class="">
+
+					<img src="foto_perfil/<?php echo $info->foto; ?>" max-width="300px" max-height="300px" alt="perfil" class="img-thumbnail rounded">
+					<!-- <img src="../img/foto-perfil.png" height="120px" width="120px"> -->
+
+					<!-- Button trigger modal -->
+					<div class="ml-1">
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+							Atualizar foto
+						</button>
+						<a class="btn btn-secondary btn-sm" href="remov_foto.php?remov">Remover/Anônima</a>
 					</div>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">E-mail:</span>
-						</div>
-						<input type="email" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
-					</div>
-					<div class="input-group mb-3">
-						<div class=" input-group-prepend">
-							<span class="input-group-text" id="basic-addon1"> Phone:</span>
-						</div>
-						<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
-					</div>
-					<div class="input-group mb-3">
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header bg-success">
+									<h5 class="modal-title" id="exampleModalLabel">Atualizar foto</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form action="editar_foto.php" method="post" enctype="multipart/form-data">
+										<div class="form-group col">
 
-						<div class=" input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">Password:</span>
+											<div class="input-group ">
+												<input class="btn rouded" name="arquivo" type="file" name="foto" id="">
+												<input class="btn btn-info" type="submit" value="enviar">
+											</div>
+
+										</div>
+
+									</form>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+								</div>
+							</div>
 						</div>
-						<input type="password" class="form-control  form-group" id="#" name="senha" value="<?php echo $info->senha; ?>" required="required"></input>
 					</div>
 
-					<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
-					<button type="submit" class="btn btn-info conf" name="confirm">Editar</button>
-					<button type="reset" class="btn btn-danger conf" name="limpar">Limpar</button>
-					<!-------------------------------------------------------------------------------------------------------------->
+
+
+
 				</div>
-			</form>
-			<?php fecharConexao($con); ?>
-		</div>
-	</div>
-	<!--
-	<div class="rodape fixed-bottom text-center">
+			</div>
 
-		<h2> Rodapé da pagina </h2>
+			<div class="col-md-7">
+				<form action="EditarPerfil.php" method="post">
+					<div class="form-group col-md-10  ">
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">Name:</span>
+							</div>
+							<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
+						</div>
+
+
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">E-mail:</span>
+							</div>
+							<input type="email" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
+						</div>
+						<div class="input-group mb-3">
+							<div class=" input-group-prepend">
+								<span class="input-group-text" id="basic-addon1"> Phone:</span>
+							</div>
+							<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
+						</div>
+						<div class="input-group mb-3">
+
+							<div class=" input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">Password:</span>
+							</div>
+							<input type="password" class="form-control  form-group" id="#" name="senha" value="<?php echo $info->senha; ?>" required="required"></input>
+						</div>
+
+						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
+						<button type="submit" class="btn btn-info conf" name="confirm">Salvar</button>
+						<button type="reset" class="btn btn-danger conf" name="limpar">Desfazer</button>
+						<!-------------------------------------------------------------------------------------------------------------->
+					</div>
+				</form>
+				<?php fecharConexao($con); ?>
+
+			</div>
+
+		</div>
+
 	</div>
-	-->
+
+
+
 
 
 	<!-- Optional JavaScript -->
@@ -109,18 +161,3 @@ include('seguranca.php');
 </body>
 
 </html>
-<?php
-function lerUrl()
-{
-
-
-	if (isset($_GET['userEdit'])) {
-		echo '<script>alert("Usuário editado com sucesso.");</script>';
-	}
-	if (isset($_GET['userError'])) {
-		echo '<script>alert("Erro ao editar Usuário.Tente novamente");</script>';
-	} else {
-	}
-}
-
-?>

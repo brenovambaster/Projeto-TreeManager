@@ -10,6 +10,7 @@ include('seguranca.php');
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#343a40">
     <link rel="stylesheet" type="text/css" href="../css/gerencia_arvores_estilo2.css">
     <!-- Icone da pagina -->
     <?php
@@ -119,7 +120,7 @@ include('seguranca.php');
                             <td>
                                 <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
                                 <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>" data-confirm='Tem certeza de que deseja excluir a árvore selecionada?'> Excluir </a>
-                                <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
+                                <a href="leitura_arvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
                                 <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
                             </td>
                         </tr>
@@ -133,7 +134,7 @@ include('seguranca.php');
             </table>
             <?php // VERIFICAR SE A PESQUISA GEROU ALGUM RESULTADO
             if (mysqli_num_rows($result) == 0) {
-                echo "<span class='badge badge-warning'>Sua pesquisa não gerou nenhum resultado. Nenhuma árvore não foi encontrada.</span> <br>";
+                echo "<span class='badge badge-warning'>Sua pesquisa não gerou nenhum resultado. Nenhuma árvore foi encontrada.</span> <br>";
             } else {
 
 

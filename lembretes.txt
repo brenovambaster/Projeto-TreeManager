@@ -4,3 +4,7 @@
 *ver dados arvore;
 *mostrar o id dps que a árvore é cadastrada;
 *addLanches em user/perfil.php para editar os campos;
+* Dividir o campo de Coordenadas em 2. Longitude e Latidude. (Não precisa inserir letras. Apenas números)
+* Fazer upload da foto de perfil (perfil.php);
+      implementar=>  *Ao fazer upload, apagar a foto que estava anteriormente. Para isso, creio que seja melhor **criar um tabela apenas para imagem**. 
+      Ideia: ao entrar em editar foto, pesquisar no bd todas as fotos relacionadas àquele usuário e deletá-las. Depois inserir a nova foto que enviou. [ver aquivo editar_foto.php] 
