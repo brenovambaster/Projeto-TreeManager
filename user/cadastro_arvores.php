@@ -9,6 +9,7 @@ include('seguranca.php');
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#343a40">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -111,15 +112,15 @@ include('seguranca.php');
                                     <input type="text" id="esquinas" name="esquina" class="form-control" onkeypress="return somenteNumeros(event)" placeholder="Ex: 4.9"">
                                 </div>
                                 <div class=" form-group col-md-3 ">
-                                    <label for="entreOutrasArv"> Entre outra árvore(m):</label>
+                                    <label for=" entreOutrasArv"> Entre outra árvore(m):</label>
                                     <input type="text" id="entreOutrasArv" name="distanciaEntreArvore" class="form-control" onkeypress="return somenteNumeros(event)" placeholder="Ex: 5.6 " ">
                                 </div>
                                 <div class=" form-group col-md-3 ">
-                                    <label for="garagens"> Entrada de garagens(m):</label>
+                                    <label for=" garagens"> Entrada de garagens(m):</label>
                                     <input type="text" id="garagens" name="distaEntradaGaragem" class="form-control " placeholder="Ex: 5.6 " onkeypress="return somenteNumeros(event)"">
                                 </div>
                                 <div class=" form-group col-md-2 ">
-                                    <label for="loteVago"> Lotes vagos(m):</label>
+                                    <label for=" loteVago"> Lotes vagos(m):</label>
                                     <input type="text" id="loteVago" name="distanciaLotesVagos" class="form-control " placeholder="Ex: 5.6 " onkeypress="return somenteNumeros(event)"">
                                 </div>
                             </div>

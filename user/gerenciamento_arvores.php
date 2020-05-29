@@ -10,6 +10,7 @@ include('seguranca.php');
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#343a40">
     <link rel="stylesheet" type="text/css" href="../css/gerencia_arvores_estilo2.css">
     <!-- Icone da pagina -->
     <?php
