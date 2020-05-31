@@ -29,7 +29,7 @@
 
 
     <section>
-        <div class="mt-4">
+        <div class="mt-4 container-fluid">
             <div class="row">
                 <div class="ml-1 col-md-4">
                     <?php
