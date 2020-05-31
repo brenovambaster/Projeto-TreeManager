@@ -88,7 +88,12 @@ if (in_array(false, $campo)) // procurar o valor falso no array campo
     DistanciaPostes='$distanciaPost', NomePopular='$nomePopular', Origem='$origem' WHERE IdArvore ='$id_arvore' ";
     if ($con->query($sql) === TRUE) {
         fecharConexao($con);
-        header("Location: gerenciamento_arvores.php?editArvoreOk");
+
+        echo " <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=gerenciamento_arvores.php'>
+               <script type=\"text/javascript\">
+                     alert(\"Árvore foi editada com sucesso.\");
+                    console.log(\" arvore editada \");
+               </script>";
     } else {
         echo mysqli_error($con);
         fecharConexao($con);

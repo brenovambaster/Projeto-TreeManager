@@ -46,7 +46,8 @@ $campo = array(
     'largura_Calcada' => is_numeric($n8)
 );
 if (in_array(false, $campo)) {
-    echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUIAS:<br> ");
+    echo "<script> alert('";
+    echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUIAS:" . '\n');
     /*
     while (list($NomeCampo, $Valor) = each($campo)) {
         if ($Valor === FALSE) {
@@ -61,12 +62,16 @@ if (in_array(false, $campo)) {
 
             $teste = $k;
             // print_r($teste);
-            echo "$k<br>";
+            echo "$k" . '\n';
+            // seria melhor ciar um novo array dinamico com apenas os campos preenchidos incorretamente.
+            // Mas nao consegui fazer isso. obs*Tentar fazer essa validação com JS. 
+            // validar formulário para que os campos nao aceitem valores < 0
         }
     }
     unset($campo);
 
     echo "POR FAVOR,VOLTE NA PÁGINA ANTERIOR E REVISE CUIDADOSAMENTE OS CAMPOS SUPRACITADOS.";
+    echo "'); </script>";
 } else {
 
 

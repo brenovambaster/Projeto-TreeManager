@@ -12,7 +12,12 @@ if (isset($_GET['id'])) {
   $info = mysqli_fetch_object($result);
 
   if ($info->Situacao == 'cadastrada') {
-    echo "<h2>Não se pode excluir essa árvore pois ela já foi validada pelo adm. Caso nessecite fazer alguma mudança, crie uma solicitação de serviço para esta árvore </h2>";
+    echo " 
+          <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=gerenciamento_arvores.php'>
+          <script type=\"text/javascript\">
+            alert(\"Não se pode excluir essa árvore pois ela já foi validada pelo adm. Caso nessecite fazer alguma mudança, crie uma solicitação de serviço para esta árvore.\");
+            console.log(\" nao pode excluir \");
+          </script>";
   } else {
 
     $sql  =  "DELETE FROM arvore WHERE IdArvore = $id";
@@ -20,11 +25,16 @@ if (isset($_GET['id'])) {
     if ($con->query($sql) ===  TRUE) {
       $flag  =  1;
       echo "Deu Certo";
-      header("Location:gerenciamento_arvores.php?success");
+      echo " 
+            <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=gerenciamento_arvores.php'>
+            <script type=\"text/javascript\">
+              alert(\"Árvore excluída com sucesso.\");
+              console.log(\" arvore excluida \");
+            </script>";
     } else {
       $flag  =  0;
       echo mysqli_error($con);
-      echo "Deu erro";
+      echo "erro em excluir arvore";
     }
   }
   // Fechando a conexão

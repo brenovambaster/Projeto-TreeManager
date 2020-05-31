@@ -29,8 +29,7 @@ include('seguranca.php');
 
 
     <div class="top-total">
-        <!-- div top-total. DIV para todo o topo do site
-            -->
+        
         <div class="menu">
             <h1> Cadastro de Árvores </h1>
         </div>
