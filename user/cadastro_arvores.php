@@ -1,5 +1,5 @@
 <?php
-include('seguranca.php');
+include_once('seguranca.php');
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -49,7 +49,7 @@ include('seguranca.php');
                     <h1 class="text-center">Formulário para cadastro das árvores</h1>
                     <hr>
                 </div>
-                <!-- verificação para ver se o cadastro doi realizado com sucesso ou não: exibir a mensagem            -->
+                <!-- verificação para ver se o cadastro foi realizado com sucesso ou não: exibir a mensagem            -->
                 <?php
                 if (isset($_GET['success'])) { ?>
 
@@ -79,13 +79,17 @@ include('seguranca.php');
                     <div>
                         <a class="btn btn-success col-12" data-toggle="collapse" href="#Mapeamento-e-localização" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">I- Mapeamento e localização</a>
 
-                        <div class="collapse multi-collapse" id="Mapeamento-e-localização">
+                        <div class="show multi-collapse" id="Mapeamento-e-localização">
                             <div class="form-row">
 
 
                                 <div class="form-group col-md-4 ">
-                                    <label for="cordGeo">Cordendas Geográficas:</label>
-                                    <input class="form-control" id="cordGeo" type="text" name="cordGeo">
+                                    <label for="latitude">Latitude:</label>
+                                    <input class="form-control" id="cordGeo" type="text" name="lat">
+                                </div>
+                                <div class="form-group col-md-4 ">
+                                    <label for="longitude">Longitude:</label>
+                                    <input class="form-control" id="cordGeo" type="text" name="long">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="rua">Rua:</label>
@@ -99,7 +103,7 @@ include('seguranca.php');
                             <div class="form-row">
 
                                 <legend>
-                                    <h5 class="text-center">Distância da árvore em relação aos equipaentos hurbanos.</h5>
+                                    <h5 class="text-center">Distância da árvore em relação aos equipamentos urbanos.</h5>
                                 </legend>
                                 <div class="form-group col-md-2">
                                     <label for="postes">Postes(m):</label>
@@ -130,7 +134,7 @@ include('seguranca.php');
                     <div>
                         <a class=" btn btn-secondary col-12" data-toggle="collapse" href="#Características-da-árvore" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">II- Características da árvore</a>
 
-                                    <div class="collapse multi-collapse" id="Características-da-árvore">
+                                    <div class="show multi-collapse" id="Características-da-árvore">
                                         <div class="form-row">
 
                                             <legend> 1. Identificação</legend>
@@ -230,7 +234,7 @@ include('seguranca.php');
 
                                 <div>
                                     <a class="btn btn-success col-12" data-toggle="collapse" href="#Entorno-e-interferências" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">III- Entorno e interferências</a>
-                                    <div class="collapse multi-collapse" id="Entorno-e-interferências">
+                                    <div class="show multi-collapse" id="Entorno-e-interferências">
 
                                         <div class=" form-group form-row">
 
