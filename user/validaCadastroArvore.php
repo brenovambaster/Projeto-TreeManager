@@ -1,5 +1,5 @@
 <?php
-include('seguranca.php');
+include_once('seguranca.php');
 
 if (!isset($_GET['butao'])) {
     header('location: cadastro_arvores.php');
@@ -8,7 +8,8 @@ require_once("../00 - BD/bd_conexao.php");
 // RECEBER OS DADOS VIA POSTs
 // I- mapeamento e localização 
 $situacao = "pendente";
-$cordenadaGeografica =   addslashes($_GET['cordGeo']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
+$latitude =   addslashes($_GET['lat']);
+$longitude =   addslashes($_GET['long']);
 $rua = addslashes($_GET['rua']);
 $numImovel = addslashes($_GET['numImovel']);
 $n1 = $distanciaPost = $_GET['distanciaPoste'];
@@ -47,7 +48,7 @@ $campo = array(
 );
 if (in_array(false, $campo)) {
     echo "<script> alert('";
-    echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUIAS:" . '\n');
+    echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUAIS:" . '\n');
     /*
     while (list($NomeCampo, $Valor) = each($campo)) {
         if ($Valor === FALSE) {
@@ -78,11 +79,11 @@ if (in_array(false, $campo)) {
 
 
     $sql = " INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
-    CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, CordGeo, Altura, Toxidez, DistanciaOutraArvore, 
+    CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, latitude, longitude, Altura, Toxidez, DistanciaOutraArvore, 
     PavimentacaoCalcada, DistanciaGaragens, Rua, Habito, Familia, DistanciaPostes, NomePopular, Origem) 
     
     VALUES('$situacao','$nomeCientifico','$distanciaLotesVagos', '$distanciaEsquina', '$avaliacaoArvore', '$alturaPrimeiraBifurc', '$avalradicular',
-     '$larguraCalcada', '$numImovel','$poda', '$localPlantio','$conflitos','$cordenadaGeografica', '$alturaArvore', '$toxidez', '$distanciaEntreArvore',
+     '$larguraCalcada', '$numImovel','$poda', '$localPlantio','$conflitos','$latitude', '$longitude', '$alturaArvore', '$toxidez', '$distanciaEntreArvore',
        '$pavimentacaoCalcada', '$distaEntradaGaragem', '$rua', '$habito', '$familia', '$distanciaPost', '$nomePopular' ,'$origem' )";
 
     if ($con->query($sql) === TRUE) {
