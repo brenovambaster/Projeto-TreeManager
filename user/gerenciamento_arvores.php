@@ -102,20 +102,22 @@ include('seguranca.php');
                         <th scope="col">ID</th>
                         <th scope="col">Nome científico</th>
                         <th scope="col">Rua</th>
-                        <th scope="col">Coordenada</th>
+                        <th scope="col">lat</th>
+                        <th scope="col">long</th>
                         <th scope="col">Situação </th>
                         <th scope="col">Ação</th>
                     </tr>
                 </thead>
-                <tbody>
 
+                <tbody>
                     <?php
                     while ($informacaoArvore = mysqli_fetch_object($result)) { ?>
                         <tr>
                             <th scope="row"><?php echo $informacaoArvore->IdArvore; ?></th>
                             <td> <?php echo $informacaoArvore->NomeCientifico; ?></td>
                             <td><?php echo $informacaoArvore->Rua; ?></td>
-                            <td><?php echo $informacaoArvore->CordGeo; ?></td>
+                            <td><?php echo $informacaoArvore->latitude; ?></td>
+                            <td><?php echo $informacaoArvore->longitude; ?></td>
                             <td><?php echo $informacaoArvore->Situacao; ?></td>
                             <td>
                                 <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
