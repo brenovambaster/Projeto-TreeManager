@@ -14,19 +14,19 @@ $('#cadastrarArvore').submit(() => {
 
     request.open('GET', url, true);
 
-    request.onreadystatechange = function(){
+    request.onreadystatechange = function() {
         if (this.readyState == 4)
-            if(this.status == 200){
-                if (this.responseText != "Sucesso!")
+            if (this.status == 200) {
+                if (this.responseText != "Árvore inserida com sucesso!")
                     alert(this.responseText);
-                else{
+                else {
                     alert(this.responseText);
-                    setTimeout("window.location.reload(false)", 1500);
+                    setTimeout("window.location.reload(false)", 250);
                 }
             }
     };
-    
+
     request.send();
-    
+
     return false;
 });

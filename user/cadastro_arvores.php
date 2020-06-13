@@ -29,7 +29,7 @@ include_once('seguranca.php');
 
 
     <div class="top-total">
-        
+
         <div class="menu">
             <h1> Cadastro de Árvores </h1>
         </div>
@@ -50,31 +50,26 @@ include_once('seguranca.php');
                     <hr>
                 </div>
                 <!-- verificação para ver se o cadastro foi realizado com sucesso ou não: exibir a mensagem            -->
-                <?php
-                if (isset($_GET['success'])) { ?>
-
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        A árvore foi inserida com sucesso!
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
 
 
-                <?php  }
-                if (isset($_GET['error'])) { ?>
-
-
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Algo de errado ocorreu :( Por favor, tente novamente!
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    A árvore foi inserida com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
 
 
-                <?php  } ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Algo de errado ocorreu :( Por favor, tente novamente!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+
                 <div class="fundo">
                     <div>
                         <a class="btn btn-success col-12" data-toggle="collapse" href="#Mapeamento-e-localização" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">I- Mapeamento e localização</a>
@@ -283,8 +278,8 @@ include_once('seguranca.php');
                                                     <label for="Sinalizacao"> Sinalização </label>
                                                 </div>
                                                 <div class="custom-control custom-radio">
-                                                    <input class="form-check-input" type="radio" name="Conflitos" id="Outro" value="Outro">
-                                                    <label for="Outro"> Outro </label><br><br>
+                                                    <input class="form-check-input" type="radio" name="Conflitos" id="outro_confl" value="Outro">
+                                                    <label for="outro_confl"> Outro </label><br><br>
                                                 </div>
                                             </div>
                                             <div class=" form-group col-md-4 col-sm-3 borda-direita "> Poda: <br>
@@ -337,9 +332,6 @@ include_once('seguranca.php');
 
 
 
-    <div class="rodape text-center">
-        <h2> Rodapé da Página </h2>
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
