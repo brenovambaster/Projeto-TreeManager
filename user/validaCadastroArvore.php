@@ -5,7 +5,7 @@ if (!isset($_GET['butao'])) {
     header('location: cadastro_arvores.php');
 }
 require_once("../00 - BD/bd_conexao.php");
-// RECEBER OS DADOS VIA POSTs
+
 // I- mapeamento e localização 
 $situacao = "pendente";
 $latitude =   addslashes($_GET['lat']);
@@ -17,7 +17,9 @@ $n2 = $distanciaEsquina = $_GET['esquina'];
 $n3 = $distanciaEntreArvore = $_GET['distanciaEntreArvore'];
 $n4 = $distaEntradaGaragem = $_GET['distaEntradaGaragem'];
 $n5 = $distanciaLotesVagos = $_GET['distanciaLotesVagos'];
+
 // II- características da árvore
+
 $familia = addslashes($_GET['familia']);
 $nomeCientifico = addslashes($_GET['nomeCientifico']);
 $nomePopular = addslashes($_GET['nomePopular']);
@@ -28,7 +30,9 @@ $n6 = $alturaArvore =  $_GET['alturaArvore'];
 $n7 =   $alturaPrimeiraBifurc = $_GET['alturaPrimeiraBifurc'];
 $avaliacaoArvore = $_GET['avalCond'];
 $avalradicular = $_GET['avalradicular'];
+
 // III- entorno e interferencias
+
 $localPlantio = $_GET['LocalPlantio'];
 $conflitos = $_GET['Conflitos'];
 $poda = $_GET['Poda'];
@@ -47,38 +51,10 @@ $campo = array(
     'largura_Calcada' => is_numeric($n8)
 );
 if (in_array(false, $campo)) {
-    echo "<script> alert('";
-    echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUAIS:" . '\n');
-    /*
-    while (list($NomeCampo, $Valor) = each($campo)) {
-        if ($Valor === FALSE) {
-            echo "$NomeCampo<br>";
-        };
-    } // NÃO USEI ESTA FUNCAO PQ SEGUNDO A DOCUMENTAÇÃO ESTÁ DESATUALIZADA :( ;
-  */
-
-    foreach ($campo as $k => $v) {
-        // $k é a key ou "nome da posicao" e $v o valor daquela posicao  naquele instate;
-        if ($v === false) {
-
-            $teste = $k;
-            // print_r($teste);
-            echo "$k" . '\n';
-            // seria melhor ciar um novo array dinamico com apenas os campos preenchidos incorretamente.
-            // Mas nao consegui fazer isso. obs*Tentar fazer essa validação com JS. 
-            // validar formulário para que os campos nao aceitem valores < 0
-        }
-    }
-    unset($campo);
-
-    echo "POR FAVOR,VOLTE NA PÁGINA ANTERIOR E REVISE CUIDADOSAMENTE OS CAMPOS SUPRACITADOS.";
-    echo "'); </script>";
+    echo ("Algum campo foi preenchido incorretamente ou não foi preenchido. Por favor corrija.");
+  
 } else {
-
-
-
-
-    $sql = " INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
+    $sql = "INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
     CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, latitude, longitude, Altura, Toxidez, DistanciaOutraArvore, 
     PavimentacaoCalcada, DistanciaGaragens, Rua, Habito, Familia, DistanciaPostes, NomePopular, Origem) 
     
@@ -86,10 +62,10 @@ if (in_array(false, $campo)) {
      '$larguraCalcada', '$numImovel','$poda', '$localPlantio','$conflitos','$latitude', '$longitude', '$alturaArvore', '$toxidez', '$distanciaEntreArvore',
        '$pavimentacaoCalcada', '$distaEntradaGaragem', '$rua', '$habito', '$familia', '$distanciaPost', '$nomePopular' ,'$origem' )";
 
-    if ($con->query($sql) === TRUE) {
+    if ($con->query($sql)) {
         fecharConexao($con);
 
-        header("Location: cadastro_arvores.php?success");
+        echo "Sucesso!";
     } else {
         echo mysqli_error($con);
         fecharConexao($con);

@@ -44,7 +44,7 @@ include_once('seguranca.php');
 
 
         <div class="box-body">
-            <form action="validaCadastroArvore.php" method="GET">
+            <form id="cadastrarArvore" action="validaCadastroArvore.php">
                 <div class="tituloForm">
                     <h1 class="text-center">Formulário para cadastro das árvores</h1>
                     <hr>
@@ -85,19 +85,19 @@ include_once('seguranca.php');
 
                                 <div class="form-group col-md-4 ">
                                     <label for="latitude">Latitude:</label>
-                                    <input class="form-control" id="cordGeo" type="text" name="lat">
+                                    <input class="form-control" id="lat" type="text" name="lat">
                                 </div>
                                 <div class="form-group col-md-4 ">
                                     <label for="longitude">Longitude:</label>
-                                    <input class="form-control" id="cordGeo" type="text" name="long">
+                                    <input class="form-control" id="long" type="text" name="long">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="rua">Rua:</label>
-                                    <input class="form-control" id="rua" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" required>
+                                    <input class="form-control" id="rua" type="text" name="rua" placeholder="Ex: Rua Santa Isabel">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="numImovel"> Nº do imóvel mais próximo </label>
-                                    <input class=" form-control" id="numImovel" type="text" name="numImovel" placeholder="Ex: A 230">
+                                    <input class="form-control" id="numImovel" type="text" name="numImovel" placeholder="Ex: A 230">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -144,7 +144,7 @@ include_once('seguranca.php');
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="nomeCinetifico">Nome científico:</label>
-                                                <input type="text" id="nomeCinetifico" name="nomeCientifico" class="form-control" placeholder="Murraya paniculata" style="font-style:italic">
+                                                <input type="text" id="nomeCientifico" name="nomeCientifico" class="form-control" placeholder="Murraya paniculata" style="font-style:italic">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="nomePopular">Nome popular:</label>
@@ -182,7 +182,7 @@ include_once('seguranca.php');
                                             <legend>2. Porte da árvore</legend>
                                             <div class="form-group col-md-3">
                                                 <label for="alturaArvor"> Altura da árvore(m):</label>
-                                                <input type="text" id="alturaArvor" name="alturaArvore" class="form-control" placeholder="2.10" onkeypress="return somenteNumeros(event)">
+                                                <input type="text" id="alturaArvore" name="alturaArvore" class="form-control" placeholder="2.10" onkeypress="return somenteNumeros(event)">
 
                                             </div>
                                             <div class="form-group col-md-3">
@@ -333,6 +333,7 @@ include_once('seguranca.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="../js/somenteNum.js"></script>
+    <script src="../js/cadastraArvore.js"></script>
 
 
 

@@ -55,10 +55,9 @@ echo $mensagem;
 $sql = "SELECT foto from usuario WHERE idUsuario=$id";
 $resultado = $con->query($sql);
 $info = $resultado->fetch_array(MYSQLI_ASSOC);
-echo "<br><br><br>" . $info['foto'] . "<br><br><br>";
 $foto = $info['foto'];
-if ($foto != 'perfil.png')
-    unlink("foto_perfil/$foto");
+if (foto != 'perfil.png')
+unlink("foto_perfil/$foto");
 
 
 $sql = "UPDATE usuario SET  foto='$novoName' Where idUsuario='$id'";

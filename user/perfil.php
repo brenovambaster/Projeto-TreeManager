@@ -41,7 +41,7 @@ include('seguranca.php');
 	$id = $_SESSION['idUsu'];
 	$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
 
-	$result = $con->query($sql) or die("Erro ao se conectar ao banco");
+	$result = $con->query($sql) or die($con->connect_error);
 	$info = mysqli_fetch_object($result);
 
 
