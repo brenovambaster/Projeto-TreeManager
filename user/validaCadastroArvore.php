@@ -51,8 +51,18 @@ $campo = array(
     'largura_Calcada' => is_numeric($n8)
 );
 if (in_array(false, $campo)) {
-    echo ("Algum campo foi preenchido incorretamente ou não foi preenchido. Por favor corrija.");
-  
+    echo ("Algum campo foi preenchido incorretamente ou não foi preenchido. Por favor corrija.\n");
+
+    foreach ($campo as $k => $v) {
+        // $k é a key ou "nome da posicao" e $v o valor daquela posicao  naquele instate;
+        if ($v === false) {
+
+            $teste = $k;
+            // print_r($teste);
+            echo "$k" . "\n";
+        }
+    }
+    unset($campo);
 } else {
     $sql = "INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
     CondicaoSistemaRadicular, LarguraCalcada, NumImovelProx, Poda, LocalPlantio, conflitos, latitude, longitude, Altura, Toxidez, DistanciaOutraArvore, 
@@ -65,7 +75,7 @@ if (in_array(false, $campo)) {
     if ($con->query($sql)) {
         fecharConexao($con);
 
-        echo "Sucesso!";
+        echo "Árvore inserida com sucesso!";
     } else {
         echo mysqli_error($con);
         fecharConexao($con);
