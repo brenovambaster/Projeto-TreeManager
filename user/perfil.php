@@ -126,13 +126,12 @@ include('seguranca.php');
 								<span class="input-group-text" id="basic-addon1"> Phone:</span>
 							</div>
 							<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
+
 						</div>
 						<div class="input-group mb-3">
-
-							<div class=" input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">Password:</span>
-							</div>
-							<input type="password" class="form-control  form-group" id="#" name="senha" value="<?php echo $info->senha; ?>" required="required"></input>
+							<button type="button" class="btn btn-light" data-toggle="modal" data-target="#cofirm-password">
+								Editar senha
+							</button>
 						</div>
 
 						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
@@ -161,3 +160,26 @@ include('seguranca.php');
 </body>
 
 </html>
+
+
+
+<!-- modal for password confirmation -->
+<div class="modal fade" id="cofirm-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header alert alert-danger">
+				<h5 class="modal-title" id="exampleModalLabel">Atenção! </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Tem certeza que deseja editar sua senha?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-success">Sim, tenho</button>
+			</div>
+		</div>
+	</div>
+</div>
