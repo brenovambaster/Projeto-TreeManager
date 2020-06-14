@@ -37,6 +37,7 @@ $localPlantio = $_GET['LocalPlantio'];
 $conflitos = $_GET['Conflitos'];
 $poda = $_GET['Poda'];
 $n8 = $larguraCalcada = $_GET['larguraCalcada'];
+
 $pavimentacaoCalcada = $_GET['Pavimentacao'];
 // pegar os campos que obrigatoriamente precisam sem números. 
 $campo = array(
@@ -48,20 +49,12 @@ $campo = array(
     'Distancia_Lotes_Vagos' => is_numeric($n5),
     'Altura_da_Arvore' => is_numeric($n6),
     'altura_Primeira_Bifurcacao' => is_numeric($n7),
-    'largura_Calcada' => is_numeric($n8)
+    'largura_Calcada' => is_numeric($n8),
+    'latitude' => is_numeric($latitude),
+    'longitude' => is_numeric($longitude)
 );
 if (in_array(false, $campo)) {
-    echo ("Algum campo foi preenchido incorretamente ou não foi preenchido. Por favor corrija.\n");
-
-    foreach ($campo as $k => $v) {
-        // $k é a key ou "nome da posicao" e $v o valor daquela posicao  naquele instate;
-        if ($v === false) {
-
-            $teste = $k;
-            // print_r($teste);
-            echo "$k" . "\n";
-        }
-    }
+    echo ("Algum campo foi preenchido incorretamente ou não foi preenchido. Por favor corrija.");
     unset($campo);
 } else {
     $sql = "INSERT INTO arvore (Situacao,NomeCientifico, DistanciaLotes, DistanciaEsquinas, CondicaoFisicoSanitaria, AlturaPrimeiraBifurcacao, 
@@ -75,7 +68,7 @@ if (in_array(false, $campo)) {
     if ($con->query($sql)) {
         fecharConexao($con);
 
-        echo "Árvore inserida com sucesso!";
+        echo "Sucesso!";
     } else {
         echo mysqli_error($con);
         fecharConexao($con);
