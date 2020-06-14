@@ -42,14 +42,14 @@ $pavimentacaoCalcada = $_GET['Pavimentacao'];
 // pegar os campos que obrigatoriamente precisam sem números. 
 $campo = array(
     // checa se sao números e armazena o  resultado como true or false;
-    'Distancia_Postes' => is_numeric($n1),
-    'Distancia_Esquina' => is_numeric($n2),
-    'Distancia_EntreArvore' => is_numeric($n3),
-    'Distancia_Entrada_Garagem' => is_numeric($n4),
-    'Distancia_Lotes_Vagos' => is_numeric($n5),
-    'Altura_da_Arvore' => is_numeric($n6),
-    'altura_Primeira_Bifurcacao' => is_numeric($n7),
-    'largura_Calcada' => is_numeric($n8),
+    'Distancia_Postes' => is_numeric($n1) && $n1 > 0,
+    'Distancia_Esquina' => is_numeric($n2) && $n2 > 0,
+    'Distancia_EntreArvore' => is_numeric($n3) && $n3 > 0,
+    'Distancia_Entrada_Garagem' => is_numeric($n4) && $n4 > 0,
+    'Distancia_Lotes_Vagos' => is_numeric($n5) && $n5 > 0,
+    'Altura_da_Arvore' => is_numeric($n6) && $n6 > 0,
+    'altura_Primeira_Bifurcacao' => is_numeric($n7) && $n7 > 0,
+    'largura_Calcada' => is_numeric($n8) && $n8 > 0,
     'latitude' => is_numeric($latitude),
     'longitude' => is_numeric($longitude)
 );

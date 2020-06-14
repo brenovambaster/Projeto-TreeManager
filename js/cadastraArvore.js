@@ -1,4 +1,4 @@
-$('#cadastrarArvore').submit(function(){
+$('#cadastrarArvore').submit(function() {
     let request = new XMLHttpRequest();
 
     const url = `validaCadastroArvore.php?lat=${$('#lat').val()}&long=${$('#long').val()}&rua=${$('#rua').val()}&numImovel=${$('#numImovel').val()}` +
@@ -17,7 +17,7 @@ $('#cadastrarArvore').submit(function(){
     request.onreadystatechange = function() {
         if (this.readyState == 4)
             if (this.status == 200) {
-                if (this.responseText != "Sucesso!"){
+                if (this.responseText != "Sucesso!") {
                     $('#arvorefalha').html(this.responseText);
 
                     $('#arvorecomsucesso').css('display', 'none');
@@ -25,23 +25,62 @@ $('#cadastrarArvore').submit(function(){
 
                     window.location.href = '#cadastrarArvore';
 
-                    // Checa se os campos estão preenchidos
-                    if($('#postes').val() === '') $('#postes').css('border', '1px solid red');
-                    if($('#esquinas').val() === '') $('#esquinas').css('border', '1px solid red');
-                    if($('#entreOutrasArv').val() === '') $('#entreOutrasArv').css('border', '1px solid red');
-                    if($('#garagens').val() === '') $('#garagens').css('border', '1px solid red');
-                    if($('#loteVago').val() === '') $('#loteVago').css('border', '1px solid red');
-                    if($('#alturaArvore').val() === '') $('#alturaArvore').css('border', '1px solid red');
-                    if($('#bifurcacao').val() === '') $('#bifurcacao').css('border', '1px solid red');
-                    if($('#largura').val() === '') $('#largura').css('border', '1px solid red');
-                    if($('#lat').val() === '') $('#lat').css('border', '1px solid red');
-                    if($('#long').val() === '') $('#long').css('border', '1px solid red');
-                }
-                else {
+                    // Checa se os campos estão preenchidos e se são números
+                    if ($('#postes').val() === '' || !isNumber($('#postes').val())) {
+                        $('#postes').css('border', '1px solid red');
+
+                    } else if (isNumber($('#postes').val()) && !positiveNumber($('#postes').val())) {
+                        $('#postes').css('border', '1px solid red');
+                    }
+
+                    if ($('#esquinas').val() === '' || !isNumber($('#esquinas').val()))
+                        $('#esquinas').css('border', '1px solid red');
+                    else if (isNumber($('#esquinas').val()) && !positiveNumber($('#esquinas').val())) {
+                        $('#esquinas').css('border', '1px solid red');
+                    }
+
+                    if ($('#entreOutrasArv').val() === '' || !isNumber($('#entreOutrasArv').val()))
+                        $('#entreOutrasArv').css('border', '1px solid red');
+                    else if (isNumber($('#entreOutrasArv').val()) && !positiveNumber($('#entreOutrasArv').val())) {
+                        $('#entreOutrasArv').css('border', '1px solid red');
+                    }
+
+                    if ($('#garagens').val() === '' || !isNumber($('#garagens').val()))
+                        $('#garagens').css('border', '1px solid red');
+                    else if (isNumber($('#garagens').val()) && !positiveNumber($('#garagens').val())) {
+                        $('#garagens').css('border', '1px solid red');
+                    }
+                    if ($('#loteVago').val() === '' || !isNumber($('#loteVago').val()))
+                        $('#loteVago').css('border', '1px solid red');
+                    else if (isNumber($('#loteVago').val()) && !positiveNumber($('#loteVago').val())) {
+                        $('#loteVago').css('border', '1px solid red');
+                    }
+                    if ($('#alturaArvore').val() === '' || !isNumber($('#alturaArvore').val()))
+                        $('#alturaArvore').css('border', '1px solid red');
+                    else if (isNumber($('#alturaArvore').val()) && !positiveNumber($('#alturaArvore').val())) {
+                        $('#alturaArvore').css('border', '1px solid red');
+                    }
+                    if ($('#bifurcacao').val() === '' || !isNumber($('#bifurcacao').val()))
+                        $('#bifurcacao').css('border', '1px solid red');
+                    else if (isNumber($('#bifurcacao').val()) && !positiveNumber($('#bifurcacao').val())) {
+                        $('#bifurcacao').css('border', '1px solid red');
+                    }
+                    if ($('#largura').val() === '' || !isNumber($('#largura').val()))
+                        $('#largura').css('border', '1px solid red');
+                    else if (isNumber($('#largura').val()) && !positiveNumber($('#largura').val())) {
+                        $('#largura').css('border', '1px solid red');
+                    }
+                    if ($('#lat').val() === '' || !isNumber($('#lat').val()))
+                        $('#lat').css('border', '1px solid red');
+
+                    if ($('#long').val() === '' || !isNumber($('#long').val()))
+                        $('#long').css('border', '1px solid red');
+
+                } else {
                     $('#arvorefalha').css('display', 'none');
                     $('#arvorecomsucesso').css('display', 'block');
                     window.location.href = '#cadastrarArvore';
-                    setTimeout("window.location.reload(false)", 2000);
+                    setTimeout("window.location.reload(false)", 1500);
                 }
             }
     };
@@ -50,3 +89,23 @@ $('#cadastrarArvore').submit(function(){
 
     return false;
 });
+// falta validar se alguns campos são numeros positivos ou nao; exemplo: campos de comprimento.
+function positiveNumber(valor) {
+    if (valor > 0)
+        return true
+    else
+        return false;
+}
+
+function isNumber(valor) {
+    var regra = /^[-0.0-9.0]+$/;
+
+    if (String(valor).match(regra)) {
+        console.log("number: " + valor)
+        return true;
+
+    } else {
+        console.log("not number: " + valor)
+        return false;
+    }
+};
