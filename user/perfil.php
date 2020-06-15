@@ -178,8 +178,54 @@ include('seguranca.php');
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-success">Sim, tenho</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#corfirmar-editar-senha">Sim, tenho</button>
 			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- Modal  para editar a senha -->
+<div class="modal fade" id="corfirmar-editar-senha" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header alert alert-warning">
+				<h5 class="modal-title" id="exampleModalLabel">Editar senha:</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<div class="form-group">
+					<form action="teste.php" method="post">
+						<div class="form-group">
+							<label for="senha_atual">Senha atual:</label>
+							<input type="text" class="form-control" id="senha_atual" name="senha_atual">
+						</div>
+
+						<div class="form-group">
+							<label for="nova_senha">Nova senha: </label>
+							<input type="text" class="form-control" id="nova_senha" name="nova_senha" placeholder="Digite sua nova senha">
+						</div>
+
+						<div class="form-group">
+							<label for="confirma">Confirme sua nova senha: </label>
+							<input type="text" class="form-control" id="confirma" name="confirma" placeholder="Confirme sua nova senha">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-success">Salvar</button>
+						</div>
+					</form>
+				</div>
+
+
+
+			</div>
+
 		</div>
 	</div>
 </div>
