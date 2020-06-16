@@ -11,10 +11,12 @@ elseif(isset($_POST['antiga']) && isset($_POST['trocar'])){
     $result = $con->query($sql);
 
     if ($result){
-        $novaSenha = mysql_fix_string($con, $_POST['trocar']);
-        $sql = "UPDATE usuario SET senha = $novaSenha WHERE idUsuario = " . $_SESSION['idUsu'] . ";";
-        $con->query($sql);
-        echo "Senha trocada com sucesso!";
+        if($result->num_rows > 0){
+            $novaSenha = mysql_fix_string($con, $_POST['trocar']);
+            $sql = "UPDATE usuario SET senha = $novaSenha WHERE idUsuario = " . $_SESSION['idUsu'] . ";";
+            $con->query($sql);
+            echo "Senha trocada com sucesso!";
+        }else echo "A senha digitada está incorreta!";
     }else echo "A senha digitada está incorreta!";
 }
 
