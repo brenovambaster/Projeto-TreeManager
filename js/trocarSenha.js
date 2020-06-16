@@ -14,6 +14,8 @@ function funcaoTrocaSenha(form) {
                 form.senha_atual.value = '';
                 form.confirma.value = '';
                 alert(this.responseText);
+                if (this.responseText === "Senha trocada com sucesso!")
+                    window.location.reload(false);
             }
     }
 
