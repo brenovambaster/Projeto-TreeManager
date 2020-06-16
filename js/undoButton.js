@@ -4,11 +4,10 @@ let request = new XMLHttpRequest();
 
 request.open('GET', 'troca_senha.php?params=1', true);
 
-request.onreadystatechange = function(){
+request.onreadystatechange = function() {
     if (this.readyState === 4)
-        if(this.status === 200){
-            if(this.responseText === ''){}
-            else {
+        if (this.status === 200) {
+            if (this.responseText === '') {} else {
                 elements = this.responseText.split(',');
                 [nome, email, fone] = elements;
             }
@@ -17,10 +16,10 @@ request.onreadystatechange = function(){
 
 request.send();
 
-function botaoDesfazer(){
+function botaoDesfazer() {
     if ($('#nomeComp').val().trim() !== nome.trim() ||
-    $('#email').val().trim() !== email.trim() ||
-    $('#telefone').val().trim() !== fone.trim())
+        $('#email').val().trim() !== email.trim() ||
+        $('#telefone').val().trim() !== fone.trim())
         $('#desfazerTudo').prop('disabled', false);
     else $('#desfazerTudo').prop('disabled', true);
 }

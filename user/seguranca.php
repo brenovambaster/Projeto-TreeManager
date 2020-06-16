@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['validarSessao']))
-  header('Location: index.php');
+echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=index.php'>";
 
 function mysql_fix_string($conn, $string){
   if (get_magic_quotes_gpc()) $string = stripslashes($string);

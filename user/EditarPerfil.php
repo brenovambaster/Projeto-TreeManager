@@ -15,6 +15,10 @@ if (empty($nome) && empty($email) && empty($telefone) && empty($senha)) { // nã
 } else {
    $resultado = $con->query($sql);
    if ($con->query($sql) === TRUE) {
+      $_SESSION['validarSessao'] = $nome;
+      $_SESSION['email'] = $email;
+      $_SESSION['fone'] = $telefone;
+
       echo "success editar";
       echo "
       <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>

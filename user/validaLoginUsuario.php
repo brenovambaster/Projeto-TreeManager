@@ -1,10 +1,10 @@
 <?php
-
-require_once('../00 - BD/bd_conexao.php');
 require_once('./seguranca.php');
+require_once('../00 - BD/bd_conexao.php');
+
 
 if (!isset($_POST['butaoLogin'])) {
-	header("Location: index.php?urlNot");
+	echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=index.php?urlNot'>";
 }
 
 // Pegando as informações do formulário.
@@ -25,7 +25,7 @@ $resultado = $con->query($sql) or die("Erro ao conectar com o Banco");
 $infoUsuario = mysqli_fetch_object($resultado);
 
 if (empty($infoUsuario)) {
-	header("Location: index.php?error_login");
+	echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=index.php?error_login'>";
 } else {
 	// Adicionando uma informação à sessão
 	if ($infoUsuario->status == 'ativo') {

@@ -17,6 +17,7 @@ if (isset($_GET['remov'])) {
     $resultado = $con->query($sql);
 
     if ($con->query($sql) === TRUE) {
+        $_SESSION['foto'] = 'perfil.png';
         echo "success remover";
         echo "
         <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
