@@ -128,7 +128,7 @@ include('seguranca.php');
 						</div>
 
 						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
-						<button type="submit" class="btn btn-info conf" name="confirm">Salvar</button>
+						<button type="submit" class="btn btn-info conf" id="confirm" onClick="($(this).prop('disabled', true))" name="confirm" disabled>Salvar</button>
 						<button type="reset" id="desfazerTudo" onClick="($(this).prop('disabled', true))" class="btn btn-danger conf" disabled name="limpar">Desfazer</button>
 						<!-------------------------------------------------------------------------------------------------------------->
 					</div>

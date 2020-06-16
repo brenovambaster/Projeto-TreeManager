@@ -19,7 +19,7 @@ if (empty($nome) && empty($email) && empty($telefone) && empty($senha)) { // nã
       $_SESSION['email'] = $email;
       $_SESSION['fone'] = $telefone;
 
-      echo "success editar";
+      echo " <script>console.log(\"sucesso ao editar perfil\");</script>";
       echo "
       <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
       <script type=\"text/javascript\">
