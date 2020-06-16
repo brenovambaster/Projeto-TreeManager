@@ -1,5 +1,5 @@
 <?php
-include('seguranca.php');
+include_once('seguranca.php');
 ?>
 
 <!doctype html>
@@ -127,7 +127,7 @@ include('seguranca.php');
 							</button>
 						</div>
 
-						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->						
+						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
 						<input type="button" value="Desfazer" id="desfazerTudo" onClick="disableBoth();" class="btn btn-danger conf" disabled name="limpar"></input>
 						<button type="submit" id="salvarMudancas" class="btn btn-info conf" onClick="$(this).prop('disabled', true);" disabled name="confirm">Salvar</button>
 						<!-------------------------------------------------------------------------------------------------------------->

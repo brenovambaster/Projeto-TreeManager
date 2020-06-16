@@ -11,4 +11,3 @@ function mysql_fix_string($conn, $string){
 function hashandsalt($string, $conn){
   return mysql_fix_string($conn, crypt($string, '$5$rounds=9000$gerencia_arvo'));
 }
-?>
