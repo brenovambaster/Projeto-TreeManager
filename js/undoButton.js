@@ -2,7 +2,7 @@ let nome, email, fone;
 
 let request = new XMLHttpRequest();
 
-request.open('GET', 'troca_senha.php?params=1');
+request.open('GET', 'troca_senha.php?params=1', true);
 
 request.onreadystatechange = function(){
     if (this.readyState === 4)

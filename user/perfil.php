@@ -131,8 +131,7 @@ include('seguranca.php');
 
 						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
 						<button type="submit" class="btn btn-info conf" name="confirm">Salvar</button>
-						<button type="reset" id="desfazerTudo" onClick="($(this).prop('disabled', true))" class="btn btn-danger conf" disabled name="limpar">Desfazer</button>
-						<script src="../js/undoButton.js"></script>
+						<button type="reset" id="desfazerTudo" onClick="($(this).prop('disabled', true))" class="btn btn-danger conf" disabled name="limpar">Desfazer</button>						
 						<!-------------------------------------------------------------------------------------------------------------->
 					</div>
 				</form>
@@ -150,8 +149,10 @@ include('seguranca.php');
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="../js/undoButton.js"></script>
+	<script src="../js/trocarSenha.js"></script>
 </body>
 
 </html>
@@ -195,20 +196,20 @@ include('seguranca.php');
 			<div class="modal-body">
 
 				<div class="form-group">
-					<form action="teste.php" method="post">
+					<form id="formTrocarSenha" action="trocar_senha.php" onSubmit="return funcaoTrocaSenha(this)">
 						<div class="form-group">
 							<label for="senha_atual">Senha atual:</label>
-							<input type="text" class="form-control" id="senha_atual" name="senha_atual">
+							<input type="password" class="form-control" id="senha_atual" name="senha_atual">
 						</div>
 
 						<div class="form-group">
 							<label for="nova_senha">Nova senha: </label>
-							<input type="text" class="form-control" id="nova_senha" name="nova_senha" placeholder="Digite sua nova senha">
+							<input type="password" class="form-control" id="nova_senha" name="nova_senha" placeholder="Digite sua nova senha">
 						</div>
 
 						<div class="form-group">
 							<label for="confirma">Confirme sua nova senha: </label>
-							<input type="text" class="form-control" id="confirma" name="confirma" placeholder="Confirme sua nova senha">
+							<input type="password" class="form-control" id="confirma" name="confirma" placeholder="Confirme sua nova senha">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
