@@ -31,7 +31,7 @@
 
     <form class="form-signin font1" method="post" action="validaLoginUsuario.php">
 
-        <h1 class="mb-3 text-light">Login <img src="../../img/arvoreLogin.png" alt="" height="25%" width="25%"></h1>
+        <h1 class="mb-3 text-light">Login <img src="../img/arvoreLogin.png" alt="" height="25%" width="25%"></h1>
         <!--  Mensagem de erro caso o usuário não é encontrado -->
         <?php
         verGet(); // funvção para ler a url
