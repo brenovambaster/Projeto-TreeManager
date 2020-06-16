@@ -1,67 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 
 <head>
-	<link rel="stylesheet" type="text/css" href="../css/login12.css">
-	<title>Login Controle de Arborização Urbana em Salinas</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="theme-color" content="#bf4ce2b6">
-	<?php
-	include('iconeSite.php');
-	?>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <!-- Fonts  -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+
+
+    <title>Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <meta name="theme-color" content="#312b2be1">
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/new_login.css">
 </head>
 
-<body>
+<body class="text-center">
 
-	<div class="container" style="opacity:0.9;">
+    <form class="form-signin font1" method="post" action="validaLoginUsuario.php">
 
-		<a class="links" id="paralogin"></a>
+        <h1 class="mb-3 text-light">Login <img src="../../img/arvoreLogin.png" alt="" height="25%" width="25%"></h1>
+        <!--  Mensagem de erro caso o usuário não é encontrado -->
+        <?php
+        verGet(); // funvção para ler a url
+        ?>
+        <div class="form-group">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" name="email_login" id="inputEmail" class="form-control col-md-12" placeholder="youremail@gmail.com" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="senha_login" id="inputPassword" class="form-control mt-4" placeholder="******" required>
+        </div>
+        <div class="form-check form-check-inline  d-flex">
+            <input class="form-check-input" type="checkbox" id="manterLogado" value="logado">
+            <label class="form-check-label text-light text-left" name="manter_logado" for="manterLogado">Manter-me logado</label>
+        </div>
+        <div class="checkbox  mt-3 mb-3">
+            <label class="d-flex">
+                <span class="text-left mr-4"> <a class="nav-link text-light float" href="../index.php">Home</a></span>
+                <span class="text-right ml-5"> <a class="nav-link text-light float" href="cadastroUser.php">Cadastre-se</a></span>
+            </label>
+        </div>
 
-		<div class="content animacao mt-3 col-sm-12 col-md-12 col-lg-8 col-xl-8 ">
-			<!--FORMULÁRIO DE LOGIN-->
-			<div id="login">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-light">&copy; 2020</p>
 
+    </form>
 
-
-				<form method="post" action="validaLoginUsuario.php">
-					<!--  Mensagem de erro caso o usuário não é encontrado -->
-					<?php
-					verGet(); // funvção para ler a url
-					?>
-					<h1> <img src="../img/arvoreLogin.png" alt="" height="18%" width="18%">Login</h1>
-					<p>
-						<label for="email_login"><b>Seu e-mail</b></label>
-						<input class="rounded border-primary" id="email_login" name="email_login" required="required" type="email" placeholder="infob.ifnmg@gmail.com" />
-					</p>
-
-					<p>
-						<label for="senha_login"><b> Senha</b> </label>
-						<input class="rounded border-primary" id="senha_login" name="senha_login" required="required" type="password" placeholder="******" />
-					</p>
-
-					<p>
-						<input type="checkbox" name="manterlogado" id="manterlogado" value="" />
-						<label for="manterlogado"><b>Manter-me logado</b></label>
-
-					</p>
-
-					<p> <span class=""> <a href="cadastroUser.php">Cadastre-se</a> </span>
-						<span class="float-right"><a href="../index.php">Página inicial</a></span>
-					</p>
-
-					<p>
-						<input name="butaoLogin" id="logColor" type="submit" value="Logar" style=" font-style: italic;" />
-					</p>
-				</form>
-			</div>
-		</div>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"> </script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"> </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
@@ -73,26 +74,35 @@
 function verGet()
 {
 
-	if (isset($_GET['error_login'])) { ?>
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			Usuário inválido! Por favor, verifique o email e a senha.
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	<?php
-	}
-	if (isset($_GET['new_user_success'])) { ?>
+    if (isset($_GET['error_login'])) { ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Usuário inválido! Por favor, verifique o email e a senha.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php
+    }
+    if (isset($_GET['new_user_success'])) { ?>
 
-		<div class="alert alert-success alert-dismissible fade show" role="alert">
-			Usuário cadastrado! Agora você já pode fazer login.
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Usuário cadastrado! Agora você já pode fazer login.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
 
+    <?php
+    }
+    if (isset($_GET['email_duplicate'])) { ?>
+        <div class="alert alert-danger alert-dismissible fade show text-justify" role="alert">
+            Email inválido!Este e-mail já foi cadastrado anteriomente.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 <?php
-	}
+    }
 }
 ?>
