@@ -1,9 +1,10 @@
 <?php 
 require_once("../00 - BD/bd_conexao.php");
-$nome= $_POST['nome'];
-$fone = $_POST['celular'];
-$senha = $_POST['senha'];
-$email = $_POST['email'];
+require_once('./seguranca.php');
+$nome= mysql_fix_string($con, $_POST['nome']);
+$fone = mysql_fix_string($con, $_POST['celular']);
+$senha = hashandsalt($_POST['senha'], $con);
+$email = mysql_fix_string($con, $_POST['email']);
 $tipo ='colaborador';
 
 $sql = "INSERT INTO usuario(nome,email,fone,senha,tipo) VALUES('$nome','$email', '$fone','$senha','$tipo')" ;

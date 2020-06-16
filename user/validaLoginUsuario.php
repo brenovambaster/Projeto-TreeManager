@@ -1,17 +1,15 @@
 <?php
-session_start(); // Iniciando a Sessão
+
+require_once('../00 - BD/bd_conexao.php');
+require_once('./seguranca.php');
 
 if (!isset($_POST['butaoLogin'])) {
 	header("Location: index.php?urlNot");
 }
 
-// Conectando com o banco (veja o arquivo bd_conexao.php)
-// Agora existe o obj $con conectado com o BD
-require_once('../00 - BD/bd_conexao.php');
-
 // Pegando as informações do formulário.
 $email  = mysql_fix_string($con, $_POST['email_login']);
-$senha  = mysql_fix_string($con, $_POST['senha_login']);
+$senha  = hashandsalt($_POST['senha_login'], $con);
 //**TENHO QUE RECEBER O OPAÇAO DE MARTER-ME LOGADO 
 
 // Criando a minha string com o código SQL de consulta
@@ -47,9 +45,3 @@ if (empty($infoUsuario)) {
 
 // Fechando a conexção
 fecharConexao($con);
-
-
-function mysql_fix_string($conn, $string){
-	if (get_magic_quotes_gpc()) $string = stripslashes($string);
-	return $conn->real_escape_string($string);
-}
