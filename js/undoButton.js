@@ -19,7 +19,20 @@ request.send();
 function botaoDesfazer() {
     if ($('#nomeComp').val().trim() !== nome.trim() ||
         $('#email').val().trim() !== email.trim() ||
-        $('#telefone').val().trim() !== fone.trim())
-        $('#desfazerTudo').prop('disabled', false);
-    else $('#desfazerTudo').prop('disabled', true);
+        $('#telefone').val().trim() !== fone.trim()){
+            $('#desfazerTudo').prop('disabled', false);
+            $('#salvarMudancas').prop('disabled', false);
+        }else {
+        $('#desfazerTudo').prop('disabled', true);
+        $('#salvarMudancas').prop('disabled', true);
+    }
+}
+
+function disableBoth(){
+    $('#nomeComp').val(nome.trim());
+    $('#email').val(email.trim());
+    $('#telefone').val(fone.trim());
+
+    $('#desfazerTudo').prop('disabled', true);
+    $('#salvarMudancas').prop('disabled', true);
 }

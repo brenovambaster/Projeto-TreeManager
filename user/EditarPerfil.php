@@ -3,9 +3,9 @@
 include('seguranca.php');
 require_once('../00 - BD/bd_conexao.php');
 
-$nome = addslashes($_POST['nome']);
-$email = addslashes($_POST['email']);
-$telefone = $_POST['telefone'];
+$nome = mysql_fix_string($con, $_POST['nome']);
+$email = mysql_fix_string($con, $_POST['email']);
+$telefone = mysql_fix_string($con, $_POST['telefone']);
 $id = $_SESSION['idUsu'];
 
 $sql = "UPDATE usuario SET nome ='$nome' ,fone='$telefone', email='$email' Where idUsuario='$id'";
@@ -19,7 +19,7 @@ if (empty($nome) && empty($email) && empty($telefone) && empty($senha)) { // nã
       $_SESSION['email'] = $email;
       $_SESSION['fone'] = $telefone;
 
-      echo "success editar";
+      echo " <script>console.log(\"sucesso ao editar perfil\");</script>";
       echo "
       <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
       <script type=\"text/javascript\">

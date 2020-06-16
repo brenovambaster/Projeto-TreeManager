@@ -18,7 +18,7 @@ if (isset($_GET['remov'])) {
 
     if ($con->query($sql) === TRUE) {
         $_SESSION['foto'] = 'perfil.png';
-        echo "success remover";
+        
         echo "
         <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
         <script type=\"text/javascript\">
@@ -26,7 +26,7 @@ if (isset($_GET['remov'])) {
         </script>
     ";
     } else {
-        echo "erro remover";
+        
         echo "
         <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
         <script type=\"text/javascript\">
