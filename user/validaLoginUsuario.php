@@ -10,12 +10,12 @@ if (!isset($_POST['butaoLogin'])) {
 require_once('../00 - BD/bd_conexao.php');
 
 // Pegando as informações do formulário.
-$email  = $_POST['email_login'];
-$senha  = $_POST['senha_login'];
+$email  = mysql_fix_string($con, $_POST['email_login']);
+$senha  = mysql_fix_string($con, $_POST['senha_login']);
 //**TENHO QUE RECEBER O OPAÇAO DE MARTER-ME LOGADO 
 
 // Criando a minha string com o código SQL de consulta
-$sql = " SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'";
+$sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'";
 
 // Mando a SQL para o banco através do método query da 
 //    classe de conexão mysqli() expressa pelo obj $con
@@ -33,7 +33,11 @@ if (empty($infoUsuario)) {
 	if ($infoUsuario->status == 'ativo') {
 		$_SESSION['validarSessao'] = $infoUsuario->nome;
 		$_SESSION['idUsu'] = $infoUsuario->idUsuario;
-		header("Location:perfil.php");
+		$_SESSION['email'] = $infoUsuario->email;
+		$_SESSION['senha'] = $infoUsuario->senha;
+		$_SESSION['fone'] = $infoUsuario->fone;
+		$_SESSION['foto'] = $infoUsuario->foto;
+		echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>";
 	} else {
 		echo "Infelizmente você foi desativado. Se isso foi um erro, contate ao adm pelo formulário na página inicial\n";
 
@@ -43,3 +47,9 @@ if (empty($infoUsuario)) {
 
 // Fechando a conexção
 fecharConexao($con);
+
+
+function mysql_fix_string($conn, $string){
+	if (get_magic_quotes_gpc()) $string = stripslashes($string);
+	return $conn->real_escape_string($string);
+}

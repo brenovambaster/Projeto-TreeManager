@@ -38,13 +38,6 @@ include('seguranca.php');
 		?>
 	</div>
 	<?php require_once('../00 - BD/bd_conexao.php');
-	$id = $_SESSION['idUsu'];
-	$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
-
-	$result = $con->query($sql) or die($con->connect_error);
-	$info = mysqli_fetch_object($result);
-
-
 	?>
 
 
@@ -54,7 +47,7 @@ include('seguranca.php');
 			<div class="col-md-3 mb-3">
 				<div class="">
 
-					<img src="foto_perfil/<?php echo $info->foto; ?>" max-width="300px" max-height="300px" alt="perfil" class="img-thumbnail rounded">
+					<img src="foto_perfil/<?php echo $_SESSION['foto']; ?>" max-width="300px" max-height="300px" alt="perfil" class="img-thumbnail rounded">
 					<!-- <img src="../img/foto-perfil.png" height="120px" width="120px"> -->
 
 					<!-- Button trigger modal -->
@@ -108,9 +101,9 @@ include('seguranca.php');
 
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">Name:</span>
+								<span class="input-group-text" id="basic-addon1">Nome:</span>
 							</div>
-							<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
+							<input type="text" onKeyUp="botaoDesfazer()" class="form-control form-group " id="nomeComp" name="nome" value="<?php echo htmlspecialchars($_SESSION['validarSessao']); ?>" required="required"></input>
 						</div>
 
 
@@ -119,13 +112,15 @@ include('seguranca.php');
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="basic-addon1">E-mail:</span>
 							</div>
-							<input type="email" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
+							<input type="email" class="form-control form-group" id="email" name="email" onKeyUp="botaoDesfazer()"
+							 value="<?php echo $_SESSION['email']; ?>" required="required"></input>
 						</div>
 						<div class="input-group mb-3">
 							<div class=" input-group-prepend">
 								<span class="input-group-text" id="basic-addon1"> Phone:</span>
 							</div>
-							<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
+							<input type="text" class="form-control  form-group" id="telefone" name="telefone" onKeyUp="botaoDesfazer()"
+							 value="<?php echo $_SESSION['fone']; ?>" required="required"></input>
 
 						</div>
 						<div class="input-group mb-3">
@@ -136,11 +131,11 @@ include('seguranca.php');
 
 						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
 						<button type="submit" class="btn btn-info conf" name="confirm">Salvar</button>
-						<button type="reset" class="btn btn-danger conf" name="limpar">Desfazer</button>
+						<button type="reset" id="desfazerTudo" onClick="($(this).prop('disabled', true))" class="btn btn-danger conf" disabled name="limpar">Desfazer</button>
+						<script src="../js/undoButton.js"></script>
 						<!-------------------------------------------------------------------------------------------------------------->
 					</div>
 				</form>
-				<?php fecharConexao($con); ?>
 
 			</div>
 
@@ -221,9 +216,6 @@ include('seguranca.php');
 						</div>
 					</form>
 				</div>
-
-
-
 			</div>
 
 		</div>
