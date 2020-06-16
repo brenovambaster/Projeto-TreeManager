@@ -19,7 +19,11 @@ request.send();
 function botaoDesfazer() {
     if ($('#nomeComp').val().trim() !== nome.trim() ||
         $('#email').val().trim() !== email.trim() ||
-        $('#telefone').val().trim() !== fone.trim())
+        $('#telefone').val().trim() !== fone.trim()) {
         $('#desfazerTudo').prop('disabled', false);
-    else $('#desfazerTudo').prop('disabled', true);
+        $('#confirm').prop('disabled', false);
+    } else {
+        $('#confirm').prop('disabled', true);
+        $('#desfazerTudo').prop('disabled', true);
+    }
 }
