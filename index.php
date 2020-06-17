@@ -18,7 +18,7 @@
 	
 	<section class="menuNavegacao" style="min-height: 185px; background-color: #343a40;">
 		<div class="text-center text-light">
-			<h1>Controle da arborização hurbana em Salinas</h1> <br>
+			<h1>Controle da arborização urbana em Salinas</h1> <br>
 			
 		</div>
 

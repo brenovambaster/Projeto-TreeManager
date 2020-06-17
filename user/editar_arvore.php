@@ -9,7 +9,8 @@ require_once("../00 - BD/bd_conexao.php");
 // I- mapeamento e localização 
 $id_arvore = $_GET['id_arvore'];
 $situacao = "pendente";
-$cordenadaGeografica =   addslashes($_GET['cordGeo']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
+$lat = addslashes($_GET['lat']);
+$long = addslashes($_GET['long']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
 $rua = addslashes($_GET['rua']);
 $numImovel = addslashes($_GET['numImovel']);
 $n1 = $distanciaPost = $_GET['distanciaPoste'];
@@ -82,7 +83,7 @@ if (in_array(false, $campo)) // procurar o valor falso no array campo
     DistanciaEsquinas='$distanciaEsquina',  CondicaoFisicoSanitaria='$avaliacaoArvore', 
     AlturaPrimeiraBifurcacao='$alturaPrimeiraBifurc', CondicaoSistemaRadicular='$avalradicular',
     LarguraCalcada='$larguraCalcada', NumImovelProx='$numImovel', Poda='$poda', LocalPlantio='$localPlantio',
-    conflitos='$conflitos', CordGeo='$cordenadaGeografica', Altura='$alturaArvore', Toxidez='$toxidez',
+    conflitos='$conflitos', latitude='$lat', longitude='$long' , Altura='$alturaArvore', Toxidez='$toxidez',
     DistanciaOutraArvore='$distanciaEntreArvore', PavimentacaoCalcada='$pavimentacaoCalcada',
     DistanciaGaragens='$distaEntradaGaragem', Rua='$rua', Habito='$habito', Familia='$familia', 
     DistanciaPostes='$distanciaPost', NomePopular='$nomePopular', Origem='$origem' WHERE IdArvore ='$id_arvore' ";

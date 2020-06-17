@@ -46,10 +46,17 @@ include('seguranca.php');
 							<div class="collapse multi-collapse" id="Mapeamento-e-localização">
 								<div class="form-row">
 
+
 									<div class="form-group col-md-4 ">
-										<label for="text">Cordendas Geográficas:</label>
-										<input class="form-control" type="text" name="cordGeo" value="<?php echo htmlspecialchars($info->CordGeo); ?>">
+										<label for="latitude">Latitude:</label>
+										<input class="form-control" id="cordGeo" value="<?php echo $info->latitude; ?>" type="text" name="lat">
 									</div>
+									<div class="form-group col-md-4 ">
+										<label for="longitude">Longitude:</label>
+										<input class="form-control" id="cordGeo" value="<?php echo $info->longitude; ?>" type="text" name="long">
+									</div>
+
+
 									<div class="form-group col-md-4">
 										<label for="text">Rua:</label>
 										<input class="form-control" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo htmlspecialchars($info->Rua); ?>">
