@@ -1,11 +1,10 @@
-*DELIMITAR O TEMPO DA SESSÃO ABERTA;
-*MELHORAR PESQUISA EM "solicitaçoes.php", possibilitando a pesquisa por status;
-*Validar a edição da árvore(falata apenas o update sql);
-*ver dados arvore;
-*mostrar o id dps que a árvore é cadastrada;
-*addLanches em user/perfil.php para editar os campos;
-* Dividir o campo de Coordenadas em 2. Longitude e Latidude. (Não precisa inserir letras. Apenas números)
-* Fazer upload da foto de perfil (perfil.php);
-      implementar=>  *Ao fazer upload, apagar a foto que estava anteriormente. Para isso, creio que seja melhor **criar um tabela apenas para imagem**. 
-      Ideia: ao entrar em editar foto, pesquisar no bd todas as fotos relacionadas àquele usuário e deletá-las. Depois inserir a nova foto que enviou. [ver aquivo editar_foto.php] 
-* Trocar os header("location: ..") por <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=..'>; Motivo: alguns servidores nao aceitam o header("location");     
+* DELIMITAR O TEMPO DA SESSÃO ABERTA;
+* MELHORAR PESQUISA EM "solicitaçoes.php", possibilitando a pesquisa por status;
+* Validar a edição da árvore(falata apenas o update sql);
+* atualizar formulario para ver dados da arvore(leitura_arvore.php);
+* atualizar formulario para editar árvore. formulario.php
+* addLanches em user/perfil.php para editar os campos;
+* validar campos na pag cadastroUser.php (addLanches e validar as duas senhas digitadas.)
+	* inserir campo para que o usuário confirme a senha. 
+	* melhorar front-end da pagina
+* add cookie para manter-se logado

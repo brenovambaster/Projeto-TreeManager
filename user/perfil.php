@@ -1,5 +1,5 @@
 <?php
-include('seguranca.php');
+include_once('seguranca.php');
 ?>
 
 <!doctype html>
@@ -38,13 +38,6 @@ include('seguranca.php');
 		?>
 	</div>
 	<?php require_once('../00 - BD/bd_conexao.php');
-	$id = $_SESSION['idUsu'];
-	$sql = "SELECT * FROM usuario WHERE idUsuario =$id";
-
-	$result = $con->query($sql) or die("Erro ao se conectar ao banco");
-	$info = mysqli_fetch_object($result);
-
-
 	?>
 
 
@@ -54,7 +47,7 @@ include('seguranca.php');
 			<div class="col-md-3 mb-3">
 				<div class="">
 
-					<img src="foto_perfil/<?php echo $info->foto; ?>" max-width="300px" max-height="300px" alt="perfil" class="img-thumbnail rounded">
+					<img src="foto_perfil/<?php echo $_SESSION['foto']; ?>" max-width="300px" max-height="300px" alt="perfil" class="img-thumbnail rounded">
 					<!-- <img src="../img/foto-perfil.png" height="120px" width="120px"> -->
 
 					<!-- Button trigger modal -->
@@ -108,9 +101,9 @@ include('seguranca.php');
 
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">Name:</span>
+								<span class="input-group-text" id="basic-addon1">Nome:</span>
 							</div>
-							<input type="text" class="form-control form-group " id="#" name="nome" value="<?php echo htmlspecialchars($info->nome); ?>" required="required"></input>
+							<input type="text" onKeyUp="botaoDesfazer()" class="form-control form-group " id="nomeComp" name="nome" value="<?php echo htmlspecialchars($_SESSION['validarSessao']); ?>" required="required"></input>
 						</div>
 
 
@@ -119,29 +112,27 @@ include('seguranca.php');
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="basic-addon1">E-mail:</span>
 							</div>
-							<input type="email" class="form-control form-group" id="#" name="email" value="<?php echo $info->email; ?>" required="required"></input>
+							<input type="email" class="form-control form-group" id="email" name="email" onKeyUp="botaoDesfazer()" value="<?php echo $_SESSION['email']; ?>" required="required"></input>
 						</div>
 						<div class="input-group mb-3">
 							<div class=" input-group-prepend">
 								<span class="input-group-text" id="basic-addon1"> Phone:</span>
 							</div>
-							<input type="text" class="form-control  form-group" id="#" name="telefone" value="<?php echo $info->fone; ?>" required="required"></input>
+							<input type="text" class="form-control  form-group" id="telefone" name="telefone" onKeyUp="botaoDesfazer()" value="<?php echo $_SESSION['fone']; ?>" required="required"></input>
+
 						</div>
 						<div class="input-group mb-3">
-
-							<div class=" input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">Password:</span>
-							</div>
-							<input type="password" class="form-control  form-group" id="#" name="senha" value="<?php echo $info->senha; ?>" required="required"></input>
+							<button type="button" class="btn btn-light" data-toggle="modal" data-target="#cofirm-password">
+								Editar senha
+							</button>
 						</div>
 
 						<!---------------------------- Criado butão editar e limpar de forma funcional---------------------------------->
-						<button type="submit" class="btn btn-info conf" name="confirm">Salvar</button>
-						<button type="reset" class="btn btn-danger conf" name="limpar">Desfazer</button>
+						<input type="button" value="Desfazer" id="desfazerTudo" onClick="disableBoth();" class="btn btn-danger conf" disabled name="limpar"></input>
+						<button type="submit" id="salvarMudancas" class="btn btn-info conf" onClick="$(this).prop('disabled', true);" disabled name="confirm">Salvar</button>
 						<!-------------------------------------------------------------------------------------------------------------->
 					</div>
 				</form>
-				<?php fecharConexao($con); ?>
 
 			</div>
 
@@ -158,6 +149,74 @@ include('seguranca.php');
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="../js/undoButton.js"></script>
+	<script src="../js/trocarSenha.js"></script>
 </body>
 
 </html>
+
+
+
+<!-- modal for password confirmation -->
+<div class="modal fade" id="cofirm-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header alert alert-danger">
+				<h5 class="modal-title" id="exampleModalLabel">Atenção! </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Tem certeza que deseja editar sua senha?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#corfirmar-editar-senha">Sim, tenho</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- Modal  para editar a senha -->
+<div class="modal fade" id="corfirmar-editar-senha" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header alert alert-warning">
+				<h5 class="modal-title" id="exampleModalLabel">Editar senha:</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<div class="form-group">
+					<form id="formTrocarSenha" action="trocar_senha.php" onSubmit="return funcaoTrocaSenha(this)">
+						<div class="form-group">
+							<label for="senha_atual">Senha atual:</label>
+							<input type="password" class="form-control" id="senha_atual" name="senha_atual">
+						</div>
+
+						<div class="form-group">
+							<label for="nova_senha">Nova senha: </label>
+							<input type="password" class="form-control" id="nova_senha" name="nova_senha" placeholder="Digite sua nova senha">
+						</div>
+
+						<div class="form-group">
+							<label for="confirma">Confirme sua nova senha: </label>
+							<input type="password" class="form-control" id="confirma" name="confirma" placeholder="Confirme sua nova senha">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-success">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

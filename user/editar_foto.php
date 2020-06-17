@@ -14,7 +14,7 @@ $_UP['erros'][3] = 'O upload do arquivo foi feito parcialmente';
 $_UP['erros'][4] = 'Não foi feito o upload do arquivo';
 
 if ($_FILES['arquivo']['error'] != 0) {
-    echo ("Não foi possivel fazer o upload, erro: <br />" . $_UP['erros'][$_FILES['arquivo']['error']]);
+    //echo ("Não foi possivel fazer o upload, erro: <br />" . $_UP['erros'][$_FILES['arquivo']['error']]);
     echo "
     <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
    <script type=\"text/javascript\">
@@ -51,10 +51,20 @@ if (in_array($extensao, $formatoPermitido)) {
     exit;
 }
 echo $mensagem;
+
+$sql = "SELECT foto from usuario WHERE idUsuario=$id";
+$resultado = $con->query($sql);
+$info = $resultado->fetch_array(MYSQLI_ASSOC);
+$foto = $info['foto'];
+if ($foto != 'perfil.png')
+    unlink("foto_perfil/$foto");
+
+
 $sql = "UPDATE usuario SET  foto='$novoName' Where idUsuario='$id'";
 $resultado = $con->query($sql);
 if ($con->query($sql) === TRUE) {
-    echo "success editar";
+    $_SESSION['foto'] = $novoName;
+
     echo "
     <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
     <script type=\"text/javascript\">
@@ -62,7 +72,7 @@ if ($con->query($sql) === TRUE) {
     </script>
 ";
 } else {
-    echo "erro editar";
+
     echo "
     <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>
     <script type=\"text/javascript\">
