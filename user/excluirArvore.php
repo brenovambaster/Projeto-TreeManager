@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     // Mandando uma consulta para o banco!
     if ($con->query($sql) ===  TRUE) {
       $flag  =  1;
-      echo "Deu Certo";
+
       echo " 
             <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=gerenciamento_arvores.php'>
             <script type=\"text/javascript\">
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
     } else {
       $flag  =  0;
       echo mysqli_error($con);
-      echo "erro em excluir arvore";
+      echo "erro ao excluir arvore";
     }
   }
   // Fechando a conexão

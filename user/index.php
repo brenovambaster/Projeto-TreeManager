@@ -96,8 +96,8 @@ function verGet()
     <?php
     }
     if (isset($_GET['email_duplicate'])) { ?>
-        <div class="alert alert-danger alert-dismissible fade show text-justify" role="alert">
-            Email inválido!Este e-mail já foi cadastrado anteriomente.
+        <div class="alert alert-warning alert-dismissible fade show text-justify" role="alert">
+            Email inválido! Este e-mail já foi cadastrado anteriomente.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
