@@ -79,11 +79,11 @@ include_once('seguranca.php');
 
 
                                 <div class="form-group col-md-4 ">
-                                    <label for="latitude">Latitude:</label>
+                                    <label for="lat">Latitude:</label>
                                     <input class="form-control" onfocus="$(this).css('border', '1px solid #ced4da')" id="lat" type="text" name="lat">
                                 </div>
                                 <div class="form-group col-md-4 ">
-                                    <label for="longitude">Longitude:</label>
+                                    <label for="long">Longitude:</label>
                                     <input class="form-control" onfocus="$(this).css('border', '1px solid #ced4da')" id="long" type="text" name="long">
                                 </div>
                                 <div class="form-group col-md-4">
