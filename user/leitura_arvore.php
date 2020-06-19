@@ -46,10 +46,17 @@ include('seguranca.php');
 						<div class="collapse multi-collapse" id="Mapeamento-e-localização">
 							<div class="form-row">
 
+
 								<div class="form-group col-md-4 ">
-									<label for="text">Cordendas Geográficas:</label>
-									<input class="form-control" type="text" name="cordGeo" value="<?php echo htmlspecialchars($info->CordGeo); ?>">
+									<label for="latitude">Latitude:</label>
+									<input class="form-control" id="latitude" value="<?php echo $info->latitude; ?>" type="text" name="lat">
 								</div>
+								<div class="form-group col-md-4 ">
+									<label for="longitude">Longitude:</label>
+									<input class="form-control" id="longitude" value="<?php echo $info->longitude; ?>" type="text" name="long">
+								</div>
+
+
 								<div class="form-group col-md-4">
 									<label for="text">Rua:</label>
 									<input class="form-control" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo htmlspecialchars($info->Rua); ?>">
@@ -428,7 +435,19 @@ include('seguranca.php');
 		?>
 	</div>
 
+	<div>
+		<!--  EXEMPLO DE COMO FICARÁ APÓS USAR ALGUMA API DE MAPA-->
+		<?php
+		$lat = $info->latitude;
+		$long = $info->longitude;
+		?>
+		<div class="container">
+			<iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=<?php echo number_format($long, 3); ?>%2C<?php echo number_format($lat, 3); ?>%2C<?php echo number_format($long, 3); ?>%2C<?php echo number_format($lat, 3);; ?>&amp;layer=mapnik&amp;marker=<?php echo $lat; ?>%2C<?php echo $long; ?>" style="border: 1px solid black"></iframe><br /><small><a href="https://www.openstreetmap.org/?mlat=<?php echo $lat; ?>&amp;mlon=<?php echo $long; ?>#map=16/<?php echo $lat; ?>/<?php echo $long; ?>">Ver Mapa Ampliado</a></small>
 
+		</div>
+
+	</div>
+	<div class="mt-5"> </div>
 
 	<!--===========================================script=================================================	-->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
