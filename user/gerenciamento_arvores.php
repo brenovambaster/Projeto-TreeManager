@@ -120,10 +120,12 @@ include('seguranca.php');
                             <td><?php echo $informacaoArvore->longitude; ?></td>
                             <td><?php echo $informacaoArvore->Situacao; ?></td>
                             <td>
-                                <a href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Editar </a>
-                                <a href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>" data-confirm='Tem certeza de que deseja excluir a árvore selecionada?'> Excluir </a>
-                                <a href="leitura_arvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Ver </a>
-                                <a href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> Solicitar Serviço </a>
+                                <div class="d-flex">
+                                    <a class="m-1" href="formulario.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> <img src="../img/editarForm.png" width="29px" height="29px" alt="editar" title="Editar"> </a>
+                                    <a class="m-1" href="excluirArvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>" data-confirm='Tem certeza de que deseja excluir a árvore selecionada?'> <img src="../img/lixeira.png" width="29px" height="29px" alt="Excluir" title="Excluir"> </a>
+                                    <a class="m-1" href="leitura_arvore.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> <img src="../img/ver2.png" width="29px" height="29px" alt="Ver" title="Ver"> </a>
+                                    <a class="m-1" href="solicitar_servico.php?id=<?php echo $informacaoArvore->IdArvore; ?>"> <img src="../img/solicitarServico.png" width="29px" height="29px" alt="Solicitar Serviço" title="Solicitar Serviço"> </a>
+                                </div>
                             </td>
                         </tr>
 
