@@ -10,6 +10,7 @@ if (!isset($_POST['butaoLogin'])) {
 // Pegando as informações do formulário.
 $email  = mysql_fix_string($con, $_POST['email_login']);
 $senha  = hashandsalt($_POST['senha_login'], $con);
+$lembrarme = $_POST['lembrarme'];
 //**TENHO QUE RECEBER O OPAÇAO DE MARTER-ME LOGADO 
 
 // Criando a minha string com o código SQL de consulta
@@ -35,6 +36,9 @@ if (empty($infoUsuario)) {
 		$_SESSION['senha'] = $infoUsuario->senha;
 		$_SESSION['fone'] = $infoUsuario->fone;
 		$_SESSION['foto'] = $infoUsuario->foto;
+		if($lembrarme == "logado"){
+			setcookie(session_name(), session_id(), time() + 60 * 60 * 24 * 365, '/');
+		}
 		echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>";
 	} else {
 		echo "Infelizmente você foi desativado. Se isso foi um erro, contate ao adm pelo formulário na página inicial\n";
