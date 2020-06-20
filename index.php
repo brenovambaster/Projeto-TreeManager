@@ -1,11 +1,11 @@
 <?php 
-	session_start();
-	if(!isset($_SESSION['validarSessao'])){
-		setcookie(session_name(), '', time() - 60*60*24*30, '/');
-		session_destroy();
-		$painel = '/user/index.php';
-	}else $painel = '/user/perfil.php';
- ?>
+session_start();
+if(!isset($_SESSION['validarSessao'])){
+	setcookie(session_name(), '', time() - 60*60*24*30, '/');
+	session_destroy();
+	$painel = 'user/index.php';
+}else $painel = 'user/perfil.php';
+?>
 <!DOCTYPE html>
 <html>
 
