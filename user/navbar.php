@@ -24,6 +24,9 @@
             <li class="nav-item active">
                 <a class="nav-link opc1 " href="solicitacoes.php"> <img src="../img/mensagem1.png" alt="solicitacoes" height="33px" width="33px"> Solicitações de Serviços</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link opc1 " href="treeMapSal.php"> <img src="../img/Apple1-icon.png" alt="Mapa" height="33px" width="33px"> Mapa completo</a>
+            </li>
 
         </ul>
 
