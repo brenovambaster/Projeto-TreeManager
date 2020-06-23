@@ -49,11 +49,11 @@ include('seguranca.php');
 
 									<div class="form-group col-md-4 ">
 										<label for="latitude">Latitude:</label>
-										<input class="form-control" id="cordGeo" value="<?php echo $info->latitude; ?>" type="text" name="lat">
+										<input class="form-control" id="latitude" value="<?php echo $info->latitude; ?>" type="text" name="lat">
 									</div>
 									<div class="form-group col-md-4 ">
 										<label for="longitude">Longitude:</label>
-										<input class="form-control" id="cordGeo" value="<?php echo $info->longitude; ?>" type="text" name="long">
+										<input class="form-control" id="longitude" value="<?php echo $info->longitude; ?>" type="text" name="long">
 									</div>
 
 
@@ -426,7 +426,8 @@ include('seguranca.php');
 					<div>
 						<input type="hidden" name="id_arvore" class="btn btn-light disabled" value="<?php echo $id; ?>">
 						<input class="btn btn-primary col-2 col-xs-3" type="submit" name="butao" value="Salvar">
-						<input class="btn btn-danger col-2 col-xs-3" type="reset" value="Limpar"></div>
+						<input class="btn btn-danger col-2 col-xs-3" type="reset" value="Limpar">
+					</div>
 				</form>
 
 			</div>

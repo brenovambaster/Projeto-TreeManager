@@ -34,7 +34,7 @@ include_once('seguranca.php');
 			<h1> Perfil de Usuário </h1>
 		</div>
 
-		<?php include('navbar.php');
+		<?php include_once('navbar.php');
 		?>
 	</div>
 	<?php require_once('../00 - BD/bd_conexao.php');

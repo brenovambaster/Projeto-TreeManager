@@ -68,6 +68,17 @@ include_once('seguranca.php');
                     </button>
                 </div>
 
+                <div class="alert alert-warning alert-dismissible fade show" id="location" style="display:none" role="alert">
+                    <p class="dark"> <strong> <?php echo mb_strtoupper($_SESSION['validarSessao']); ?> </strong>, necessitamos das coordenas geográficas das árvores. Você pode autorizar a localização ou não.
+                        Se não autorizar, você precisa inserir manualmete a localização com o máximo de precisão possível.
+                    </p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+
+
 
 
                 <div class="fundo">
@@ -78,12 +89,19 @@ include_once('seguranca.php');
                             <div class="form-row">
 
 
+
+                                <div class="form-group col-md ">
+                                    <button class="btn form-control text-center mt-4 text-primary" type="button" onclick="getLocation();"> Preencha as coordenas automaticamente</button>
+
+                                </div>
+
                                 <div class="form-group col-md-4 ">
-                                    <label for="latitude">Latitude:</label>
+
+                                    <label for="lat">Latitude:</label>
                                     <input class="form-control" onfocus="$(this).css('border', '1px solid #ced4da')" id="lat" type="text" name="lat">
                                 </div>
-                                <div class="form-group col-md-4 ">
-                                    <label for="longitude">Longitude:</label>
+                                <div class="form-group col-md-4">
+                                    <label for="long">Longitude:</label>
                                     <input class="form-control" onfocus="$(this).css('border', '1px solid #ced4da')" id="long" type="text" name="long">
                                 </div>
                                 <div class="form-group col-md-4">
@@ -329,12 +347,7 @@ include_once('seguranca.php');
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="../js/somenteNum.js"></script>
     <script src="../js/cadastraArvore.js"></script>
-
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/getLocation.js"></script>
 </body>
 
 </html>

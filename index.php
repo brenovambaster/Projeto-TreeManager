@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if(!isset($_SESSION['validarSessao'])){
+	setcookie(session_name(), '', time() - 60*60*24*30, '/');
+	session_destroy();
+	$painel = 'user/index.php';
+}else $painel = 'user/perfil.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -49,7 +57,9 @@
 						<a class="nav-link " href="#contato"> <img src="img/fone.png" alt="cont" height="30px" width="30px"> Contato</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link " href="user/index.php"> <img src="img/perfil.png" alt="cont" height="30px" width="30px"> login</a>
+						<a class="nav-link " 
+						href="<?php echo $painel; ?>"> 
+						<img src="img/perfil.png" alt="cont" height="30px" width="30px"> login</a>
 					</li>
 
 				</ul>

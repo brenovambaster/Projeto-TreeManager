@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['validarSessao']))
+    echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=perfil.php'>";
+?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -45,7 +51,7 @@
             <input type="password" name="senha_login" id="inputPassword" class="form-control mt-4" placeholder="******" required>
         </div>
         <div class="form-check form-check-inline  d-flex">
-            <input class="form-check-input" type="checkbox" id="manterLogado" value="logado">
+            <input class="form-check-input" name="lembrarme" type="checkbox" id="manterLogado" value="logado">
             <label class="form-check-label text-light text-left" name="manter_logado" for="manterLogado">Manter-me logado</label>
         </div>
         <div class="checkbox  mt-3 mb-3">
