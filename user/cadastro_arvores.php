@@ -90,13 +90,17 @@ include_once('seguranca.php');
 
 
 
+                                <div class="form-group col-md ">
+                                    <button class="btn form-control text-center mt-4 text-primary" type="button" onclick="getLocation();"> Preencha as coordenas automaticamente</button>
+
+                                </div>
 
                                 <div class="form-group col-md-4 ">
-                                    <button class="btn text-center mt-4 text-primary" type="button" onclick="getLocation();"> Clique e preencha as coordenas automaticamente</button>
+
                                     <label for="lat">Latitude:</label>
                                     <input class="form-control" onfocus="$(this).css('border', '1px solid #ced4da')" id="lat" type="text" name="lat">
                                 </div>
-                                <div class="form-group col-md-4 ">
+                                <div class="form-group col-md-4">
                                     <label for="long">Longitude:</label>
                                     <input class="form-control" onfocus="$(this).css('border', '1px solid #ced4da')" id="long" type="text" name="long">
                                 </div>
