@@ -1,7 +1,9 @@
 $('#cadastrarArvore').submit(function() {
     let request = new XMLHttpRequest();
 
-    const url = `validaCadastroArvore.php?lat=${$('#lat').val()}&long=${$('#long').val()}&rua=${$('#rua').val()}&numImovel=${$('#numImovel').val()}` +
+    const page = $(this).attr('action');
+
+    const url = `${page}?lat=${$('#lat').val()}&long=${$('#long').val()}&rua=${$('#rua').val()}&numImovel=${$('#numImovel').val()}` +
         `&distanciaPoste=${$('#postes').val()}&esquina=${$('#esquinas').val()}&distanciaEntreArvore=${$('#entreOutrasArv').val()}` +
         `&distaEntradaGaragem=${$('#garagens').val()}&distanciaLotesVagos=${$('#loteVago').val()}&familia=${$('#familia').val()}` +
         `&nomeCientifico=${$('#nomeCientifico').val()}&nomePopular=${$('#nomePopular').val()}&Origem=${$('input[name=Origem]:checked', '#cadastrarArvore').val()}` +
@@ -10,7 +12,7 @@ $('#cadastrarArvore').submit(function() {
         `&avalCond=${$('input[name=avalCond]:checked', '#cadastrarArvore').val()}&avalradicular=${$('input[name=avalradicular]:checked', '#cadastrarArvore').val()}` +
         `&LocalPlantio=${$('input[name=LocalPlantio]:checked', '#cadastrarArvore').val()}&larguraCalcada=${$('#largura').val()}` +
         `&Conflitos=${$('input[name=Conflitos]:checked', '#cadastrarArvore').val()}&Poda=${$('input[name=Poda]:checked', '#cadastrarArvore').val()}` +
-        `&Pavimentacao=${$('input[name=Pavimentacao]:checked', '#cadastrarArvore').val()}&butao=Enviar`;
+        `&Pavimentacao=${$('input[name=Pavimentacao]:checked', '#cadastrarArvore').val()}&id_arvore=${$('#id_arvore').val()}&butao=Enviar`;
 
     request.open('GET', url, true);
 
@@ -80,7 +82,10 @@ $('#cadastrarArvore').submit(function() {
                     $('#arvorefalha').css('display', 'none');
                     $('#arvorecomsucesso').css('display', 'block');
                     window.location.href = '#cadastrarArvore';
-                    setTimeout("window.location.reload(false)", 1500);
+                    if(page === 'validaCadastroArvore.php')
+                        setTimeout("window.location.reload(false)", 1500);
+                    else
+                    setTimeout(() => window.location.href = '/user/gerenciamento_arvores.php', 1500);
                 }
             }
     };

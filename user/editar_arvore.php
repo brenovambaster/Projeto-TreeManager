@@ -9,8 +9,8 @@ require_once("../00 - BD/bd_conexao.php");
 // I- mapeamento e localização 
 $id_arvore = $_GET['id_arvore'];
 $situacao = "pendente";
-$lat = addslashes($_GET['lat']);
-$long = addslashes($_GET['long']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
+$latitude = addslashes($_GET['lat']);
+$longitude = addslashes($_GET['long']); //funcao para transformar aspas simples ( ' ) aspas duplas ( " ) barra invertida ( \ )
 $rua = addslashes($_GET['rua']);
 $numImovel = addslashes($_GET['numImovel']);
 $n1 = $distanciaPost = $_GET['distanciaPoste'];
@@ -45,36 +45,14 @@ $campo = array(
     'Distancia_Lotes_Vagos' => is_numeric($n5),
     'Altura_da_Arvore' => is_numeric($n6),
     'altura_Primeira_Bifurcacao' => is_numeric($n7),
-    'largura_Calcada' => is_numeric($n8)
+    'largura_Calcada' => is_numeric($n8),
+    'latitude' => is_numeric($latitude),
+    'longitude' => is_numeric($longitude)
 );
-if (in_array(false, $campo)) // procurar o valor falso no array campo 
-{
-    echo ("ALGUM CAMPO NUMÉRICO FOI PREENCHIDO COM LETRA OU SÍMBOLO. VEJA QUIAS:<br> ");
-    /*
-    while (list($NomeCampo, $Valor) = each($campo)) {
-        if ($Valor === FALSE) {
-            echo "$NomeCampo<br>";
-        };
-    } // NÃO USEI ESTA FUNCAO PQ SEGUNDO A DOCUMENTAÇÃO ESTÁ DESATUALIZADA :( ;
-  */
-
-    foreach ($campo as $k => $v) {
-        // $k é a key ou "nome da posicao" e $v o valor daquela posicao  naquele instate;
-        if ($v === false) {
-
-            $teste = $k;
-            // print_r($teste);
-            echo "$k<br>";
-        }
-    }
+if (in_array(false, $campo)) {
+    echo ("Algum campo foi preenchido incorretamente ou não foi preenchido. Por favor corrija.");
     unset($campo);
-
-    echo "POR FAVOR,VOLTE NA PÁGINA ANTERIOR E REVISE CUIDADOSAMENTE OS CAMPOS SUPRACITADOS.";
 } else {
-
-
-
-
     //   ============== conectar ao banco para passar os dados...
 
 
@@ -83,18 +61,14 @@ if (in_array(false, $campo)) // procurar o valor falso no array campo
     DistanciaEsquinas='$distanciaEsquina',  CondicaoFisicoSanitaria='$avaliacaoArvore', 
     AlturaPrimeiraBifurcacao='$alturaPrimeiraBifurc', CondicaoSistemaRadicular='$avalradicular',
     LarguraCalcada='$larguraCalcada', NumImovelProx='$numImovel', Poda='$poda', LocalPlantio='$localPlantio',
-    conflitos='$conflitos', latitude='$lat', longitude='$long' , Altura='$alturaArvore', Toxidez='$toxidez',
+    conflitos='$conflitos', latitude='$latitude', longitude='$longitude' , Altura='$alturaArvore', Toxidez='$toxidez',
     DistanciaOutraArvore='$distanciaEntreArvore', PavimentacaoCalcada='$pavimentacaoCalcada',
     DistanciaGaragens='$distaEntradaGaragem', Rua='$rua', Habito='$habito', Familia='$familia', 
     DistanciaPostes='$distanciaPost', NomePopular='$nomePopular', Origem='$origem' WHERE IdArvore ='$id_arvore' ";
-    if ($con->query($sql) === TRUE) {
+    
+    if ($con->query($sql)) {
         fecharConexao($con);
-
-        echo " <META HTTP-EQUIV=REFRESH CONTENT = '0;URL=gerenciamento_arvores.php'>
-               <script type=\"text/javascript\">
-                     alert(\"Árvore foi editada com sucesso.\");
-                    console.log(\" arvore editada \");
-               </script>";
+        echo "Sucesso!";
     } else {
         echo mysqli_error($con);
         fecharConexao($con);

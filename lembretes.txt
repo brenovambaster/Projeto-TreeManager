@@ -1,7 +1,6 @@
 * MELHORAR PESQUISA EM "solicitaçoes.php", possibilitando a pesquisa por status;
 * Validar a edição da árvore(falata apenas o update sql);
 * atualizar formulario para ver dados da arvore(leitura_arvore.php);
-* atualizar formulario para editar árvore. formulario.php
 * validar campos na pag cadastroUser.php (addLanches e validar as duas senhas digitadas.)
 	* inserir campo para que o usuário confirme a senha. 
 	* melhorar front-end da pagina

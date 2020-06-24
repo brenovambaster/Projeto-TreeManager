@@ -34,63 +34,90 @@ include('seguranca.php');
 		if ($retorno == 1) { ?>
 
 			<div class="box-body">
-				<form method="get" action="editar_arvore.php">
+				<form id="cadastrarArvore" action="editar_arvore.php">
 					<div>
-						<h1 class="text-center">Forumuário para editar árvores</h1>
+						<h1 class="text-center">Formulário para editar árvores</h1>
 						<hr>
 					</div>
+
+					<div class="alert alert-success alert-dismissible fade show" id="arvorecomsucesso" style="display:none" role="alert">
+                    A árvore foi editada com sucesso!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+
+                <div class="alert alert-danger alert-dismissible fade show" id="arvorefalha" style="display:none" role="alert">
+                    Algo de errado ocorreu :( Por favor, tente novamente!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
 					<div class="fundo">
 						<div>
 							<a class="btn btn-success col-12" data-toggle="collapse" href="#Mapeamento-e-localização" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">I- Mapeamento e localização</a>
 
-							<div class="collapse multi-collapse" id="Mapeamento-e-localização">
+							<div class="show multi-collapse" id="Mapeamento-e-localização">
 								<div class="form-row">
 
 
 									<div class="form-group col-md-4 ">
 										<label for="latitude">Latitude:</label>
-										<input class="form-control" id="latitude" value="<?php echo $info->latitude; ?>" type="text" name="lat">
+										<input class="form-control" id="lat" onfocus="$(this).css('border', '1px solid #ced4da')" value="<?php echo $info->latitude; ?>" type="text" name="lat">
 									</div>
 									<div class="form-group col-md-4 ">
 										<label for="longitude">Longitude:</label>
-										<input class="form-control" id="longitude" value="<?php echo $info->longitude; ?>" type="text" name="long">
+										<input class="form-control" id="long" onfocus="$(this).css('border', '1px solid #ced4da')" value="<?php echo $info->longitude; ?>" type="text" name="long">
 									</div>
 
 
 									<div class="form-group col-md-4">
 										<label for="text">Rua:</label>
-										<input class="form-control" type="text" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo htmlspecialchars($info->Rua); ?>">
+										<input class="form-control" type="text" id="rua" name="rua" placeholder="Ex: Rua Santa Isabel" value="<?php echo htmlspecialchars($info->Rua); ?>">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="numImovel"> Nº do imóvel mais próximo </label>
-										<input class=" form-control" type="text" name="numImovel" placeholder="Ex: A 230" value="<?php echo $info->NumImovelProx; ?>">
+										<input class=" form-control" id="numImovel" type="text" name="numImovel" placeholder="Ex: A 230" value="<?php echo $info->NumImovelProx; ?>">
 									</div>
 								</div>
 								<div class="form-row">
 
 									<legend>
-										<h5 class="text-center">Distância da árvore em relação aos equipaentos hurbanos.</h5>
+										<h5 class="text-center">Distância da árvore em relação aos equipamentos urbanos.</h5>
 									</legend>
 									<div class="form-group col-md-2">
 										<label for="Postes">Postes(m):</label>
-										<input type="text" name="distanciaPoste" class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId" value="<?php echo $info->DistanciaPostes; ?>">
+										<input type="text" name="distanciaPoste" onfocus="$(this).css('border', '1px solid #ced4da')"
+										 class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId" id="postes"
+										  value="<?php echo $info->DistanciaPostes; ?>" onkeypress="return somenteNumeros(event)">
 
 									</div>
 									<div class="form-group col-md-2">
 										<label for="Esquinas:">Esquinas(m):</label>
-										<input type="text" class="form-control" name="esquina" placeholder="Ex: 4.9" value="<?php echo $info->DistanciaEsquinas; ?>">
+										<input type="text" id="esquinas" onfocus="$(this).css('border', '1px solid #ced4da')"
+										 class="form-control" name="esquina" placeholder="Ex: 4.9"
+										  value="<?php echo $info->DistanciaEsquinas; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 									<div class=" form-group col-md-3 ">
 										<label for="entreOutrasArv "> Entre outra árvore(m):</label>
-										<input type="text " class="form-control " name="distanciaEntreArvore" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaOutraArvore; ?>">
+										<input type="text " id="entreOutrasArv" onfocus="$(this).css('border', '1px solid #ced4da')"
+										 class="form-control " name="distanciaEntreArvore" placeholder="Ex: 5.6"
+										  value="<?php echo $info->DistanciaOutraArvore; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 									<div class=" form-group col-md-3 ">
 										<label for="garagens "> Entrada de garagens(m):</label>
-										<input type="text " class="form-control" name="distaEntradaGaragem" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaGaragens; ?>">
+										<input type="text " id="garagens" onfocus="$(this).css('border', '1px solid #ced4da')" 
+										class="form-control" name="distaEntradaGaragem" placeholder="Ex: 5.6"
+										 value="<?php echo $info->DistanciaGaragens; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 									<div class=" form-group col-md-2 ">
 										<label for="loteVago"> Lotes vagos(m):</label>
-										<input type="text " class="form-control" name="distanciaLotesVagos" placeholder="Ex: 5.6 " value="<?php echo $info->DistanciaLotes; ?>">
+										<input type="text " id="loteVago" onfocus="$(this).css('border', '1px solid #ced4da')"
+										 class="form-control" name="distanciaLotesVagos" placeholder="Ex: 5.6 " 
+										 value="<?php echo $info->DistanciaLotes; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 								</div>
 							</div>
@@ -100,21 +127,21 @@ include('seguranca.php');
 						<div>
 							<a class="btn btn-secondary  col-12" data-toggle="collapse" href="#Características-da-árvore" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">II- Características da árvore</a>
 
-							<div class="collapse multi-collapse" id="Características-da-árvore">
+							<div class="show multi-collapse" id="Características-da-árvore">
 								<div class="form-row">
 
 									<legend> 1. Identificação</legend>
 									<div class="form-group col-md-3">
 										<label for="familia">Família:</label>
-										<input type="text" class="form-control" name="familia" placeholder="Rutaceae" style="font-style:italic" value="<?php echo $info->Familia; ?>">
+										<input type="text" id="familia" class="form-control" name="familia" placeholder="Rutaceae" style="font-style:italic" value="<?php echo $info->Familia; ?>">
 									</div>
 									<div class="form-group col-md-3">
-										<label for="nomeCinetifico">Nome científico:</label>
-										<input type="text" class="form-control" name="nomeCientifico" placeholder="Murraya paniculata" style="font-style:italic" value="<?php echo $info->NomeCientifico; ?>">
+										<label for="nomeCientifico">Nome científico:</label>
+										<input type="text" class="form-control" id="nomeCientifico" name="nomeCientifico" placeholder="Murraya paniculata" style="font-style:italic" value="<?php echo $info->NomeCientifico; ?>">
 									</div>
 									<div class="form-group col-md-3">
 										<label for="nomePopular">Nome popular:</label>
-										<input type="text" class="form-control" name="nomePopular" placeholder="Murta-de-cheiro" style="font-style:italic" value="<?php echo $info->NomePopular; ?>">
+										<input type="text" class="form-control" id="nomePopular" name="nomePopular" placeholder="Murta-de-cheiro" style="font-style:italic" value="<?php echo $info->NomePopular; ?>">
 									</div>
 								</div>
 								<div class="radios form-row ">
@@ -177,12 +204,16 @@ include('seguranca.php');
 									<legend>2. Porte da árvore</legend>
 									<div class="form-group col-md-3">
 										<label for="alturaArvor"> Altura da árvore(m):</label>
-										<input type="text" id="alturaArvor" class="form-control" name="alturaArvore" placeholder="2.10" value="<?php echo $info->Altura; ?>">
+										<input type="text" id="alturaArvore" onfocus="$(this).css('border', '1px solid #ced4da')"
+										 class="form-control" name="alturaArvore" placeholder="2.10"
+										  value="<?php echo $info->Altura; ?>" onkeypress="return somenteNumeros(event)">
 
 									</div>
 									<div class="form-group col-md-3">
 										<label for="bifurcacao">Altura da 1º bifurcação(m):</label>
-										<input type="text" class="form-control" name="alturaPrimeiraBifurc" placeholder="1.15" value="<?php echo $info->AlturaPrimeiraBifurcacao; ?>">
+										<input type="text" id="bifurcacao" onfocus="$(this).css('border', '1px solid #ced4da')"
+										 class="form-control" name="alturaPrimeiraBifurc" placeholder="1.15"
+										  value="<?php echo $info->AlturaPrimeiraBifurcacao; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 
 								</div>
@@ -265,7 +296,7 @@ include('seguranca.php');
 
 						<div>
 							<a class="btn btn-success col-12" data-toggle="collapse" href="#Entorno-e-interferências" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">III- Entorno e interferências</a>
-							<div class="collapse multi-collapse" id="Entorno-e-interferências">
+							<div class="show multi-collapse" id="Entorno-e-interferências">
 
 								<div class=" form-group form-row">
 
@@ -311,7 +342,9 @@ include('seguranca.php');
 									</div>
 									<div class="form-group col-md-6">
 										<label for="largura"> Largura da calçada:</label>
-										<input type="text" name="larguraCalcada" id="largura" class="form-control" value="<?php echo $info->LarguraCalcada; ?>">
+										<input type="text" id="largura" onfocus="$(this).css('border', '1px solid #ced4da')"
+										 name="larguraCalcada" id="largura" class="form-control"
+										  value="<?php echo $info->LarguraCalcada; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 
 								</div>
@@ -424,7 +457,7 @@ include('seguranca.php');
 
 					</div>
 					<div>
-						<input type="hidden" name="id_arvore" class="btn btn-light disabled" value="<?php echo $id; ?>">
+						<input type="hidden" id="id_arvore" name="id_arvore" class="btn btn-light disabled" value="<?php echo $id; ?>">
 						<input class="btn btn-primary col-2 col-xs-3" type="submit" name="butao" value="Salvar">
 						<input class="btn btn-danger col-2 col-xs-3" type="reset" value="Limpar">
 					</div>
@@ -444,6 +477,8 @@ include('seguranca.php');
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="../js/somenteNum.js"></script>
+	<script src="../js/cadastraArvore.js"></script>
 </body>
 
 </html>
