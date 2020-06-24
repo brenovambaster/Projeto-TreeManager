@@ -1,5 +1,4 @@
 <?php
-header('Content-type: application/json; charset=UTF-8');
 require_once('../00 - BD/bd_conexao.php');
 $sql = "SELECT  idArvore, latitude, longitude,NomeCientifico, Rua FROM arvore;";
 $result = $con->query($sql);
@@ -20,6 +19,11 @@ while ($resultado =  mysqli_fetch_object($result)) {
     $i++;
 }
 
-echo json_encode($meus_dados);
+$json = json_encode($meus_dados);
 fecharConexao($con);
 ?>
+<script>
+    var json;
+    json = <?php echo $json; ?>;
+    console.log(json)
+</script>
