@@ -76,7 +76,8 @@ include('seguranca.php');
             <?php
             include("pesquisa_solicitacao_servico.php");
 
-            echo '<div class="badge badge-primary text-wrap">' . $sql['filtro'] . '</div>';
+            echo "<div class='badge badge-primary text-wrap'>" . $array['filtro'];
+            echo "</div>";
             ?>
         </div>
 

@@ -1,10 +1,13 @@
 <?php
 require_once('../00 - BD/bd_conexao.php');
 
-$sql = determinaPesquisaSql(); // retorna o total de  dados da colsulta que o usuário escolheu. Com filtro ou nao;
-$resultado = $con->query($sql['sql']); // basicamente o que interessa nessa busca são os números de registros;
+$array = determinaPesquisaSql(); // retorna o total de  dados da colsulta que o usuário escolheu. Com filtro ou nao;
+$resultado = $con->query($array['sql']); // basicamente o que interessa nessa busca são os números de registros;
 $linhas_por_pagina = 4;
+
 $num_linhas = mysqli_num_rows($resultado); // captura a quantidade de registros no bd para aquela consulta;
+echo mysqli_error($con);
+echo mysqli_info($con);
 $total_paginas = ceil($num_linhas / $linhas_por_pagina);
 
 if (isset($_GET['pagina']) && is_numeric($_GET['pagina'])) {
@@ -21,7 +24,7 @@ if ($pagina < 1) {
 
 $offset = ($pagina - 1) * $linhas_por_pagina;
 
-$sql2 = paginacao($sql, $offset, $linhas_por_pagina); // array  com paginacao sql e o filtro de pesquisa se houver;
+$sql2 = paginacao($array, $offset, $linhas_por_pagina); // array  com paginacao sql e o filtro de pesquisa se houver;
 $result = $con->query($sql2['sql']);
 // mostrar resultado em um objt com paginação
 if (mysqli_num_rows($result) == 0) {
@@ -33,11 +36,15 @@ if (mysqli_num_rows($result) == 0) {
         //PEGANDO E TRABALHANDO OS INPUTS PARA QUE POSSA NAVEGAR NA PAGINACAO COM OS VALORES INSERIDOS PELO USUÁRIO. 
         $data = '';
         $codArvore = '';
+        $pendente = '';
         if (!empty($_GET['data'])) {
                 $data = $_GET['data'];
         }
         if (!empty($_GET['codArvore'])) {
                 $codArvore = $_GET['codArvore'];
+        }
+        if (!empty($_GET['statusArv'])) {
+                $pendente = $_GET['statusArv'];
         }
         $pesquisa = 'pesquisa';
 
@@ -46,7 +53,7 @@ if (mysqli_num_rows($result) == 0) {
         echo "<ul class='pagination'> 
         <li class='page-item'>
         
-            <a class='page-link' href='solicitacoes.php?pagina=1&data=$data&codArvore=$codArvore&pesquisa=$pesquisa' tabindex='-1'>Primeira</a>
+            <a class='page-link' href='solicitacoes.php?pagina=1&data=$data&codArvore=$codArvore&pesquisa=$pesquisa&statusArv=$pendente' tabindex='-1'>Primeira</a>
         </li>";
         // adciona no máximo dois links antecessores referente a pg atual;
         for ($pg_anterior = $pagina - $max_link; $pg_anterior < $pagina; $pg_anterior++) {
@@ -59,7 +66,7 @@ if (mysqli_num_rows($result) == 0) {
 
                         echo "
                 <li class='page-item " .  $estilo  . "'>
-                    <a class='page-link' href='solicitacoes.php?pagina=$pg_anterior&data=$data&codArvore=$codArvore&pesquisa=$pesquisa' >$pg_anterior</a>
+                    <a class='page-link' href='solicitacoes.php?pagina=$pg_anterior&data=$data&codArvore=$codArvore&pesquisa=$pesquisa&statusArv=$pendente' >$pg_anterior</a>
                 </li>";
                 }
         }
@@ -80,64 +87,51 @@ if (mysqli_num_rows($result) == 0) {
 
                         echo "
                 <li class='page-item " .  $estilo . "'>
-                <a class='page-link' href='solicitacoes.php?pagina=$pg_sucessor&data=$data&codArvore=$codArvore&pesquisa=$pesquisa'>$pg_sucessor</a>
+                <a class='page-link' href='solicitacoes.php?pagina=$pg_sucessor&data=$data&codArvore=$codArvore&pesquisa=$pesquisa&statusArv=$pendente'>$pg_sucessor</a>
                 </li>";
                 }
         }
         echo "
             <li class='page-item'>
-            <a class='page-link' href='solicitacoes.php?pagina=$total_paginas&data=$data&codArvore=$codArvore&pesquisa=$pesquisa' tabindex='-1'>Última</a>
+            <a class='page-link' href='solicitacoes.php?pagina=$total_paginas&data=$data&codArvore=$codArvore&pesquisa=$pesquisa&statusArv=$pendente' tabindex='-1'>Última</a>
             </li>
        </ul>";
 }
 
 function determinaPesquisaSql()
 {
-        $data = '';
-        $codArvore = '';
+
         $idUsu = $_SESSION['idUsu'];
-        if (!isset($_GET['pesquisa'])) {
-                $filtro = "";
-                $sql = " SELECT * from servico    inner join tiposervico  on(tipoServico = IdTipoServico) where usuSolicitante = '$idUsu' ORDER BY statusSer asc "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
-                $escolha_de_pesquisa = 1;
+        empty($_GET['statusArv']) ? $status = "" : $status = $_GET['statusArv'];
+        empty($_GET['codArvore']) ? $codArvore = "" : $codArvore = $_GET['codArvore'];
+        empty($_GET['data']) ? $data = "" : $data = $_GET['data'];
+
+        $sql = " SELECT * from servico inner join tiposervico on (tipoServico = IdTipoServico) where usuSolicitante = $idUsu ";
+        if ($status != '') {
+                $sql .= " AND statusSer = '$status' ";
         }
-        if (isset($_GET['pesquisa'])) {
-
-                $data = $_GET['data'];
-                $codArvore = $_GET['codArvore'];
-
-                if (!empty($data) && empty($codArvore)) {
-                        $escolha_de_pesquisa = 2;
-                        // pesquisar por data
-                        $filtro = "Filtro por data";
-                        $sql = "SELECT * from servico inner join tiposervico on (tipoServico = IdTipoServico) where usuSolicitante = '$idUsu' AND  dataServico ='$data'";
-                } else if (!empty($codArvore) && empty($data)) {
-                        $escolha_de_pesquisa = 3;
-                        // pesquisar por codArvore
-                        $sql = "SELECT * FROM servico inner join tiposervico on (tipoServico=IdTipoServico) where usuSolicitante = '$idUsu' AND codArvore = '$codArvore'";
-                        $filtro = "Filtro por CodArvore";
-                }
-                if (!empty($data) && !empty($codArvore)) {
-                        $escolha_de_pesquisa = 4;
-                        // pesquisar pelos dois campos
-                        $filtro = "Filtro por data e codArvore";
-                        $sql = "SELECT * FROM servico inner join tiposervico on (tipoServico=IdTipoServico) where usuSolicitante = '$idUsu'AND codArvore ='$codArvore' AND dataServico='$data'";
-                }
-                if (empty($data) && empty($codArvore)) {
-                        $escolha_de_pesquisa = 5;
-                        // pesquisa sem filtro;
-                        $filtro = "";
-                        $sql = " SELECT * from servico    inner join tiposervico  on(tipoServico = IdTipoServico) where usuSolicitante = '$idUsu' ORDER BY statusSer asc "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
-
-                }
+        if ($codArvore != '') {
+                $sql .= " AND codArvore = '$codArvore' ";
         }
+        if ($data != '') {
+                $sql .= " AND  dataServico = '$data'  ";
+        }
+
+
+        // FILTRO DE PESQISA USADO
+        $filtro = 'Filtrado por:';
+        $status !== '' ? $filtro .= ' (status)' : $filtro .= '';
+        $codArvore !== '' ? $filtro .= '  (codigo da arvore)' : $filtro .= '';
+        $data !== '' ? $filtro .= '  (data)' : $filtro .= '';
+
+        $filtro != 'Filtrado por:' ?  $filtro  : $filtro = '';
+
         return  $sql = array(
                 'sql' => $sql,
                 'filtro' => $filtro,
-                'escolha_de_pesquisa' => $escolha_de_pesquisa,
                 'idUsu' => $idUsu,
                 'data' => $data,
-                'codArvore' => $codArvore
+                'codArvore' => $codArvore, 'status' => $status
         );
 }
 
@@ -201,38 +195,12 @@ function verTabela($result)
 
 function paginacao($array_datermina_pesquisa, $offset, $linhas_por_pagina)
 {
-        $idUsu = $array_datermina_pesquisa['idUsu'];
-        $escolha_de_pesquisa = $array_datermina_pesquisa['escolha_de_pesquisa'];
+
         $filtro = $array_datermina_pesquisa['filtro'];
-        $data = $array_datermina_pesquisa['data'];
-        $codArvore = $array_datermina_pesquisa['codArvore'];
+        $sql = $array_datermina_pesquisa['sql'];
+        $sql .= " LIMIT $offset, $linhas_por_pagina";
 
-        if ($escolha_de_pesquisa == 1) {
 
-                $sql = " SELECT * from servico    inner join tiposervico  on(tipoServico = IdTipoServico) 
-                where usuSolicitante = '$idUsu' ORDER BY statusSer asc  LIMIT $offset, $linhas_por_pagina "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
-        }
-        if ($escolha_de_pesquisa == 2) {
-                // pesquisar por data
-                $sql = "SELECT * from servico inner join tiposervico on (tipoServico = IdTipoServico)
-                where usuSolicitante = '$idUsu' AND  dataServico ='$data' LIMIT $offset, $linhas_por_pagina";
-        }
-        if ($escolha_de_pesquisa == 3) {
-                // pesquisar por codArvore
-                $sql = "SELECT * FROM servico inner join tiposervico on (tipoServico=IdTipoServico) 
-                where usuSolicitante = '$idUsu' AND codArvore = '$codArvore' LIMIT $offset, $linhas_por_pagina ";
-        }
-        if ($escolha_de_pesquisa == 4) {
-                // pesquisar pelos dois campos
-                $sql = "SELECT * FROM servico inner join tiposervico on (tipoServico=IdTipoServico)
-                 where usuSolicitante = '$idUsu'AND codArvore ='$codArvore' AND dataServico='$data' LIMIT $offset, $linhas_por_pagina";
-        }
-        if ($escolha_de_pesquisa == 5) {
-                // pesquisa sem filtro;
-                $sql = " SELECT * from servico    inner join tiposervico  on(tipoServico = IdTipoServico) 
-                where usuSolicitante = '$idUsu' ORDER BY statusSer asc LIMIT $offset, $linhas_por_pagina "; // SELECIONA OS USUARIOS POR ORDEM ALFABÉTICA CRESCENTE
-
-        }
         return $sql = array(
                 'sql' => $sql,
                 'filtro' => $filtro
