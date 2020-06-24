@@ -47,14 +47,21 @@ include('seguranca.php');
                     <input class="form-control" type="Date" name="data" id="data">
                 </div>
                 <div class="form-group col-md-11 col-sm-9 ">
-                    <label for="codArvore"><b>CodArvore:</b></label>
+                    <label for="codArvore"><b>Código da Arvore:</b></label>
                     <input type="number" class="form-control" name="codArvore" id="codArvore">
-
+                </div>
+                <div class="form-group col-md-11 col-sm-9 ">
+                    <label for="statusArv"><b>Status:</b></label>
+                    <select class="form-control" id="statusArv" name="statusArv">
+                        <option value="">Selecione uma opção</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="em andamento">Em andamento</option>
+                        <option value="concluido">Concluído</option>
+                    </select>
                 </div>
                 <div class="ml-3">
                     <input type="submit" name="pesquisa" class="btn btn-info" value="pesquisa">
                     <input type="reset" class="btn btn-dark" value="Limpar">
-
                 </div>
             </form>
         </div>
