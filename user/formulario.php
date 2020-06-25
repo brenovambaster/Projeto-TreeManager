@@ -41,20 +41,20 @@ include('seguranca.php');
 					</div>
 
 					<div class="alert alert-success alert-dismissible fade show" id="arvorecomsucesso" style="display:none" role="alert">
-                    A árvore foi editada com sucesso!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+						A árvore foi editada com sucesso!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 
 
 
-                <div class="alert alert-danger alert-dismissible fade show" id="arvorefalha" style="display:none" role="alert">
-                    Algo de errado ocorreu :( Por favor, tente novamente!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+					<div class="alert alert-danger alert-dismissible fade show" id="arvorefalha" style="display:none" role="alert">
+						Algo de errado ocorreu :( Por favor, tente novamente!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 
 					<div class="fundo">
 						<div>
@@ -63,7 +63,10 @@ include('seguranca.php');
 							<div class="show multi-collapse" id="Mapeamento-e-localização">
 								<div class="form-row">
 
+									<div class="form-group col-md ">
+										<button class="btn form-control text-center mt-4 text-primary" type="button" onclick="getLocation();"> Preencha as coordenas automaticamente</button>
 
+									</div>
 									<div class="form-group col-md-4 ">
 										<label for="latitude">Latitude:</label>
 										<input class="form-control" id="lat" onfocus="$(this).css('border', '1px solid #ced4da')" value="<?php echo $info->latitude; ?>" type="text" name="lat">
@@ -90,34 +93,24 @@ include('seguranca.php');
 									</legend>
 									<div class="form-group col-md-2">
 										<label for="Postes">Postes(m):</label>
-										<input type="text" name="distanciaPoste" onfocus="$(this).css('border', '1px solid #ced4da')"
-										 class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId" id="postes"
-										  value="<?php echo $info->DistanciaPostes; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text" name="distanciaPoste" onfocus="$(this).css('border', '1px solid #ced4da')" class="form-control" placeholder="Ex: 2.5" aria-describedby="helpId" id="postes" value="<?php echo $info->DistanciaPostes; ?>" onkeypress="return somenteNumeros(event)">
 
 									</div>
 									<div class="form-group col-md-2">
 										<label for="Esquinas:">Esquinas(m):</label>
-										<input type="text" id="esquinas" onfocus="$(this).css('border', '1px solid #ced4da')"
-										 class="form-control" name="esquina" placeholder="Ex: 4.9"
-										  value="<?php echo $info->DistanciaEsquinas; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text" id="esquinas" onfocus="$(this).css('border', '1px solid #ced4da')" class="form-control" name="esquina" placeholder="Ex: 4.9" value="<?php echo $info->DistanciaEsquinas; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 									<div class=" form-group col-md-3 ">
 										<label for="entreOutrasArv "> Entre outra árvore(m):</label>
-										<input type="text " id="entreOutrasArv" onfocus="$(this).css('border', '1px solid #ced4da')"
-										 class="form-control " name="distanciaEntreArvore" placeholder="Ex: 5.6"
-										  value="<?php echo $info->DistanciaOutraArvore; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text " id="entreOutrasArv" onfocus="$(this).css('border', '1px solid #ced4da')" class="form-control " name="distanciaEntreArvore" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaOutraArvore; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 									<div class=" form-group col-md-3 ">
 										<label for="garagens "> Entrada de garagens(m):</label>
-										<input type="text " id="garagens" onfocus="$(this).css('border', '1px solid #ced4da')" 
-										class="form-control" name="distaEntradaGaragem" placeholder="Ex: 5.6"
-										 value="<?php echo $info->DistanciaGaragens; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text " id="garagens" onfocus="$(this).css('border', '1px solid #ced4da')" class="form-control" name="distaEntradaGaragem" placeholder="Ex: 5.6" value="<?php echo $info->DistanciaGaragens; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 									<div class=" form-group col-md-2 ">
 										<label for="loteVago"> Lotes vagos(m):</label>
-										<input type="text " id="loteVago" onfocus="$(this).css('border', '1px solid #ced4da')"
-										 class="form-control" name="distanciaLotesVagos" placeholder="Ex: 5.6 " 
-										 value="<?php echo $info->DistanciaLotes; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text " id="loteVago" onfocus="$(this).css('border', '1px solid #ced4da')" class="form-control" name="distanciaLotesVagos" placeholder="Ex: 5.6 " value="<?php echo $info->DistanciaLotes; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 								</div>
 							</div>
@@ -204,16 +197,12 @@ include('seguranca.php');
 									<legend>2. Porte da árvore</legend>
 									<div class="form-group col-md-3">
 										<label for="alturaArvor"> Altura da árvore(m):</label>
-										<input type="text" id="alturaArvore" onfocus="$(this).css('border', '1px solid #ced4da')"
-										 class="form-control" name="alturaArvore" placeholder="2.10"
-										  value="<?php echo $info->Altura; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text" id="alturaArvore" onfocus="$(this).css('border', '1px solid #ced4da')" class="form-control" name="alturaArvore" placeholder="2.10" value="<?php echo $info->Altura; ?>" onkeypress="return somenteNumeros(event)">
 
 									</div>
 									<div class="form-group col-md-3">
 										<label for="bifurcacao">Altura da 1º bifurcação(m):</label>
-										<input type="text" id="bifurcacao" onfocus="$(this).css('border', '1px solid #ced4da')"
-										 class="form-control" name="alturaPrimeiraBifurc" placeholder="1.15"
-										  value="<?php echo $info->AlturaPrimeiraBifurcacao; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text" id="bifurcacao" onfocus="$(this).css('border', '1px solid #ced4da')" class="form-control" name="alturaPrimeiraBifurc" placeholder="1.15" value="<?php echo $info->AlturaPrimeiraBifurcacao; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 
 								</div>
@@ -342,9 +331,7 @@ include('seguranca.php');
 									</div>
 									<div class="form-group col-md-6">
 										<label for="largura"> Largura da calçada:</label>
-										<input type="text" id="largura" onfocus="$(this).css('border', '1px solid #ced4da')"
-										 name="larguraCalcada" id="largura" class="form-control"
-										  value="<?php echo $info->LarguraCalcada; ?>" onkeypress="return somenteNumeros(event)">
+										<input type="text" id="largura" onfocus="$(this).css('border', '1px solid #ced4da')" name="larguraCalcada" id="largura" class="form-control" value="<?php echo $info->LarguraCalcada; ?>" onkeypress="return somenteNumeros(event)">
 									</div>
 
 								</div>
@@ -479,6 +466,7 @@ include('seguranca.php');
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="../js/somenteNum.js"></script>
 	<script src="../js/cadastraArvore.js"></script>
+	<script src="../js/getLocation.js"></script>
 </body>
 
 </html>
