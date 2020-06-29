@@ -197,12 +197,12 @@ include_once('seguranca.php');
 					<form id="formTrocarSenha" action="trocar_senha.php" onSubmit="return funcaoTrocaSenha(this)">
 						<div class="form-group">
 							<label for="senha_atual">Senha atual:</label>
-							<input type="password" class="form-control" id="senha_atual" name="senha_atual">
+							<input type="password" class="form-control" id="senha_atual" name="antiga">
 						</div>
 
 						<div class="form-group">
 							<label for="nova_senha">Nova senha: </label>
-							<input type="password" class="form-control" id="nova_senha" name="nova_senha" placeholder="Digite sua nova senha">
+							<input type="password" class="form-control" id="nova_senha" name="trocar" placeholder="Digite sua nova senha">
 						</div>
 
 						<div class="form-group">

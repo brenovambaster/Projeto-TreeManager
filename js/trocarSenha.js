@@ -1,26 +1,25 @@
 function funcaoTrocaSenha(form) {
-    let request = new XMLHttpRequest();
-
-    let params = 'antiga=' + form.senha_atual.value + '&trocar=' + form.nova_senha.value;
-
-    request.open('POST', 'troca_senha.php', true);
-
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    request.onreadystatechange = function() {
-        if (this.readyState === 4)
-            if (this.status === 200) {
-                form.nova_senha.value = '';
-                form.senha_atual.value = '';
-                form.confirma.value = '';
-                alert(this.responseText);
-                if (this.responseText === "Senha trocada com sucesso!")
-                    window.location.reload(false);
-            }
-    }
-
-    if (form.nova_senha.value === form.confirma.value)
-        request.send(params)
-    else alert('As senha são diferentes!');
+    requisicao(form).then(valor => {
+        if(valor === 'Senha trocada com sucesso!'){
+            alert(valor);
+            window.location.reload();
+        }else alert(valor);
+            
+    });
     return false;
+}
+
+async function requisicao(form){
+
+    if (form.trocar.value === form.confirma.value){
+        data = new FormData(form);
+
+        resposta = await fetch('troca_senha.php', {
+            method: 'POST',
+            body: data
+        });
+
+        valor = await resposta.text();
+        return valor;
+    }else return 'As senhas são diferentes';
 }

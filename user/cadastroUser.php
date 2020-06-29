@@ -19,7 +19,7 @@
 
 	<div class="">
 		<div class="offset-md-3 col-md-10">
-			<form class="col-md-6 col-sm-10" method="POST" action="valida_new_user.php">
+			<form id="cadastraNewUser" class="col-md-6 col-sm-10" method="POST" action="valida_new_user.php">
 				<div class="form-group">
 					<label for="nome">Nome</label>
 					<input type="text" name="nome" class="form-control" id="nome" aria-describedby="name" required>
@@ -33,7 +33,7 @@
 
 
 				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
+					<label for="exampleInputEmail1">Endereço de Email</label>
 					<input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
 					
 				</div>
@@ -42,8 +42,13 @@
 
 
 				<div class="form-group">
-					<label for="exampleInputPassword1">Password</label>
+					<label for="exampleInputPassword1">Senha</label>
 					<input type="password" name="senha" class="form-control" id="exampleInputPassword1">
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputPassword2">Confirmar Senha</label>
+					<input type="password" name="confirmaSenha" class="form-control" id="exampleInputPassword2">
 				</div>
 				
 				<button type="submit" class="btn btn-primary mb-4" >Cadastrar</button>
@@ -54,6 +59,6 @@
 
 	</div>
 
-
+<script src="../js/validaNewUser.js"></script>
 </body>
 </html>
