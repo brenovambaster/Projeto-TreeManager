@@ -12,9 +12,14 @@ while ($resultado =  mysqli_fetch_object($result)) {
     $id = (int) $resultado->idArvore;
     $rua = ($resultado->Rua);
     $desciption = "<p> ID: $id, Rua: $rua ,</br> <a href='leitura_arvore.php?id=$id'>Ver dados</a> </p>  <a href='solicitar_servico.php?id=$id'>Solicitar serviço</a>";
-    $meus_dados['features'][$i] = ['idArvore' => $id, 'type' => 'Feature', 'geometry' =>
-    ['type' => 'Point', 'coordinates' => [$lng, $lat]], 'properties' =>
-    ['title' => '', 'icon' => 'park', 'description' => $desciption]];
+
+    $meus_dados['features'][$i] = [
+        'idArvore' => $id,
+        'type' => 'Feature',
+        'geometry' => ['type' => 'Point', 'coordinates' => [$lng, $lat]],
+        'properties' => ['title' => '', 'icon' => 'park', 'description' => $desciption]
+
+    ];
 
     $i++;
 }
